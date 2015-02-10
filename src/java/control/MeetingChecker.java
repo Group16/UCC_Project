@@ -156,6 +156,7 @@ public class MeetingChecker {
                                                     this.recurring + "', '" + this.description + "');");
     }
     
+    
     public String dateSent(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
