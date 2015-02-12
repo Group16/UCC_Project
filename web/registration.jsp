@@ -38,8 +38,8 @@
                     checker.get_SHA_256_SecurePassword(pwd);
                     checker.insertQuery( );
                     //print the standard form
-                    String userid = request.getParameter("firstName"); 
-                    session.putValue("userid",userid); 
+                    String studentID = request.getParameter("ID"); 
+                    session.putValue("studentID",studentID); 
                     
                     response.sendRedirect( "welcome.jsp" );
                 }

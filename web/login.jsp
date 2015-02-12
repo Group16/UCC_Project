@@ -20,8 +20,8 @@
             //Calling the User Interface.
             UI.GUI ui = new UI.GUI();
             out.println(ui.generateLogGUI());
-            String studentID = request.getParameter("username"); 
-            //session.putValue("userid",userid); 
+            String studentID = request.getParameter("studentID"); 
+            session.putValue("studentID",studentID); 
             String pwd=request.getParameter("pword"); 
             database.DbClass db = new database.DbClass();
             db.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");

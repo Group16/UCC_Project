@@ -150,10 +150,9 @@ public class MeetingChecker {
     }
     
     public void insertQuery( ){
-        database.Insert( "INSERT INTO meetings( sender, recipient, confirmed, dateSented, startDate, endDate, startTime, endTime, location, recurring, description )" +
-                         "VALUES( '" + this.sender + "', '" + this.recipient + "', '" + "N" + "',  '" + dateSent() + "', '" + this.startDate + "',  '" +
-                                                    this.endDate+ "','" + this.startTime + "',  '" + this.endTime + "', '" + this.location + "', '" + 
-                                                    this.recurring + "', '" + this.description + "');");
+        database.Insert( "INSERT INTO meetings( time, date, location, recur, recur_end, type, description, dateToday )" +
+                         "VALUES( '" + this.startTime + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "', '" + this.endDate + "',  '" +
+                                                    "TYPE?"+ "', '" + this.description + "', '" + dateSent() + "');");
     }
     
     

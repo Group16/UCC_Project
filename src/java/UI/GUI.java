@@ -122,7 +122,7 @@ public class GUI {
        
         result = "<form name='form' action='login.jsp' method='POST'>";
 
-        result += "Student:<input type='text' name='studentID' placeholder='123456789' />";
+        result += "Student ID:<input type='text' name='studentID' placeholder='123456789' />";
         result += "Password:<input type='password' name='pword' placeholder='' />";
         result += "<input type='submit' name='submit' />";
 
