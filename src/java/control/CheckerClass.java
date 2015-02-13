@@ -223,8 +223,9 @@ public class CheckerClass {
      */
     public void insertQuery( ){
      
-        database.Insert( "INSERT INTO users( firstName, lastName, studentID, email, stream, password, dateToday )" +
-                         "VALUES( '" + this.firstName + "', '" + this.lastName + "', '" + this.ID + "', '" + this.email + "', '" + this.problem + "', '" + this.generatedPassword + "',  '" + meeting.dateSent() + "');");
+        database.Insert( "INSERT INTO people( p_id, is_admin, firstname, surname, password, email, dateToday )" +
+                         "VALUES( '" + this.ID + "', '" + "0" + "', '" + this.firstName + "', '" + this.lastName + "', '" +
+                                            this.generatedPassword + "', '" + this.email + "',  '" + meeting.dateSent() + "');");
     }
     /**
      * A method which formats input and checks validation of input

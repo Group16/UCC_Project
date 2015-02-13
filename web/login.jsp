@@ -22,14 +22,14 @@
             //Calling the User Interface.
             UI.GUI ui = new UI.GUI();
             out.println(ui.generateLogGUI());
-            String userid = request.getParameter("username"); 
-            session.putValue("userid",userid); 
+            String studentID = request.getParameter("studentID"); 
+            session.putValue("studentID",studentID); 
             String pwd=request.getParameter("pword"); 
             database.DbClass db = new database.DbClass();
             db.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
             
             if(request.getParameter("submit")!=null){
-                db.checkQuery("select * from users where firstName='" + userid + "' and password = '" + checker.get_SHA_256_SecurePassword(pwd) + "'");
+                db.checkQuery("select * from people where p_id='" + studentID + "' and password = '" + checker.get_SHA_256_SecurePassword(pwd) + "'");
                 if(db.queryCorrect==true) 
                 { 
                      response.sendRedirect( "welcome.jsp" );

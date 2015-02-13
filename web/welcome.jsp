@@ -18,7 +18,7 @@
         
         
         <%
-        String user=session.getValue("userid").toString();
+        String user=session.getValue("studentID").toString();
         if(request.getParameter("submit")!= null){
             response.sendRedirect( "meeting.jsp" );
         }
