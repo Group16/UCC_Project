@@ -2,6 +2,8 @@
     Document   : login.jsp
     Created on : 25-Jan-2015, 16:32:43
     Author     : mm37
+
+    Connction test
 --%>
 <%@ page import ="java.sql.*" %>
 <%@ page import ="javax.sql.*" %>
