@@ -2,9 +2,8 @@
     Document   : login.jsp
     Created on : 25-Jan-2015, 16:32:43
     Author     : mm37
-
-    Connction test
 --%>
+
 <%@ page import ="java.sql.*" %>
 <%@ page import ="javax.sql.*" %>
 
@@ -14,9 +13,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
+        
     </head>
     <body>
-       
+       <h1>Login</h1>
         <%
             control.CheckerClass checker = new control.CheckerClass();
             //Calling the User Interface.
