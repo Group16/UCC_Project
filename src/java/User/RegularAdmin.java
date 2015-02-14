@@ -1,5 +1,6 @@
-
 package User;
+
+import java.util.Date;
 
 /**
  *
@@ -8,9 +9,9 @@ package User;
 public class RegularAdmin extends Admin
 {
      public RegularAdmin(String fName,String lName, int ID, boolean isAdmin, String password,
-                   String email)
+                   String email,String userType,Date dateToday)
      {
-         super(fName,lName,ID,isAdmin,password,email);
+         super(fName,lName,ID,isAdmin,password,email,userType,dateToday);
      } 
      
     

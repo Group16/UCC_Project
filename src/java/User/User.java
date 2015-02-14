@@ -1,4 +1,7 @@
 package User;
+
+import java.util.Date;
+
 /**
  *
  * @author vnl1
@@ -11,10 +14,13 @@ public abstract class User
     private boolean isAdmin;
     private String password;
     private String email;
+    private String userType;
+    private Date dateToday;
+    
     
     
     public User(String fName,String lName, int ID, boolean isAdmin, String password,
-                   String email)
+                   String email,String userType,Date dateToday)
     {
         fName = firstName;
         lName = surname;
@@ -22,6 +28,8 @@ public abstract class User
         this.isAdmin = isAdmin;
         this.password= password;
         this.email = email;
+        this.userType = userType;
+        this.dateToday = dateToday;
                 
                 
     }
@@ -55,5 +63,13 @@ public abstract class User
     {
         this.email = email;
     }
-    
+     public String getUserType()
+    {
+        return userType;
+    }
+     public Date getDate()
+     {
+         return dateToday;      
+     }
+     public abstract void setUserType(String userType);
 }
