@@ -20,20 +20,27 @@
             
          //String user=session.getValue("userid").toString();
          UI.GUI gui = new UI.GUI();
-          if(request.getParameter( "submit" ) != null){
-              if( !meeting.validate() ){  
-                   out.println(gui.generateMeetingGUI(meeting));
-              }
-              else
-              {
-                  out.println("Your meeting has been set");
-                  meeting.insertQuery();
-              }
-          }
-          else
-          {
-             out.println(gui.generateMeetingGUI()); 
-          }
+         
+         if( session.getAttribute( "firstName" ) == null ) {
+                response.sendRedirect( "login.jsp" );
+         }
+         else
+         {
+            if(request.getParameter( "submit" ) != null){
+                 if( !meeting.validate() ){  
+                      out.println(gui.generateMeetingGUI(meeting));
+                 }
+                 else
+                 {
+                     out.println("Your meeting has been set");
+                     meeting.insertQuery();
+                 }
+             }
+             else
+             {
+                out.println(gui.generateMeetingGUI()); 
+             }
+         }
        %>
                        
            <input type='hidden' name='sender' value='Freddy' />
