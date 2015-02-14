@@ -17,7 +17,6 @@
         <jsp:setProperty name="meeting" property="*"/>
         
         <%
-            
          //String user=session.getValue("userid").toString();
          UI.GUI gui = new UI.GUI();
          

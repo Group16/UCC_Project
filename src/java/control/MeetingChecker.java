@@ -152,7 +152,7 @@ public class MeetingChecker {
     public void insertQuery( ){
         database.Insert( "INSERT INTO meetings( time, date, location, recur, recur_end, type, description, dateToday )" +
                          "VALUES( '" + this.startTime + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "', '" + this.endDate + "',  '" +
-                                                    "meeting"+ "', '" + this.description + "', '" + dateSent() + "');");
+                                                    "meeting" + "', '" + this.description + "', '" + dateSent() + "');");
     }
     
     
