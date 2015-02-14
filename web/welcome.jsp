@@ -18,12 +18,21 @@
         
         
         <%
-        String user=session.getValue("studentID").toString();
-        if(request.getParameter("submit")!= null){
-            response.sendRedirect( "meeting.jsp" );
+        String firstName;
+        String lastName;
+        if( session.getAttribute( "firstName" ) == null ) {
+                response.sendRedirect( "login.jsp" );
+        }
+        else
+        {
+            firstName=session.getAttribute("firstName").toString();
+            lastName=session.getAttribute("lastName").toString();
+            out.println("You are logged in. Welcome " + firstName + " " + lastName);
+            if(request.getParameter("submit")!= null){
+                response.sendRedirect( "meeting.jsp" );
+            }
         }
         %>
-        You are logged in. Welcome <%=user %>
         
         <form name='form' action='welcome.jsp' method='POST'>
             <input type="submit" name="submit" value="Arrange a meeting"/>

@@ -152,7 +152,7 @@ public class MeetingChecker {
     public void insertQuery( ){
         database.Insert( "INSERT INTO meetings( time, date, location, recur, recur_end, type, description, dateToday )" +
                          "VALUES( '" + this.startTime + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "', '" + this.endDate + "',  '" +
-                                                    "TYPE?"+ "', '" + this.description + "', '" + dateSent() + "');");
+                                                    "meeting"+ "', '" + this.description + "', '" + dateSent() + "');");
     }
     
     
@@ -174,7 +174,7 @@ public class MeetingChecker {
             valid = false;
             correctRecipient = false;
             }   
-            database.checkQuery("select * from users where firstName='" + this.recipient + "'");
+            database.checkQuery("select * from people where firstname='" + this.recipient + "'");
             if(database.queryCorrect==true) 
             { 
                  array[0]="";

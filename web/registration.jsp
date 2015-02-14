@@ -37,10 +37,11 @@
                     //Insert the form into the database
                     checker.get_SHA_256_SecurePassword(pwd);
                     checker.insertQuery( );
-                    //print the standard form
-                    String studentID = request.getParameter("ID"); 
-                    session.putValue("studentID",studentID); 
-                    
+                    String firstName = request.getParameter("firstName");
+                    String lastName = request.getParameter("lastName");
+                    session.setAttribute("firstName",firstName);
+                    session.setAttribute("lastName",lastName);
+
                     response.sendRedirect( "welcome.jsp" );
                 }
             }else{

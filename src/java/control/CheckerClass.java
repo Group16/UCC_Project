@@ -223,8 +223,8 @@ public class CheckerClass {
      */
     public void insertQuery( ){
      
-        database.Insert( "INSERT INTO people( p_id, is_admin, firstname, surname, password, email, dateToday )" +
-                         "VALUES( '" + this.ID + "', '" + "0" + "', '" + this.firstName + "', '" + this.lastName + "', '" +
+        database.Insert( "INSERT INTO people( p_id, p_type, firstname, surname, password, email, dateToday )" +
+                         "VALUES( '" + this.ID + "', '" + "student" + "', '" + this.firstName + "', '" + this.lastName + "', '" +
                                             this.generatedPassword + "', '" + this.email + "',  '" + meeting.dateSent() + "');");
     }
     /**
