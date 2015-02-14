@@ -1,6 +1,7 @@
 
 package User;
 
+import Classes.*;
 import database.DbClass;
 import java.util.Date;
 
@@ -35,7 +36,13 @@ public abstract class Admin extends User
      {
         database.Insert("DELETE FROM people where p_id = this.getID()");
      }   
-    
+     
+     public void createModules()
+     {
+        // database.Insert("INSERT INTO modules(mod_id,name,c_id)" + 
+                 //"VALUES('"+ Module.getModuleID() +" ','"+Module.getModuleName()+ "','" + Module.getCourseName()+"');");
+                 // error - object not created yet
+     }
      public void updateModuleTimes()
      {
         // create module class
