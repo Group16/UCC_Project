@@ -19,11 +19,11 @@ public class RootUser extends Admin
           database.setup("cs1.ucc.ie","2016_vnl1", "vnl1","ahraiziu");
           //database.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
      }            
-     public void createAdmin()
+      public void createAdmin(int id, String fName, String lName,int password, String email, String date)
      {
          database.Insert( "INSERT INTO people( p_id, p_type, firstname, surname, password, email,dateToday )" +
-                         "VALUES( '" + this.getID() + "', '" + this.getFirstName() + "', '" + this.getLastName() + "',  "
-                             + "'" + this.getPassword() + "', '" + this.getEmail() + "', " + this.getDate() + "');");
+                         "VALUES( '" + id + "', '"+ fName + "', '" + lName + "',  "
+                             + "'" + password + "', '" + email + "', " + date + "');");
      }
    
 }

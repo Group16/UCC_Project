@@ -9,10 +9,11 @@ import java.util.Date;
  *
  * @author vnl1
  */
-public abstract class Admin extends User 
+public class Admin extends User 
 {
      DbClass database;
      private String admin;
+     
      public Admin(String fName,String lName, int ID, boolean isAdmin, String password,
                    String email, String userType,Date dateToday)
      {
@@ -22,31 +23,31 @@ public abstract class Admin extends User
           //database.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
      }
      
-     public void createLecturer()
+     public void createLecturer(int id, String fName, String lName,int password, String email, String date)
      {
          database.Insert( "INSERT INTO people( p_id, p_type, firstname, surname, password, email,dateToday )" +
-                         "VALUES( '" + this.getID() + "', '" + this.getFirstName() + "', '" + this.getLastName() + "',  "
-                             + "'" + this.getPassword() + "', '" + this.getEmail() + "', " + this.getDate() + "');");
+                         "VALUES( '" + id + "', '"+ fName + "', '" + lName + "',  "
+                             + "'" + password + "', '" + email + "', " + date + "');");
      }
-     public void assignLecturerModules()
+    // public void assignLecturerModules()
+    //{
+      //   //create module class
+     //}
+     public void deleteUser(int userID)
      {
-         //create module class
-     }
-     public void deleteUser()
-     {
-        database.Insert("DELETE FROM people where p_id = this.getID()");
+        database.Insert("DELETE FROM people where p_id =( userID)");
      }   
      
-     public void createModules()
+     public void createModules(int moduleID, String moduleName,String courseName)
      {
-        // database.Insert("INSERT INTO modules(mod_id,name,c_id)" + 
-                 //"VALUES('"+ Module.getModuleID() +" ','"+Module.getModuleName()+ "','" + Module.getCourseName()+"');");
-                 // error - object not created yet
+         database.Insert("INSERT INTO modules(mod_id,name,c_id)" + 
+                 "VALUES('"+ moduleID +" ','"+ moduleName+ "','" + courseName +"');");
+         
      }
-     public void updateModuleTimes()
-     {
+    // public void updateModuleTimes()
+     //{
         // create module class
-     }        
+     //}        
      @Override
    public void setUserType(String userType)
     {
