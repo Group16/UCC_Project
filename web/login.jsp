@@ -35,8 +35,10 @@
             
                      String firstName = data[2];
                      String lastName = data[3];
+                     String id = data[0];
                      session.setAttribute("firstName",firstName);
                      session.setAttribute("lastName",lastName);
+                     session.setAttribute("id", id);
                      response.sendRedirect( "welcome.jsp" );
                      
                 } 
