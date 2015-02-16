@@ -12,6 +12,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Notification</h1>
+        
+        
+        <%
+            int count=0;
+            out.println("You have " + count + " notifications");
+        
+        
+        %>
     </body>
 </html>

@@ -149,10 +149,16 @@ public class MeetingChecker {
         return this.recurring;
     }
     
-    public void insertQuery( ){
+    public void insertMeetQuery( ){
         database.Insert( "INSERT INTO meetings( time, date, location, recur, recur_end, type, description, dateToday )" +
                          "VALUES( '" + this.startTime + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "', '" + this.endDate + "',  '" +
                                                     "meeting" + "', '" + this.description + "', '" + dateSent() + "');");
+    }
+    
+    public void insertNotQuery( ){
+        database.Insert( "INSERT INTO notifications(  is_seen, type, content, date, p_id )" +
+                         "VALUES( '" + "0" + "', '" + "meeting" + "',  '" + this.description+ "', '" + this.startDate + "',  '" +
+                                                    "11123" + "');");
     }
     
     
