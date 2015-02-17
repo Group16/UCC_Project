@@ -1,3 +1,6 @@
+package database;
+
+import Classes.Meeting;
 import java.sql.*;
 import java.util.*;
 
@@ -123,8 +126,6 @@ public abstract class SQL
 	 */
     public void disconnect()
     {
-        cache.clear();
-
         try
         {
             if (connection != null)
@@ -139,14 +140,14 @@ public abstract class SQL
     }
 
 	/**
-	 * Gets the data for a givan meeting.
+	 * Gets the data for a given meeting.
 	 *
 	 * @param m_id the meeting id.
-	 * @return a HashMap containing the data of a meeting with a givan m_id
+	 * @return a HashMap containing the data of a meeting with a given m_id
 	 */
-    public HashMap<String,String> getMeeting( String m_id )
+    public Meeting getMeeting( String m_id )
     {
-		HashMap<String,String> meeting;
+	HashMap<String,String> meetingData;
 		
         ArrayList<HashMap<String,String>> data = query( "SELECT * FROM meetings WHERE m_id = '" + m_id + "';", true );
         if( data == null )
@@ -154,8 +155,10 @@ public abstract class SQL
             return null;
         }
 
-		meeting = data.get( 0 );
+	meetingData = data.get( 0 );
 		
+        Meeting meeting = new Meeting( meetingData.get("m_id"), meetingData.get("time"), meetingData.get("date"), meetingData.get("location"), meetingData.get("description"), meetingData.get("type"), meetingData.get("recur_type"), meetingData.get("recur_end")  );
+        
         return meeting;
     }
 }
