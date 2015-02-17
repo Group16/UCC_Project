@@ -19,7 +19,7 @@
         <%
          //String user=session.getValue("userid").toString();
          UI.GUI gui = new UI.GUI();
-         
+         notification.Notify not = new notification.Notify();
          if( session.getAttribute( "firstName" ) == null ) {
                 response.sendRedirect( "login.jsp" );
          }
@@ -33,7 +33,7 @@
                  {
                      out.println("Your meeting has been set");
                      meeting.insertMeetQuery();
-                     meeting.insertNotQuery();
+                     meeting.insertNotQuery("meeting");
                  }
              }
              else

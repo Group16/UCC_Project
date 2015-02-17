@@ -155,9 +155,9 @@ public class MeetingChecker {
                                                     "meeting" + "', '" + this.description + "', '" + dateSent() + "');");
     }
     
-    public void insertNotQuery( ){
+    public void insertNotQuery( String typeOfMeeting){
         database.Insert( "INSERT INTO notifications(  is_seen, type, content, date, p_id )" +
-                         "VALUES( '" + "0" + "', '" + "meeting" + "',  '" + this.description+ "', '" + this.startDate + "',  '" +
+                         "VALUES( '" + "0" + "', '" + typeOfMeeting + "',  '" + this.description+ "', '" + this.startDate + "',  '" +
                                                     "11123" + "');");
     }
     
