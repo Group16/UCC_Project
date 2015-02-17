@@ -39,7 +39,7 @@ public abstract class SQL
 	 * Runs a query on the database and returns an ArrayList containing HashMaps of each row.
 	 * 
 	 * @param sql a String containing the SQL of the query.
-	 * @param hasReturn true if the qury should return an ArrayList, false to discard any return.
+	 * @param hasReturn true if the query should return an ArrayList, false to discard any return.
 	 * @return an ArrayList containing HashMaps of each row.
 	 */
     private ArrayList<HashMap<String,String>> query( String sql, boolean hasReturn )
@@ -143,7 +143,7 @@ public abstract class SQL
 	 * Gets the data for a given meeting.
 	 *
 	 * @param m_id the meeting id.
-	 * @return a HashMap containing the data of a meeting with a given m_id
+	 * @return a Meeting object containing the data of a meeting with a given m_id
 	 */
     public Meeting getMeeting( String m_id )
     {
