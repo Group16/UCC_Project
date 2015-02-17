@@ -229,7 +229,7 @@ public abstract class SQL
         {
             HashMap<String,String> meetingData;
             meetingData = data.get( i );
-		
+	
             Meeting meeting = new Meeting( meetingData.get("m_id"), meetingData.get("time"), meetingData.get("date"), meetingData.get("location"), meetingData.get("description"), meetingData.get("type"), meetingData.get("recur_type"), meetingData.get("recur_end")  );
             
             meetings.add( meeting );
