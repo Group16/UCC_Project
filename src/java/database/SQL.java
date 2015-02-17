@@ -1,6 +1,7 @@
 package database;
 
 import Classes.Meeting;
+import User.Student;
 import User.User;
 import java.sql.*;
 import java.util.*;
@@ -163,8 +164,13 @@ public abstract class SQL
         return meeting;
     }
     
-
-    public User getPerson (String email)
+    /**
+     * Gets the data for a given person.
+     *
+     * @param email the email of the person.
+     * @return a User object containing the data of the user.
+     */
+    public Student getPerson (String email)
     {
          HashMap<String,String> userByEmail;
          ArrayList<HashMap<String,String>> data = query( "SELECT * FROM people WHERE email = '" + email + "';", true );
@@ -174,10 +180,11 @@ public abstract class SQL
         }
          
         userByEmail = data.get( 0 );
-        User person = new User(userByEmail.get("p_id"),userByEmail.get("firstname"),userByEmail.get("surname"), userByEmail.get("password"),userByEmail.get("isAdmin"),userByEmail.get("email"),userByEmail.get("userType"),userByEmail.get("date") );
+        Student person = new Student(userByEmail.get("p_id"),userByEmail.get("firstname"),userByEmail.get("surname"), userByEmail.get("password"),userByEmail.get("isAdmin"),userByEmail.get("email"),userByEmail.get("userType"),userByEmail.get("date") );
         
         return person;
     }
+    
     /**
      * Gets all the meetings of a person
      *
