@@ -1,3 +1,5 @@
+package Classes;
+
 import java.util.Date;
 
 public class Meeting
@@ -15,16 +17,24 @@ public class Meeting
     private String recur_type;
     private Date resur_end;
 
-    public Meeting( int m_id, Date time, Date date, String location, String description, String type, String recur_type, Date resur_end )
+    public Meeting( String m_id, String time, String date, String location, String description, String type, String recur_type, String resur_end )
     {
-        this.m_id = m_id;
-        this.time = time;
-        this.date = date;
+        try
+        {
+            this.m_id = Integer.parseInt(m_id);
+            this.time = new Date();
+            this.date = new Date();
+            this.resur_end = new Date();
+        }
+        catch ( Exception e )
+        {
+            
+        }
+        
         this.location = location;
         this.description = description;
         this.type = type;
         this.recur_type = recur_type;
-        this.resur_end = resur_end;
     }
 
     public int getM_id()
