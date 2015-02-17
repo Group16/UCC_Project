@@ -8,8 +8,8 @@ import java.util.Date;
  */
 public class RegularAdmin extends Admin
 {
-     public RegularAdmin(String fName,String lName, int ID, boolean isAdmin, String password,
-                   String email,String userType,Date dateToday)
+     public RegularAdmin(String fName,String lName, String ID, String isAdmin, String password,
+                   String email,String userType,String dateToday)
      {
          super(fName,lName,ID,isAdmin,password,email,userType,dateToday);
      } 

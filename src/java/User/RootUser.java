@@ -11,8 +11,8 @@ import java.util.Date;
 public class RootUser extends Admin
 {
      DbClass database;
-     public RootUser(String fName,String lName, int ID, boolean isAdmin, String password,
-                   String email,String userType,Date dateToday)
+     public RootUser(String fName,String lName, String ID, String isAdmin, String password,
+                   String email,String userType,String dateToday)
      {
          super(fName,lName,ID,isAdmin,password,email,userType,dateToday);
           database = new DbClass();

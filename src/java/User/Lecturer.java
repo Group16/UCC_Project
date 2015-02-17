@@ -14,8 +14,8 @@ public class Lecturer extends User
     private List modules;
     private String student;
     private String lecturer;
-    public Lecturer(String fName,String lName, int ID, boolean isAdmin, String password,
-                   String email,String userType,Date dateToday)
+    public Lecturer(String fName,String lName, String ID, String isAdmin, String password,
+                   String email,String userType,String dateToday)
         {
             super(fName,lName,ID,isAdmin,password,email,userType,dateToday);
             modules = new ArrayList();
