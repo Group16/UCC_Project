@@ -24,7 +24,7 @@ public class User
     {
         fName = firstName;
         lName = surname;
-        this.ID = ID;
+        this.ID = Integer.parseInt(ID);
         this.isAdmin = isAdmin;
         this.password= password;
         this.email = email;
