@@ -140,12 +140,12 @@ public abstract class SQL
         }
     }
 
-	/**
-	 * Gets the data for a given meeting.
-	 *
-	 * @param m_id the meeting id.
-	 * @return a Meeting object containing the data of a meeting with a given m_id
-	 */
+    /**
+     * Gets the data for a given meeting.
+     *
+     * @param m_id the meeting id.
+     * @return a Meeting object containing the data of a meeting with a given m_id
+     */
     public Meeting getMeeting( String m_id )
     {
 	HashMap<String,String> meetingData;
@@ -163,6 +163,7 @@ public abstract class SQL
         return meeting;
     }
     
+
     public User getPerson (String email)
     {
          HashMap<String,String> userByEmail;
@@ -176,5 +177,65 @@ public abstract class SQL
         User person = new User(userByEmail.get("p_id"),userByEmail.get("firstname"),userByEmail.get("surname"), userByEmail.get("password"),userByEmail.get("isAdmin"),userByEmail.get("email"),userByEmail.get("userType"),userByEmail.get("date") );
         
         return person;
+    }
+    /**
+     * Gets all the meetings of a person
+     *
+     * @param p_id the person id.
+     * @return a list of Meeting objects containing the data of the meetings
+     */
+    public ArrayList<Meeting> getAllMeetings( String p_id )
+    {
+	ArrayList<Meeting> meetings = new ArrayList<Meeting>();
+		
+        ArrayList<HashMap<String,String>> data = query( "SELECT * FROM meetings AS m JOIN people_in_meetings AS pm WHERE pm.p_id = '" + p_id + "';", true );
+        if( data == null )
+        {
+            return null;
+        }
+
+        for( int i=0 ; i < data.size() ; i++ )
+        {
+            HashMap<String,String> meetingData;
+            meetingData = data.get( i );
+		
+            Meeting meeting = new Meeting( meetingData.get("m_id"), meetingData.get("time"), meetingData.get("date"), meetingData.get("location"), meetingData.get("description"), meetingData.get("type"), meetingData.get("recur_type"), meetingData.get("recur_end")  );
+            
+            meetings.add( meeting );
+        }
+        
+        return meetings;
+    }
+    
+    /**
+     * Gets all the meetings of a person between 2 dates
+     *
+     * @param p_id the person id.
+     * @param start_date the start of the date search
+     * @param end_date the end of the date search
+     * @return a list of Meeting objects containing the data of the meetings
+     */
+    public ArrayList<Meeting> getAllMeetingsBetweenDates( String p_id, String start_date, String end_date )
+    {
+	ArrayList<Meeting> meetings = new ArrayList<Meeting>();
+		
+        ArrayList<HashMap<String,String>> data = query( "SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = " +p_id+ " AND m.date BETWEEN '" +start_date+ "' AND '" +end_date+ "';", true );
+        if( data == null )
+        {
+            return null;
+        }
+
+        for( int i=0 ; i < data.size() ; i++ )
+        {
+            HashMap<String,String> meetingData;
+            meetingData = data.get( i );
+		
+            Meeting meeting = new Meeting( meetingData.get("m_id"), meetingData.get("time"), meetingData.get("date"), meetingData.get("location"), meetingData.get("description"), meetingData.get("type"), meetingData.get("recur_type"), meetingData.get("recur_end")  );
+            
+            meetings.add( meeting );
+        }
+        
+        return meetings;
+
     }
 }
