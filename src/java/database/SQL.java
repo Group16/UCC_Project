@@ -1,6 +1,7 @@
 package database;
 
 import Classes.Meeting;
+import User.User;
 import java.sql.*;
 import java.util.*;
 
@@ -160,5 +161,20 @@ public abstract class SQL
         Meeting meeting = new Meeting( meetingData.get("m_id"), meetingData.get("time"), meetingData.get("date"), meetingData.get("location"), meetingData.get("description"), meetingData.get("type"), meetingData.get("recur_type"), meetingData.get("recur_end")  );
         
         return meeting;
+    }
+    
+    public User getPerson (String email)
+    {
+         HashMap<String,String> userByEmail;
+         ArrayList<HashMap<String,String>> data = query( "SELECT * FROM people WHERE email = '" + email + "';", true );
+         if( data == null )
+        {
+            return null;
+        }
+         
+        userByEmail = data.get( 0 );
+        User person = new User(userByEmail.get("p_id"),userByEmail.get("firstname"),userByEmail.get("surname"), userByEmail.get("password"),userByEmail.get("isAdmin"),userByEmail.get("email"),userByEmail.get("userType"),userByEmail.get("date") );
+        
+        return person;
     }
 }
