@@ -6,7 +6,7 @@ import java.util.Date;
  *
  * @author vnl1
  */
-public abstract class User 
+public class User 
 {
     private String firstName;
     private String surname;
@@ -19,8 +19,8 @@ public abstract class User
     
     
     
-    public User(String fName,String lName, int ID, boolean isAdmin, String password,
-                   String email,String userType,Date dateToday)
+    public User(String fName,String lName, String ID, String isAdmin, String password,
+                   String email,String userType,String dateToday)
     {
         fName = firstName;
         lName = surname;
