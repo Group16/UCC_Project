@@ -13,7 +13,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-//http://www.mkyong.com/java/javamail-api-sending-email-via-gmail-smtp-example/
+
 public class Email {
  
 	public static void main(String[] args) {
