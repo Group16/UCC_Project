@@ -139,7 +139,7 @@ public class GUI {
 
         
         if(meeting.correctRecipient== false){
-            result += "Person you wish to meet <input type='text' name='recipient' placeholder='Enter a user' />";
+            result += "ID of person you wish to meet <input type='text' name='recipient' placeholder='Enter a users ID' />";
         }
         else
         {
@@ -222,7 +222,7 @@ public class GUI {
         
         result = "<form name='form' action='meeting.jsp' method='POST'>";
         
-        result += "Person you wish to meet <input type='text' name='recipient' placeholder='Enter a user' />";
+        result += "ID of person you wish to meet with <input type='text' name='recipient' placeholder='Enter a users ID' />";
         result += "Start Date <input type='text' name='startDate' placeholder='2015/02/08' />";
         result += "End Date <input type='text' name='endDate' placeholder='2015/03/08' />";
         result += "Start Time <input type='text' name='startTime' placeholder='12:00:00' />";
