@@ -26,15 +26,24 @@
                 database.DbClass db = new database.DbClass();
                 db.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
                 db.checkQuery("select * from notifications where p_id='" + session.getAttribute("id") + "'");
-                if(db.queryCorrect==true) 
+                db.getLength("select * from notifications where p_id='" + session.getAttribute("id") + "'");
+                
+                int numRows = db.getLength("select * from notifications where p_id='" + session.getAttribute("id") + "'");
+                
+                if(db.queryCorrect==true)     
                 { 
-                    //String[] info = db.SelectRow( "select * from meetings where p_id='" +  + "' and password = '" + checker.get_SHA_256_SecurePassword(pwd) + "'");
-                    out.println("IT WORKED!!!");
+                    int i = 0;
+                    while(i < numRows){
+                        String[] not = db.SelectRow( "SELECT * FROM meetings JOIN notifications ON meetings.m_id = notifications.n_id WHERE p_id ='" + session.getAttribute("id") + "'");
+                        String info = not[i];
+                        
+                        out.println(info);
+                        count+=1;
+                        i++;
+                    }
                 }
-                else
-                {
-                    out.println("You have " + count + " notifications");
-                }
+                
+                out.println("<h1>You have " + count + " notifications</h1>");
             }
         
         %>
