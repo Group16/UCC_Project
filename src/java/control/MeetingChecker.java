@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -158,7 +159,9 @@ public class MeetingChecker {
     public void insertNotQuery( String typeOfNotification){
         database.Insert( "INSERT INTO notifications(  is_seen, type, content, date, p_id )" +
                          "VALUES( '" + "0" + "', '" + typeOfNotification + "',  '" + this.description+ "', '" + this.startDate + "',  '" +
-                                                    "11123" + "');");
+                                                    recipient + "');");
+        
+        System.out.println( recipient);
     }
     
     

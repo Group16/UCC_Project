@@ -75,6 +75,25 @@ public class DbClass {
     return "";
     }
     
+    public int getLength(String query){
+        int rowcount = 0;
+        try {
+            statementObject = connectionObject.createStatement();
+
+            ResultSet statementResult = statementObject.executeQuery(query); //Should connection be left open?
+            rowcount = 0;
+            if (statementResult.last()) {
+                rowcount = statementResult.getRow();
+                statementResult.beforeFirst(); // not rs.first() because the rs.next() below will move on, missing the first element
+                }
+        
+        } catch (SQLException exceptionObject) {
+           
+        }
+        
+        return rowcount;
+    }
+    
     
  public boolean issetup()
     {
