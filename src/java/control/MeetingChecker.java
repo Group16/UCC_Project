@@ -155,9 +155,9 @@ public class MeetingChecker {
                                                     "meeting" + "', '" + this.description + "', '" + dateSent() + "');");
     }
     
-    public void insertNotQuery( String typeOfMeeting){
+    public void insertNotQuery( String typeOfNotification){
         database.Insert( "INSERT INTO notifications(  is_seen, type, content, date, p_id )" +
-                         "VALUES( '" + "0" + "', '" + typeOfMeeting + "',  '" + this.description+ "', '" + this.startDate + "',  '" +
+                         "VALUES( '" + "0" + "', '" + typeOfNotification + "',  '" + this.description+ "', '" + this.startDate + "',  '" +
                                                     "11123" + "');");
     }
     
@@ -180,7 +180,7 @@ public class MeetingChecker {
             valid = false;
             correctRecipient = false;
             }   
-            database.checkQuery("select * from people where firstname='" + this.recipient + "'");
+            database.checkQuery("select * from people where p_id='" + this.recipient + "'");
             if(database.queryCorrect==true) 
             { 
                  array[0]="";
