@@ -17,19 +17,25 @@
         
         <%
             int count=0;
-            database.DbClass db = new database.DbClass();
-            db.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
-            db.checkQuery("select * from notifications where p_id='" + session.getAttribute("id") + "'");
-            if(db.queryCorrect==true) 
-            { 
-                //String[] info = db.SelectRow( "select * from meetings where p_id='" +  + "' and password = '" + checker.get_SHA_256_SecurePassword(pwd) + "'");
-                out.println("IT WORKED!!!");
+            
+            if( session.getAttribute( "firstName" ) == null ) {
+                response.sendRedirect( "login.jsp" );
             }
             else
             {
-                out.println("You have " + count + " notifications");
+                database.DbClass db = new database.DbClass();
+                db.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
+                db.checkQuery("select * from notifications where p_id='" + session.getAttribute("id") + "'");
+                if(db.queryCorrect==true) 
+                { 
+                    //String[] info = db.SelectRow( "select * from meetings where p_id='" +  + "' and password = '" + checker.get_SHA_256_SecurePassword(pwd) + "'");
+                    out.println("IT WORKED!!!");
+                }
+                else
+                {
+                    out.println("You have " + count + " notifications");
+                }
             }
-        
         
         %>
     </body>

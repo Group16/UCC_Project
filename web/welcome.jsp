@@ -40,7 +40,7 @@
         <form name='form' action='welcome.jsp' method='POST'>
             <input type="submit" name="meetingSubmit" value="Arrange a meeting"/>
             
-            <input type="submit" name="notificationSubmit" value="Arrange a meeting"/>
+            <input type="submit" name="notificationSubmit" value="Notifcations"/>
         </form>
     </body>
 </html>
