@@ -11,6 +11,7 @@ package database;
 import java.sql.*;
 import java.text.*;
 import java.io.*;
+import java.util.ArrayList;
 
 public class DbClass {
 
@@ -93,6 +94,25 @@ public class DbClass {
         
         return rowcount;
     }
+ public  ArrayList<String> outputAllRows(String query){
+     String output="";
+     ArrayList<String> list = new ArrayList<String>();
+     try {// Make connection to database
+        statementObject = connectionObject.createStatement();
+        ResultSet statementResult = statementObject.executeQuery(query);
+
+        while(statementResult.next()){
+            output = statementResult.getString(1);
+            output += statementResult.getString(2);
+            output += statementResult.getString(3);
+            System.out.println("");
+            list.add(output);
+        }
+        } catch (SQLException exceptionObject) {
+            
+        }
+     return list;
+ }
     
     
  public boolean issetup()
