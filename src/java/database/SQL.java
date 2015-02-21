@@ -5,6 +5,7 @@ import User.Student;
 import User.User;
 import java.sql.*;
 import java.util.*;
+import database.SQL;
 
 public abstract class SQL
 {
@@ -180,7 +181,7 @@ public abstract class SQL
         }
          
         userByEmail = data.get( 0 );
-        Student person = new Student(userByEmail.get("p_id"),userByEmail.get("firstname"),userByEmail.get("surname"), userByEmail.get("password"),userByEmail.get("isAdmin"),userByEmail.get("email"),userByEmail.get("userType"),userByEmail.get("date") );
+        Student person = new Student(userByEmail.get("p_id"),userByEmail.get("firstname"),userByEmail.get("surname"), userByEmail.get("password"),userByEmail.get("email"),userByEmail.get("userType"),userByEmail.get("date") );
         
         return person;
     }
