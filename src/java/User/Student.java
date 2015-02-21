@@ -3,6 +3,7 @@ package User;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.text.ParseException;
 
 /**
  *
@@ -13,10 +14,10 @@ public class Student extends User
     private List stream;
     private List modules;
     private String student;
-    public Student(String fName,String lName, int ID, boolean isAdmin, String password,
-                   String email,String userType,Date dateToday)
+    public Student(String fName,String lName, String ID, String password,
+                   String email,String userType,String dateToday) throws ParseException
     {
-        super(fName,lName,ID,isAdmin,password,email,userType,dateToday);
+        super(fName,lName,ID,password,email,userType,dateToday);
          stream = new ArrayList();
          modules = new ArrayList();
          

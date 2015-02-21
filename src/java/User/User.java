@@ -1,35 +1,41 @@
 package User;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  *
  * @author vnl1
  */
-public class User 
+public abstract class User 
 {
     private String firstName;
     private String surname;
     private int ID;
-    private boolean isAdmin;
+    //private boolean isAdmin;
     private String password;
     private String email;
     private String userType;
     private Date dateToday;
+    DateFormat format ; 
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+   
     
     
     
-    public User(String fName,String lName, String ID, String isAdmin, String password,
-                   String email,String userType,String dateToday)
+    public User(String fName,String lName, String ID, String password,
+                   String email,String userType,String dateToday) throws ParseException
     {
+       
         fName = firstName;
         lName = surname;
         this.ID = Integer.parseInt(ID);
-        this.isAdmin = isAdmin;
         this.password= password;
         this.email = email;
         this.userType = userType;
-        this.dateToday = dateToday;
+        this.dateToday = dateFormat.parse(dateToday);
                 
                 
     }

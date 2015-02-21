@@ -1,6 +1,7 @@
 
 package User;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,9 +16,9 @@ public class Lecturer extends User
     private String student;
     private String lecturer;
     public Lecturer(String fName,String lName, String ID, String isAdmin, String password,
-                   String email,String userType,String dateToday)
+                   String email,String userType,String dateToday) throws ParseException
         {
-            super(fName,lName,ID,isAdmin,password,email,userType,dateToday);
+            super(fName,lName,ID,password,email,userType,dateToday);
             modules = new ArrayList();
         }
     

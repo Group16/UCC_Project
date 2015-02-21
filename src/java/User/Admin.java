@@ -4,6 +4,7 @@ package User;
 import Classes.*;
 import database.DbClass;
 import java.util.Date;
+import java.text.ParseException;
 
 /**
  *
@@ -14,10 +15,10 @@ public class Admin extends User
      DbClass database;
      private String admin;
      
-     public Admin(String fName,String lName, String ID, String isAdmin, String password,
-                   String email,String userType,String dateToday)
+     public Admin(String fName,String lName, String ID, String password,
+                   String email,String userType,String dateToday) throws ParseException
      {
-         super(fName,lName,ID,isAdmin,password,email,userType,dateToday);
+         super(fName,lName,ID,password,email,userType,dateToday);
           database = new DbClass();
           database.setup("cs1.ucc.ie","2016_vnl1", "vnl1","ahraiziu");
           //database.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");

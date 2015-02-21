@@ -1,6 +1,8 @@
 package User;
 
+import database.DbClass;
 import java.util.Date;
+import java.text.ParseException;
 
 /**
  *
@@ -8,10 +10,11 @@ import java.util.Date;
  */
 public class RegularAdmin extends Admin
 {
-     public RegularAdmin(String fName,String lName, String ID, String isAdmin, String password,
-                   String email,String userType,String dateToday)
+     public RegularAdmin(String fName,String lName, String ID, String password,
+                   String email,String userType,String dateToday) throws ParseException
      {
-         super(fName,lName,ID,isAdmin,password,email,userType,dateToday);
+         super(fName,lName,ID,password,email,userType,dateToday);
+          
      } 
      
     
