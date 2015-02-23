@@ -31,6 +31,7 @@
             String DSN ="2016_mm37" ;
             String URL = "jdbc:mysql://"+dbserver+"/" + DSN;
             connectionObject = DriverManager.getConnection(URL, "mm37", "uohongah");
+            
             if( session.getAttribute( "firstName" ) == null ) {
                 response.sendRedirect( "login.jsp" );
             }
@@ -59,7 +60,9 @@
                             output += statementResult.getString(3) + '\n';
                             
                             out.println(output);
-                            %></ol><%
+                            %><input type='submit' name='AllowSubmit<%=count%>' value="Agree" />
+                              <input type='submit' name='DenySubmit<%=count%>' value="Decline" /></ol><%
+                            count++;
                         }
                     } catch (SQLException exceptionObject) {
 
