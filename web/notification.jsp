@@ -47,8 +47,7 @@
                 
                 if(db.queryCorrect==true)     
                 { 
-                     String output="";
-                    ArrayList<String> list = new ArrayList<String>();
+                    String output="";
                     try {// Make connection to database
                         statementObject = connectionObject.createStatement();
                         ResultSet statementResult = statementObject.executeQuery("SELECT time, location, description FROM meetings JOIN notifications ON meetings.m_id = notifications.n_id WHERE p_id ='" + session.getAttribute("id") + "'");
