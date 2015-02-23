@@ -150,15 +150,28 @@ public class MeetingChecker {
         return this.recurring;
     }
     
+    public int getMeetingID(){
+        
+        String num[] = database.SelectRow("SELECT * FROM meetings ORDER BY m_id DESC LIMIT 1;");
+        String count = num[0];
+        
+        int realNum = Integer.parseInt(count);
+        realNum++;
+        
+        this.meetingID = realNum;
+        
+        return this.meetingID;
+    }
+    
     public void insertMeetQuery( ){
-        database.Insert( "INSERT INTO meetings( time, date, location, recur, recur_end, type, description, dateToday )" +
-                         "VALUES( '" + this.startTime + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "', '" + this.endDate + "',  '" +
+        database.Insert( "INSERT INTO meetings( m_id, confirmed, time, date, location, recur, recur_end, type, description, dateToday )" +
+                         "VALUES( '" + getMeetingID() + "', '" + "0" + "', '" + this.startTime + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "', '" + this.endDate + "',  '" +
                                                     "meeting" + "', '" + this.description + "', '" + dateSent() + "');");
     }
     
     public void insertNotQuery( String typeOfNotification){
-        database.Insert( "INSERT INTO notifications(  is_seen, type, content, date, p_id )" +
-                         "VALUES( '" + "0" + "', '" + typeOfNotification + "',  '" + this.description+ "', '" + this.startDate + "',  '" +
+        database.Insert( "INSERT INTO notifications( m_id, is_seen, type, content, date, p_id )" +
+                         "VALUES( '" + getMeetingID() + "', '" + "0" + "', '" + typeOfNotification + "',  '" + this.description+ "', '" + this.startDate + "',  '" +
                                                     recipient + "');");
         
         System.out.println( recipient);

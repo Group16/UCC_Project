@@ -31,7 +31,7 @@
             String DSN ="2016_mm37" ;
             String URL = "jdbc:mysql://"+dbserver+"/" + DSN;
             connectionObject = DriverManager.getConnection(URL, "mm37", "uohongah");
-            
+            database.DbClass database = new database.DbClass();
             if( session.getAttribute( "firstName" ) == null ) {
                 response.sendRedirect( "login.jsp" );
             }
@@ -50,7 +50,7 @@
                     String output="";
                     try {// Make connection to database
                         statementObject = connectionObject.createStatement();
-                        ResultSet statementResult = statementObject.executeQuery("SELECT time, location, description FROM meetings JOIN notifications ON meetings.m_id = notifications.n_id WHERE p_id ='" + session.getAttribute("id") + "'");
+                        ResultSet statementResult = statementObject.executeQuery("SELECT time, location, description FROM meetings JOIN notifications ON meetings.m_id = notifications.m_id WHERE p_id ='" + session.getAttribute("id") + "'");
 
                         while(statementResult.next()){
                             %><ol><%
@@ -66,8 +66,16 @@
                     } catch (SQLException exceptionObject) {
 
                     }
-            }
-            }
+                }
+                
+                if(request.getParameter("AllowSubmit3")!=null){
+                    
+                    database.Insert("UPDATE meetings SET confirmed = '1' WHERE m_id = 1");
+                    database.Insert("DELETE * FROM notifications WHERE m_id = 1");
+                    response.sendRedirect("notification.jsp");
+                    
+                }
+        }
         %>
     </body>
 </html>

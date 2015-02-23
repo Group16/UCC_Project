@@ -32,8 +32,8 @@
                  else
                  {
                      out.println("Your meeting has been set");
-                     meeting.insertMeetQuery();
                      meeting.insertNotQuery("meeting");
+                     meeting.insertMeetQuery();
                  }
              }
              else
