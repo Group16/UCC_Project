@@ -27,16 +27,12 @@
         <%
             Statement statementObject;
             Connection connectionObject;
-            String dbserver="cs1.ucc.ie";
-            String DSN ="2016_mm37" ;
-            String URL = "jdbc:mysql://"+dbserver+"/" + DSN;
-            connectionObject = DriverManager.getConnection(URL, "mm37", "uohongah");
-            database.DbClass database = new database.DbClass();
             if( session.getAttribute( "firstName" ) == null ) {
                 response.sendRedirect( "login.jsp" );
             }
             else
             {
+                connectionObject = DriverManager.getConnection("jdbc:mysql://"+"cs1.ucc.ie"+"/" + "2016_mm37", "mm37", "uohongah");
                 database.DbClass db = new database.DbClass();
                 db.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
                 db.checkQuery("select * from notifications where p_id='" + session.getAttribute("id") + "'");
@@ -53,14 +49,18 @@
                         ResultSet statementResult = statementObject.executeQuery("SELECT time, location, description FROM meetings JOIN notifications ON meetings.m_id = notifications.m_id WHERE p_id ='" + session.getAttribute("id") + "'");
 
                         while(statementResult.next()){
-                            %><ol><%
-                            output = statementResult.getString(1) + " ";
+                            %><form action="notification.jsp" method="POST"> <ol><%
+                            %><table><%
+                            %><tr><%
+                            %><td><%
+                            output += statementResult.getString(1) + " ";
                             output += statementResult.getString(2) + " ";
                             output += statementResult.getString(3) + '\n';
-                            
+                            session.setAttribute("count", count);
                             out.println(output);
-                            %><input type='submit' name='AllowSubmit<%=count%>' value="Agree" />
-                              <input type='submit' name='DenySubmit<%=count%>' value="Decline" /></ol><%
+                            %><input type='submit' name='AllowSubmit<%=count%>' value="Accept" />
+                              <input type='submit' name='DeclineSubmit<%=count%>' value="Decline" /></td></tr></table></ol></form><%
+                            
                             count++;
                         }
                     } catch (SQLException exceptionObject) {
@@ -68,14 +68,13 @@
                     }
                 }
                 
-                if(request.getParameter("AllowSubmit3")!=null){
-                    
-                    database.Insert("UPDATE meetings SET confirmed = '1' WHERE m_id = 1");
-                    database.Insert("DELETE * FROM notifications WHERE m_id = 1");
-                    response.sendRedirect("notification.jsp");
-                    
+                if(request.getParameter("AllowSubmit" )!=null){
+                    Integer counter = (Integer)session.getAttribute("count" );
+                    db.Insert("UPDATE meetings SET confirmed = '" + counter + "' WHERE m_id = '" + counter + "'");
+                    db.Insert("DELETE FROM notifications WHERE m_id = '" + counter + "'");
+                    //response.sendRedirect("notification.jsp");
                 }
         }
-        %>
+     %>
     </body>
 </html>
