@@ -31,7 +31,7 @@ public class GUI {
      */
     public String generateRegGUI(CheckerClass checker) {
         result = "<form name='form' action='registration.jsp' method='POST'>";
-  
+
         //Date: If the date is empty or the date is incorrect format
         if (checker.getDate().equals("") || checker.correctDate == false) {
             result += "<input type='hidden' name='date' value='1993/12/15' />";
@@ -108,23 +108,23 @@ public class GUI {
 
     public String generateRegGUI() {
 
-        result  = "<form name='form' action='registration.jsp' method='POST'>"; // start of form 
-        result +=   "<input type='hidden' name='date' value='1993/12/15' />"; // hidden date field
-        result +=   "<label>First Name*<input type='text' name='firstName' id='firstname' placeholder='John' /></label>"; // first name 
-        result +=   "<label>Last Name*<input type='text' name='LastName' id='secondname' placeholder='Doe' /></label>";   //last name 
-        result +=   "<label>Student Number* <input type='text' name='ID' id='studentNumber' placeholder='123456789'/></label>";   // Student Number 
-        result +=   "<label>Email Address<input type='text' name='email' id='email' placeholder='1234@gmail.com' /></label>"; // email address
-        result +=   "<label>Password<input type='password' name='password1' id='password1' /></label>"; // password 
-        result +=   "<label>Re-Enter Password<input type='password' name='password2' id='password2' /></label>"; // reenter password
-       
-        result +=   "<div class='action_btns'>";           
-	result +=       "<a href='#registerdetail' data-toggle='modal' data-dismiss='modal'><button type='button' class='btn btn-success'>Continue</button></a>";								
-	result +=   "</div>";        
-        
-        result +=   "<div class='action_btns'>";						
-	result +=       "<a href='#login' data-toggle='modal' data-dismiss='modal'>Already have an account?</a>";								
-	result +=   "</div>";
-        result +=   "<input type='submit' name='submit' />";        
+        result = "<form name='form' action='registration.jsp' method='POST'>"; // start of form 
+        result += "<input type='hidden' name='date' value='1993/12/15' />"; // hidden date field
+        result += "<label>First Name*<input type='text' name='firstName' id='firstname' placeholder='John' /></label>"; // first name 
+        result += "<label>Last Name*<input type='text' name='LastName' id='secondname' placeholder='Doe' /></label>";   //last name 
+        result += "<label>Student Number* <input type='text' name='ID' id='studentNumber' placeholder='123456789'/></label>";   // Student Number 
+        result += "<label>Email Address<input type='text' name='email' id='email' placeholder='1234@gmail.com' /></label>"; // email address
+        result += "<label>Password<input type='password' name='password1' id='password1' /></label>"; // password 
+        result += "<label>Re-Enter Password<input type='password' name='password2' id='password2' /></label>"; // reenter password
+
+        result += "<div class='action_btns'>";
+        result += "<a href='#registerdetail' data-toggle='modal' data-dismiss='modal'><button type='button' class='btn btn-success'>Continue</button></a>";
+        result += "</div>";
+
+        result += "<div class='action_btns'>";
+        result += "<a href='#login' data-toggle='modal' data-dismiss='modal'>Already have an account?</a>";
+        result += "</div>";
+        result += "<input type='submit' name='submit' />";
         result += "</form>";
         //returns html form
         return result;
@@ -137,26 +137,25 @@ public class GUI {
      */
     public String generateLogGUI() {
 
-        result  = "<form id='log' name='form' action='login.jsp' method='POST'>";
-        result +=       "<label>Student Number<input type='text' name='studentID' id='username' placeholder='123456789' /></label>";
-        result +=       "<label>Password<input type='password' name='pword' id='passwordlog' /></label>";
-        
-        result +=       "<div class='action_btns'>";
-        result +=           "<button type='submit' name='submit' class='btn btn-success'>Login</button>";
-        result +=           "<a href='#register' data-toggle='modal' data-dismiss='modal'>Or sign up today</a>";
-        result +=       "</div>";
-        
-        result +=       "<div class='action_btns'>";
-        result +=           "<button type='button' id='forgotbutton'class='btn btn-warning'>Forgot Your Password ? </button>";
-        result +=       "</div>";
+        result = "<form id='log' name='form' action='login.jsp' method='POST'>";
+        result += "<label>Student Number<input type='text' name='studentID' id='username' placeholder='123456789' /></label>";
+        result += "<label>Password<input type='password' name='pword' id='passwordlog' /></label>";
+
+        result += "<div class='action_btns'>";
+        result += "<button type='submit' name='submit' class='btn btn-success'>Login</button>";
+        result += "<a href='#register' data-toggle='modal' data-dismiss='modal'>Or sign up today</a>";
+        result += "</div>";
+
+        result += "<div class='action_btns'>";
+        result += "<button type='button' id='forgotbutton'class='btn btn-warning'>Forgot Your Password ? </button>";
+        result += "</div>";
         result += "</form>";
-        
-        
+
         result += "<form id='forgot' style='display:none;'>";
-        result +=       "<label>Enter your email address and we will email your a new one !<input type='text' name='username' id='username' placeholder='example@email.com' /></label>";
-        result +=       "<div class='action_btns'>";
-        result +=           "<button type='button' class='btn btn-success'>Send</button>";
-        result +=       "</div>";
+        result += "<label>Enter your email address and we will email your a new one !<input type='text' name='username' id='username' placeholder='example@email.com' /></label>";
+        result += "<div class='action_btns'>";
+        result += "<button type='button' class='btn btn-success'>Send</button>";
+        result += "</div>";
         result += "</form>";
 
 //                StringBuilder contentBuilder = new StringBuilder();
@@ -254,13 +253,12 @@ public class GUI {
         result += "Start Time <input type='text' name='startTime' placeholder='12:00:00' />";
         result += "End Time <input type='text' name='endTime' placeholder='17:00:00' />";
         result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
-        result += "Recurring <select name=\"recurring\">\n"
-                + "  <option value=\"none\">None</option>\n"
-                + "  <option value=\"weekly\">Weekly</option>\n"
-                + "  <option value=\"fortnight\">Fortnightly</option>\n"
-                + "  <option value=\"monthly\">Monthly</option>\n"
-                + "</select>";
-
+        result += "Recurring <select name='recurring'>";
+        result += "  <option value='none'>None</option>";
+        result += "  <option value='weekly'>Weekly</option>";
+        result += "  <option value='fortnight'>Fortnightly</option>";
+        result += "  <option value='monthly'>Monthly</option>";
+        result += "</select>";
         result += "Description: <textarea name='description' cols='-40' rows='20' placeholder='Insert meeting description here' ></textarea>";
         result += "<input type='submit' name='submit' />";
 
