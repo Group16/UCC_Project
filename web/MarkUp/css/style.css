@@ -1,0 +1,313 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+/* CSS Document */
+/* light blue     #00bff3   */
+/* dark blue     #09F  */
+@import url(bootstrap.css);
+@import url(fullcalendar.css);
+
+body {
+    background-color: #09F;
+    font-family: 'Lato', sans-serif; 
+    font-size: 18px; /*margin: 0 to remove user agent style sheet border*/;
+    color: #fff;
+    text-decoration:none;	
+}
+
+.container {
+    /* Main setting for all container divs*/
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+}
+
+
+/* Navigation Bar ============================================================*/
+.navbar {
+    /* main div behind fixed nav elements */
+    background: #fff;
+    margin-bottom: 0px;	
+}
+
+.navbar-brand {	
+    /* UCC CONNECT text */
+    padding-top:40px;
+    margin-left: 20px;
+}
+
+
+body > div.navbar.navbar-inverse.navbar-fixed-top > div.navbar-collapse.navHeaderCollapse.collapse{
+    /* menu elements in nav bar*/
+    padding-bottom: 30px;
+    margin-right: 40px
+}
+
+
+
+/* Navigation Icon when on small screen  ============================================================*/
+
+
+.container .landing {
+    padding: 0px;
+    background: url("../images/WGB.jpg")  fixed;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+
+    padding-top: 100px;
+    text-align: center;
+}
+.container .landing img {
+    width: 70%;
+    display: block;
+    margin: auto;
+    padding-top: 50px;
+}
+.container p {
+
+    padding-bottom: 40px;
+
+}
+.container .row img {
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+.container .row {
+    padding-top:50px;	
+    width: 80%;
+    display: block;
+    margin:  0 auto;
+}
+
+body > div.studentlinks > div {
+    background-color: #09F;
+
+}
+
+body > div.studentlinks > div {
+    padding: 20px 20px;
+    background: #fff;      
+}
+body > div.studentlinks > div img {
+    margin: 0px 30px 0px 30px;
+}
+
+
+body > div.bannertext > div{
+    text-align:center;
+    padding: 1em 1em;	
+    background: -webkit-linear-gradient(#00bff3,#09F);/*For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#00bff3,#09F); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#00bff3,#09F); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#00bff3,#09F); /* Standard syntax (must be last) */
+}
+
+hr {
+    border: 0;
+    height: 2px;
+    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(255, 191, 0, 1), rgba(0,0,0,0)); 
+    background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(255, 191, 0, 1), rgba(0,0,0,0)); 
+    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(255, 191, 0, 1), rgba(0,0,0,0)); 
+    background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(255, 191, 0, 1), rgba(0,0,0,0)); 
+}
+
+
+p{
+    font-size:1.5em;
+}
+.text-muted{
+
+    color:#2E2E2E;
+}
+h2{
+    font-weight: bold;
+}
+
+
+.hide {
+    display: none;
+}
+
+
+form    {
+    margin:auto;
+    position:relative;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    padding:10px;
+}
+
+label{
+    padding-top:15px;
+    display:block;
+    margin-bottom: 0px;
+}
+
+input{
+    width:100%;
+    display:block;
+
+}
+
+select{
+    padding:5px 5px;
+    display:block;
+}
+.streams label{
+
+    background-color:#A9D0F5;
+    padding-bottom: 6px;
+
+}
+
+input[type='checkbox'] {
+    width:auto;
+    display:inline;
+    margin-left: 5px;
+    height:20px;
+    width: 20px;
+    float: right;
+
+}
+
+.compSci, .webSys{
+    padding-top:15px;
+}
+
+.compSci label, .webSys label{
+    padding-top:0px;
+}
+
+.landing a
+{	
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 5px solid #009900;
+    border: 3px solid #fff;
+    font-family: inherit;
+    font-size:1em;
+    color: white;
+    display:block; 
+    background: url("../images/greenswirl.jpg");
+    background-position: center;
+    cursor: pointer;
+    width: 30%;		
+    letter-spacing: 2px;	
+    outline: none;		
+    margin:0 auto;
+    text-decoration: none;
+    padding:10px 10px;
+}
+
+.landing a:hover
+{
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    color: #15a1ea;
+    background: #fff;
+    border: 3px solid #fff;
+    font-weight:500;
+    display:block; 
+}
+
+/*Modal Windows ===========================*/
+
+.modal{
+
+    color:#2E2E2E;
+}
+
+.action_btns{
+    margin-top:20px;
+}
+.modal-dialog {
+    margin: 20px auto; 
+}
+
+.close {
+    font-size: 40px;
+    line-height: 18px;
+    color: #000000;
+    text-shadow: 0 1px 0 #ffffff;
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+    text-decoration: none;
+}
+.close:hover {
+    color: #FE2E2E;
+    text-decoration: none;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+    cursor: pointer;
+}
+
+
+.modal-header {
+    height:65px;
+    filter: alpha(opacity=50);
+    opacity: .9; 
+    background: #09F;
+}
+
+.modal-header p{
+    width: 50%;
+    float:left;
+    margin-left: 6px;
+    color:#fff;
+}
+
+div.modal-dialog > div > div.modal-header > button{
+    padding-top:6px;
+}
+.modal-backdrop.in {
+    filter: alpha(opacity=50);
+    opacity: .9; 
+    background: url("../images/swirl.jpg");
+    background-size: 100% 100%;
+}
+
+#log > div:nth-child(3) > a{
+    margin-left: 20px;
+}
+
+
+
+footer{
+    color:#6E6E6E;
+    text-align:center;
+    padding: 1em 1em;
+    background:#D8D8D8;
+    border-top: 5px solid #FFBF00;
+    margin-top:20px;
+
+}
+
+@media screen and (max-width: 700px) {
+    body > div.studentlinks > div img {
+        margin: 0px 5px 0px 5px;
+        width:25%;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+
+
+}
+
+/* Scheduler Page*/
+
+
+#scheduler_container > div{
+    width: 95%;
+    padding-top: 110px;
+}
+
+
+
+
+
+

@@ -1,7 +1,7 @@
 package Sorting;
 
 import Classes.Meeting;
-import Database.SQL;
+import database.SQL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

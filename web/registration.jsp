@@ -17,8 +17,7 @@
     </head>
     <body>
         <h1>Reg</h1>
-        <jsp:useBean id="checker" class="control.CheckerClass" scope="session" />
-        <jsp:setProperty name="checker" property="*"/>
+
         <%
              EmailSender.Email email = new EmailSender.Email();
             //Calling the User Interface.
