@@ -27,15 +27,14 @@
         <%
             Statement statementObject;
             Connection connectionObject;
-            String dbserver="cs1.ucc.ie";
-            String DSN ="2016_mm37" ;
-            String URL = "jdbc:mysql://"+dbserver+"/" + DSN;
-            connectionObject = DriverManager.getConnection(URL, "mm37", "uohongah");
+            
+            
             if( session.getAttribute( "firstName" ) == null ) {
                 response.sendRedirect( "login.jsp" );
             }
             else
             {
+                connectionObject = DriverManager.getConnection("jdbc:mysql://"+"cs1.ucc.ie"+"/" + "2016_mm37", "mm37", "uohongah");
                 database.DbClass db = new database.DbClass();
                 db.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
                 db.checkQuery("select * from notifications where p_id='" + session.getAttribute("id") + "'");
@@ -46,26 +45,45 @@
                 
                 if(db.queryCorrect==true)     
                 { 
-                     String output="";
-                    ArrayList<String> list = new ArrayList<String>();
+                    String output="";
                     try {// Make connection to database
                         statementObject = connectionObject.createStatement();
-                        ResultSet statementResult = statementObject.executeQuery("SELECT time, location, description FROM meetings JOIN notifications ON meetings.m_id = notifications.n_id WHERE p_id ='" + session.getAttribute("id") + "'");
-
+                        ResultSet statementResult = statementObject.executeQuery("SELECT meetings.m_id, time, meetings.date, location, meetings.type, description FROM meetings JOIN notifications ON meetings.m_id = notifications.m_id WHERE p_id ='" + session.getAttribute("id") + "'");
+                        %><form action="notification.jsp" method="POST"><%
+                         %><table style="border: 1px solid red; border-collapse: collapse;" ><%
+                     
                         while(statementResult.next()){
-                            %><ol><%
-                            output = statementResult.getString(1) + " ";
-                            output += statementResult.getString(2) + " ";
-                            output += statementResult.getString(3) + '\n';
+                          
+                            %><tr style="border: 1px solid red; margin-top:20px;"><%
+                            %><td><%
+                            output = statementResult.getString(2) + ", ";
+                            output += statementResult.getString(3) + ", ";
+                            output += statementResult.getString(4) + ", ";
+                            output += statementResult.getString(5) + ", ";
+                            output += statementResult.getString(6) + " ";
+                            
                             
                             out.println(output);
-                            %></ol><%
+                            %><input type='checkbox' name='CheckAllow' value="<%=statementResult.getString(1)%>" /></td></tr><%
+                            
                         }
+                        
+                        %></table></ol><%
+                          %><input type='submit' name='submit' value="Accept" /></form><%
                     } catch (SQLException exceptionObject) {
 
                     }
-            }
-            }
-        %>
+                }
+                
+                    if(request.getParameterValues("CheckAllow" )!=null){
+                        String[] meetingIDs = request.getParameterValues("CheckAllow" );
+                        for(String id: meetingIDs){
+                            db.Insert("UPDATE meetings SET confirmed = '1' WHERE m_id = '"+ id +"'");
+                            db.Insert("DELETE FROM notifications WHERE m_id = '"+ id +"' ");
+                        }
+                        response.sendRedirect("notification.jsp");
+                    }
+        }
+     %>
     </body>
 </html>
