@@ -25,18 +25,18 @@
          {
             if(request.getParameter( "submit" ) != null){
                  if( !meeting.validate() ){  
-                      out.println(gui.generateMeetingGUI(meeting));
+                      out.println(gui.generateTutorialGUI(meeting));
                  }
                  else
                  {
-                     out.println("Your meeting has been set");
-                     meeting.insertNotQuery("meeting");
-                     meeting.insertMeetQuery();
+                     out.println("Your tutorial has been set");
+                     meeting.insertNotQuery("tutorial");
+                     meeting.insertMeetQuery("tutorial", "1");
                  }
              }
              else
              {
-                out.println(gui.generateMeetingGUI()); 
+                out.println(gui.generateTutorialGUI()); 
              }
          }
         %>

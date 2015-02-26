@@ -33,7 +33,7 @@
                  {
                      out.println("Your meeting has been set");
                      meeting.insertNotQuery("meeting");
-                     meeting.insertMeetQuery();
+                     meeting.insertMeetQuery("meeting", "0");
                  }
              }
              else
@@ -42,9 +42,7 @@
              }
          }
        %>
-                       
-           <input type='hidden' name='sender' value='Freddy' />
-
+            
         </form>
         
     </body>

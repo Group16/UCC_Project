@@ -322,4 +322,99 @@ public class GUI {
         //returns html form
         return result;
     }
+    
+    public String generateTutorialGUI(MeetingChecker meeting) {
+
+        result = "<form name='form' action='tutorial.jsp' method='POST'>";
+
+        if (meeting.correctGroup == false) {
+            result += "Group to set tutorial with<input type='text' name='recipient' placeholder='Enter a users ID' />";
+        } else {
+            result += "Person you wish to meet <input type='text' name='recipient' value='" + meeting.getRecipient() + "' />";
+        }
+        if (meeting.correctStartDate == false) {
+            result += "Start date<input type='text' name='startDate' placeholder='2014/02/09' />";
+        } else {
+            result += "Start date<input type='text' name='startDate' value='" + meeting.getStartDate() + "' />";
+        }
+
+        if (meeting.correctEndDate == false) {
+            result += "End date<input type='text' name='endDate' placeholder='2014/02/09' />";
+        } else {
+            result += "End date<input type='text' name='endDate' value='" + meeting.getEndDate() + "' />";
+        }
+
+        if (meeting.correctStartTime == false) {
+            result += "Start Time <input type='text' name='startTime' placeholder='12:00:00' />";
+        } else {
+            result += "Start Time<input type='text' name='startTime' value='" + meeting.getStartTime() + "' />";
+        }
+
+        if (meeting.correctEndTime == false) {
+            result += "End Time <input type='text' name='endTime' placeholder='17:00:00' />";
+
+        } else {
+            result += "End Time <input type='text' name='endTime' value='" + meeting.getEndTime() + "' />";
+        }
+
+        if (meeting.correctLocation == false) {
+            result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
+
+        } else {
+            result += "Location <input type='text' name='location' value='" + meeting.getLocation() + "' />";
+        }
+
+        result += "Recurring<select name=\"recurring\">\n"
+                + "  <option value=\"none\">None</option>\n"
+                + "  <option value=\"weekly\">Weekly</option>\n"
+                + "  <option value=\"fortnight\">Fortnightly</option>\n"
+                + "  <option value=\"monthly\">Monthly</option>\n"
+                + "  <option value=\"semester\">Semester</option>\n"
+                + "</select>";
+
+        if (meeting.correctDescription == false) {
+            result += "Description: <textarea name='description' cols='-40' rows='20' placeholder='Insert meeting description here' ></textarea>";
+
+        } else {
+            result += "Description: <textarea name='description' cols='-40' rows='20' >" + meeting.getDescription() + "</textarea>";
+        }
+
+        result += "<input type='submit' name='submit' />";
+
+        result += "</form>";
+
+        String[] list = meeting.getErrors();
+        //a enhanced for loop to loop through everything in list
+        for (String y : list) {
+            //print out erros
+            result += "<p>" + y + "</p>";
+
+        }
+        //returns html form
+        return result;
+    }
+    
+    public String generateTutorialGUI() {
+
+        result = "<form name='form' action='tutorial.jsp' method='POST'>";
+
+        result += "Group to set tutorial with<input type='text' name='recipient' placeholder='Enter a users ID' />";
+        result += "Start Date <input type='text' name='startDate' placeholder='2015/02/08' />";
+        result += "End Date <input type='text' name='endDate' placeholder='2015/03/08' />";
+        result += "Start Time <input type='text' name='startTime' placeholder='12:00:00' />";
+        result += "End Time <input type='text' name='endTime' placeholder='17:00:00' />";
+        result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
+        result += "Recurring <select name='recurring'>";
+        result += "  <option value='none'>None</option>";
+        result += "  <option value='weekly'>Weekly</option>";
+        result += "  <option value='fortnight'>Fortnightly</option>";
+        result += "  <option value='monthly'>Monthly</option>";
+        result += "  <option value='semester'>Semester</option>";
+        result += "</select>";
+        result += "Description: <textarea name='description' cols='-40' rows='20' placeholder='Insert meeting description here' ></textarea>";
+        result += "<input type='submit' name='submit' />";
+
+        //returns html form
+        return result;
+    }    
 }

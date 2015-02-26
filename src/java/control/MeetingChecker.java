@@ -19,6 +19,8 @@ public class MeetingChecker {
     //Refrences class
     DbClass database;
     
+    DbClass database2;
+    
     private int meetingID;
     
     private String sender;
@@ -43,6 +45,8 @@ public class MeetingChecker {
     
     private String description;
     
+    private String group;
+    
     public boolean correctRecipient;
     
     public boolean correctStartDate;
@@ -57,11 +61,15 @@ public class MeetingChecker {
     
     public boolean correctDescription;
     
+    public boolean correctGroup;
+    
     
     
     public MeetingChecker(){
         database = new DbClass();
+        database2 = new DbClass();
         database.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
+        database2.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
         this.meetingID=0;
         this.sender ="";
         this.recipient="";
@@ -73,6 +81,7 @@ public class MeetingChecker {
         this.endTime="";
         this.location="";
         this.description="";
+        this.group ="";
         array = new String[7];
     }
     
@@ -90,6 +99,14 @@ public class MeetingChecker {
     
     public String getRecipient( ){
         return this.recipient;
+    }
+    
+    public void setGroup( String enteredGroup){
+        this.group = enteredGroup;
+    }
+    
+    public String getGroup( ){
+        return this.group;
     }
     
     
@@ -163,10 +180,10 @@ public class MeetingChecker {
         return this.meetingID;
     }
     
-    public void insertMeetQuery( ){
+    public void insertMeetQuery( String type, String confirmed){
         database.Insert( "INSERT INTO meetings( m_id, confirmed, time, date, location, recur, recur_end, type, description, dateToday )" +
-                         "VALUES( '" + getMeetingID() + "', '" + "0" + "', '" + this.startTime + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "', '" + this.endDate + "',  '" +
-                                                    "meeting" + "', '" + this.description + "', '" + dateSent() + "');");
+                         "VALUES( '" + getMeetingID() + "', '" + confirmed + "', '" + this.startTime + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "', '" + this.endDate + "',  '" +
+                                                    type + "', '" + this.description + "', '" + dateSent() + "');");
     }
     
     public void insertNotQuery( String typeOfNotification){
@@ -189,24 +206,39 @@ public class MeetingChecker {
         //Boolean value which is returned
         boolean valid = true;
         
-        //If the email field is empty
-        if( getRecipient().equals("") ){
-            
-            //Set validation to false
-            valid = false;
-            correctRecipient = false;
-            }   
-            database.checkQuery("select * from people where p_id='" + this.recipient + "'");
-            if(database.queryCorrect==true) 
-            { 
-                 array[0]="";
-                 correctRecipient = true;
-            } 
-            else 
-            {
-                 valid=false;
-                 array[0]="*User does not exist";
-            }
+            //If the email field is empty
+            if( getRecipient().equals("") ){
+
+                //Set validation to false
+                valid = false;
+                correctRecipient = false;
+                
+                }   
+                database.checkQuery("select * from people where p_id='" + this.recipient + "'");
+                database2.checkQuery("select * FROM people where p_id='" + this.recipient+ "'");
+                
+                if(database.queryCorrect==true) 
+                { 
+                     array[0]="";
+                     correctRecipient = true;
+                } 
+                else 
+                {
+                     valid=false;
+                     array[0]="*Recipient does not exist.";
+                     
+                     if(database2.queryCorrect==true) 
+                     { 
+                        array[0]="";
+                        correctGroup = true;
+                     } 
+                     else 
+                     {
+                         valid=false;
+                         array[0]="*Recipient(s) does not exist.";
+                     }
+                }
+                
             
         //If the date is null
         if(getStartDate().equals("")){
