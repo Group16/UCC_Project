@@ -34,13 +34,25 @@
             if(request.getParameter("notificationSubmit")!= null){
                 response.sendRedirect( "notification.jsp" );
             }
+            
+            
         }
         %>
-        
+        <a href="http://localhost:8080/UCC_Scheduler_Program/logout.jsp">Logout</a>
         <form name='form' action='welcome.jsp' method='POST'>
             <input type="submit" name="meetingSubmit" value="Arrange a meeting"/>
             
             <input type="submit" name="notificationSubmit" value="Notifcations"/>
+            
+        <%
+           if(session.getAttribute("p_type").equals("lecturer")){
+           %><input type="submit" name="tutorialSubmit" value="Arrange a Tutorial"/><%
+
+                if(request.getParameter("tutorialSubmit")!= null){
+                    response.sendRedirect( "tutorial.jsp" );
+                }
+            }
+        %>
         </form>
     </body>
 </html>
