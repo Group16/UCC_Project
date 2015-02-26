@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * A class used to output html and check input of form
  *
- * @author Michael Mullarkey(112457292) & Chris Anderson(111378696)
+ * @author Michael Mullarkey(112457292)
  */
 public class GUI {
 
@@ -106,6 +106,13 @@ public class GUI {
         return result;
     }
 
+    /**
+     * Method to create variable to hold HTML form.
+     *
+     * Registration Form 1
+     *
+     * @return result
+     */
     public String generateRegGUI() {
 
         result = "<form name='form' action='registration.jsp' method='POST'>"; // start of form 
@@ -127,6 +134,56 @@ public class GUI {
         result += "<input type='submit' name='submit' />";
         result += "</form>";
         //returns html form
+        return result;
+    }
+    /**
+     * Method to create course registration HTML form 
+     * @return form 
+     */
+    public String generateReg2GUI() {
+
+        result = "<form action='none.php' method='POST'>";
+        result += "<select class='div-toggler' data-target='.streams'>";
+        result += "<option value=''>Choose Your Computer Science Stream</option>";
+        result += "<option value='CK401' >CK401 Computer Science</option>";
+        result += "</select>";
+        result += "</br>";
+        result += "<select class='div-toggler' data-target='.streams'>";
+        result += "<option value=''>Choose Your Computer Science Stream</option>";
+        result += "<option value='compSciValue' data-show='.compSci'>BSc in Computer Science</option>";
+        result += "<option value='webSciValue' data-show='.webSys'>BSc in Computer Science (Web Systems Engineering)</option>";
+        result += "</select>";
+        result += "<div class='streams'>";
+        result += "<div class='compSci hide'>";
+        result += " <label>CS3300 Work Placement<input type='checkbox' name='module' value='CS3300' /></label></br>";
+        result += " <label>CS3301 Work Placement<input type='checkbox' name='module' value='CS3301' /></label></br>";
+        result += "<label>CS3306 Workplace Technology and Skills<input type='checkbox' name='module' value='CS3306' /></label></br>";
+        result += " <label>CS3311 Middleware<input type='checkbox' name='module' value='CS3311' /></label><br>";
+        result += " <label>CS3500 Software Engineering<input type='checkbox' name='module' value='CS3500' /></label></br>";
+        result += " <label>CS3505 Web Systems Team Project<input type='checkbox' name='module' value='CS3505' /></label></br>";
+        result += " <label>CS3506 Networks and Data Communications<input type='checkbox' name='module' value='CS3506' /></label></br>";
+        result += " <label>CS3508 Algorithms and Non-linear Data Structures<input type='checkbox' name='module' value='CS3508' /></label></br>";
+        result += " <label>CS3509 Theory of Computation<input type='checkbox' name='module' value='CS3509' /></label></br>";
+        result += " <label>CS3514 C-Programming for Microcontrollers<input type='checkbox' name='module' value='CS3514' /></label></br>";
+        result += " </div>";
+        result += " <div class='webSys hide'>";
+        result += " <label>CS3300 Work Placement<input type='checkbox' name='module' value='CS3300' /></label></br>";
+        result += " <label>CS3301 Work Placement<input type='checkbox' name='module' value='CS3301' /></label></br>";
+        result += " <label>CS3306 Workplace Technology and Skills<input type='checkbox' name='module' value='CS3306' /></label></br>";
+        result += " <label>CS3311 Middleware<input type='checkbox' name='module' value='CS3311' /></label></br>";
+        result += "<label>CS3500 Software Engineering<input type='checkbox' name='module' value='CS3500' /></label></br>";
+        result += "<label>CS3505 Web Systems Team Project<input type='checkbox' name='module' value='CS3505' /></label></br>";
+        result += " <label>CS3510 Advanced Server-Side Programming<input type='checkbox' name='module' value='CS3510' /></label></br>";
+        result += " <label>CS3511 Web Security<input type='checkbox' name='module' value='CS3511' /></label></br>";
+        result += " <label>CS3512 Advanced XML Technologies<input type='checkbox' name='module' value='CS3512' /></label></br>";
+        result += " <label>CS3513 Client-side Programming<input type='checkbox' name='module' value='CS3513' /></label></br>";
+        result += " </div>";
+        result += " </div>";
+        result += " <div class='action_btns'>";
+        result += " <a href='pages/scheduler.html'><button type='button' class='btn btn-success'>Continue</button></a>";
+        result += " </div>";
+        result += " </form>";
+
         return result;
     }
 

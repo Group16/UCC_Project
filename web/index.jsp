@@ -70,26 +70,19 @@
                     <a href="http://cs4.ucc.ie/moodle/"><img src="MarkUp/images/moodle-logo.png" width="150" height="auto" alt="Moodle" ></a>
                     <a href="http://www.collegeroad.ie/"><img src="MarkUp/images/SU_logo.png" width="170" height="auto" alt="Student Union" ></a>
                     <a href="http://www.ucc.ie/en/"><img src="MarkUp/images/UCC.png" width="100" height="auto" alt="UCC" ></a>
-
-
                 </div><!--logos-->
-
             </div><!--container-->
         </div><!--studentlinks-->
 
         <div class="bannertext">
             <div class="container">			
-                <h1>Not convinced yet? check out some of our features to see what we can do for <strong>you!</strong></h1>	
-                <hr>	
-
+                <h1>Not convinced yet ?  check out some of our features to see what we can do for <strong>you!</strong></h1>	
+                <hr>
             </div><!--container-->
         </div><!--bannertext-->
 
         <!-- container class for three feture icons and paragraphs -->	
         <div class="container">
-
-
-
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12 text-center pull-right">
                     <img src="MarkUp/images/map.png"  alt="Icon depicting world map with connection icons"class="img-responsive fadeUp_animate fadeInUp">
@@ -107,7 +100,6 @@
                         <button type="button" class="btn btn-success">Learn More</button>
                     </div><!--buttons-->
                 </div><!--Left-->
-
             </div><!--row-->
             <hr>
 
@@ -254,7 +246,7 @@
                     </div>
 
                     <div class="modal-body">
-                        <form action="none.php" method="POST">
+<!--                        <form action="none.php" method="POST">
 
                             <select class="div-toggler" data-target=".streams">
                                 <option value="">Choose Your Computer Science Stream</option>
@@ -298,7 +290,15 @@
                             <div class="action_btns">
                                 <a href="pages/scheduler.html"><button type="button" class="btn btn-success">Continue</button></a>
                             </div>
-                        </form>
+                        </form>-->
+
+                        
+                        <%
+
+                            //Calling the User Interface.                           
+                            out.println(ui.generateReg2GUI());
+                           
+                        %>
                     </div>
                 </div>
             </div>	 
