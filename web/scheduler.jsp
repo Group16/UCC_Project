@@ -130,6 +130,7 @@
                     selectable: true,
                     selectHelper: true,
                     height: 846,
+                    
                     select: function (start, end) {
                         var title = prompt('Meeting Event');
                         var eventData;
