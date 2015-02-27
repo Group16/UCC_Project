@@ -105,18 +105,7 @@
         <script src='MarkUp/js/fullcalendar.min.js'></script>
 
         <script type="text/javascript">
-            $('select.div-toggler').change(function () {
-                var target = $(this).data('target');
-                $(target).children().addClass('hide');
-                var show = $("option:selected", this).data('show');
-                $(show).removeClass('hide');
-            });
-
-            $(document).ready(function () {
-                $("#forgotbutton").click(function () {
-                    $("#forgot").toggle();
-                });
-            });
+    
 
             $(document).ready(function () {
 
