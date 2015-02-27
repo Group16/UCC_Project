@@ -975,3 +975,8 @@ be a descendant of the grid when it is being dragged.
 .fc-time-grid-event .fc-resizer:after {
 	content: "=";
 }
+
+#calendar > div.fc-view-container > div > table > tbody > tr > td > div.fc-time-grid-container > div > div.fc-slats > table > tbody > tr{
+    
+    height: 70px;
+}

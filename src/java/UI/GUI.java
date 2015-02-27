@@ -180,7 +180,7 @@ public class GUI {
         result += " </div>";
         result += " </div>";
         result += " <div class='action_btns'>";
-        result += " <a href='pages/scheduler.html'><button type='button' class='btn btn-success'>Continue</button></a>";
+        result += " <a href='scheduler.jsp'><button type='button' class='btn btn-success'>Continue</button></a>";
         result += " </div>";
         result += " </form>";
 
