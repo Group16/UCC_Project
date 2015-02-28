@@ -85,27 +85,39 @@
 
         </div>
 
-        <div class="modal " id="createEventModal" role="dialog" tabindex="-1"  aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal " id="createEventModal" role="dialog" aria-hidden="true">
             <div class = "modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                        <h3 id="myModalLabel1">Create Your Meeting</h3>
+                    <div class="modal-header"> 
+                        <p>Create Your Meeting</p>
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      
                     </div>
                     <div class="modal-body">
                         <form id="createAppointmentForm" class="form-horizontal">
                             <div class="control-group">
-                                <label class="control-label" for="inputPatient">Patient:</label>
+                                 <label class="control-label" for="eventTitle"></label>
+                                     <div>
+                                         Event Title<input type='text' name='eventTitle' id='eventTitle' placeholder='DataBase Tutorial' />
+                                     </div>
+                             
+                                <label >Location:</label>
                                 <div class="controls">
-                                    <input type="text" name="patientName" id="patientName"  data-provide="typeahead" data-items="4" data-source="[&quot;Value 1&quot;,&quot;Value 2&quot;,&quot;Value 3&quot;]">
+                                    <input type="text" name="patientName" id="patientName" >
                                     <input type="hidden" id="apptStartTime"/>
                                     <input type="hidden" id="apptEndTime"/>
                                     <input type="hidden" id="apptAllDay" />
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="when">When:</label>
-                                <div class="controls controls-row" id="when" style="margin-top:5px;">
+                                
+                                
+                                <label for="from">From</label>
+                                <div class="controls controls-row" id="from" >
+                                </div>  
+                                    
+                                <label  for="to">To</label>
+                                <div class="controls controls-row" id="to">
                                 </div>
                             </div>
                         </form>
@@ -150,14 +162,16 @@
                     height: 846,
                     select: function (start, end, allDay) {
 
-                        starttime = moment(start).format('ddd, MMM do, h:mma ');
-                        endtime = moment(end).format('ddd, MMM do, h:mma ');
+                        starttime = moment(start).format('ddd, MMM Do, h:mma ');
+                        endtime = moment(end).format('ddd, MMM Do, h:mma ');
                  
-                        var mywhen = starttime + ' To ' + endtime;
+                        var from = starttime;
+                        var to = endtime ;
                         $('#createEventModal #apptStartTime').val(start);
                         $('#createEventModal #apptEndTime').val(end);
                         $('#createEventModal #apptAllDay').val(allDay);
-                        $('#createEventModal #when').text(mywhen);
+                        $('#createEventModal #from').text(from);
+                        $('#createEventModal #to').text(to);
                         $('#createEventModal').modal('show');
                      
                     }
@@ -166,7 +180,6 @@
                 $('#submitButton').on('click', function (e) {
                     // We don't want this to act as a link so cancel the link action
                     e.preventDefault();
-
                     doSubmit();
                 });
 
@@ -178,7 +191,8 @@
 
                     $("#calendar").fullCalendar('renderEvent',
                             {
-                                title: $('#patientName').val(),
+                                title: $('#eventTitle').val(),
+                       
                                 start: new Date($('#apptStartTime').val()),
                                 end: new Date($('#apptEndTime').val()),
                                 allDay: ($('#apptAllDay').val() == "true"),
