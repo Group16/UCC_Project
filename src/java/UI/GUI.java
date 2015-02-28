@@ -243,28 +243,28 @@ public class GUI {
             result += "Person you wish to meet <input type='text' name='recipient' value='" + meeting.getRecipient() + "' />";
         }
         if (meeting.correctStartDate == false) {
-            result += "Start date<input type='text' name='startDate' placeholder='2014/02/09' />";
+            result += "Start date<input type='text' name='startDate' class='datepicker' placeholder='2014/02/09' />";
         } else {
-            result += "Start date<input type='text' name='startDate' value='" + meeting.getStartDate() + "' />";
+            result += "Start date<input type='text' name='startDate' class='datepicker' value='" + meeting.getStartDate() + "' />";
         }
 
         if (meeting.correctEndDate == false) {
-            result += "End date<input type='text' name='endDate' placeholder='2014/02/09' />";
+            result += "End date<input type='text' name='endDate' class='datepicker' placeholder='2014/02/09' />";
         } else {
-            result += "End date<input type='text' name='endDate' value='" + meeting.getEndDate() + "' />";
+            result += "End date<input type='text' name='endDate' class='datepicker' value='" + meeting.getEndDate() + "' />";
         }
 
         if (meeting.correctStartTime == false) {
-            result += "Start Time <input type='text' name='startTime' placeholder='12:00:00' />";
+            result += "Start Time <input type='text' class='timepicker' name='startTime' placeholder='12:00:00' />";
         } else {
-            result += "Start Time<input type='text' name='startTime' value='" + meeting.getStartTime() + "' />";
+            result += "Start Time<input type='text' class='timepicker' name='startTime' value='" + meeting.getStartTime() + "' />";
         }
 
         if (meeting.correctEndTime == false) {
-            result += "End Time <input type='text' name='endTime' placeholder='17:00:00' />";
+            result += "End Time <input type='text' class='timepicker' name='endTime' placeholder='17:00:00' />";
 
         } else {
-            result += "End Time <input type='text' name='endTime' value='" + meeting.getEndTime() + "' />";
+            result += "End Time <input type='text' class='timepicker' name='endTime' value='" + meeting.getEndTime() + "' />";
         }
 
         if (meeting.correctLocation == false) {
@@ -308,10 +308,10 @@ public class GUI {
         result = "<form name='form' action='meeting.jsp' method='POST'>";
 
         result += "ID of person you wish to meet with <input type='text' name='recipient' placeholder='Enter a users ID' />";
-        result += "Start Date <input type='text' name='startDate' placeholder='2015/02/08' />";
-        result += "End Date <input type='text' name='endDate' placeholder='2015/03/08' />";
-        result += "Start Time <input type='text' name='startTime' placeholder='12:00:00' />";
-        result += "End Time <input type='text' name='endTime' placeholder='17:00:00' />";
+        result += "Start Date <input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' />";
+        result += "End Date <input type='text' class='datepicker' name='endDate' placeholder='2015/03/08' />";
+        result += "Start Time <input type='text' class='timepicker' name='startTime' placeholder='12:00:00' />";
+        result += "End Time <input type='text' class='timepicker' name='endTime' placeholder='17:00:00' />";
         result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
         result += "Recurring <select name='recurring'>";
         result += "  <option value='none'>None</option>";
@@ -336,28 +336,28 @@ public class GUI {
             result += "Person you wish to meet <input type='text' name='recipient' value='" + meeting.getRecipient() + "' />";
         }
         if (meeting.correctStartDate == false) {
-            result += "Start date<input type='text' name='startDate' placeholder='2014/02/09' />";
+            result += "Start date<input type='text' class='datepicker' name='startDate' placeholder='2014/02/09' />";
         } else {
-            result += "Start date<input type='text' name='startDate' value='" + meeting.getStartDate() + "' />";
+            result += "Start date<input type='text' class='datepicker' name='startDate' value='" + meeting.getStartDate() + "' />";
         }
 
         if (meeting.correctEndDate == false) {
-            result += "End date<input type='text' name='endDate' placeholder='2014/02/09' />";
+            result += "End date<input type='text' class='datepicker' name='endDate' placeholder='2014/02/09' />";
         } else {
-            result += "End date<input type='text' name='endDate' value='" + meeting.getEndDate() + "' />";
+            result += "End date<input type='text' class='datepicker' name='endDate' value='" + meeting.getEndDate() + "' />";
         }
 
         if (meeting.correctStartTime == false) {
-            result += "Start Time <input type='text' name='startTime' placeholder='12:00:00' />";
+            result += "Start Time <input type='text' class='timepicker' name='startTime' placeholder='12:00:00' />";
         } else {
-            result += "Start Time<input type='text' name='startTime' value='" + meeting.getStartTime() + "' />";
+            result += "Start Time<input type='text' class='timepicker' name='startTime' value='" + meeting.getStartTime() + "' />";
         }
 
         if (meeting.correctEndTime == false) {
-            result += "End Time <input type='text' name='endTime' placeholder='17:00:00' />";
+            result += "End Time <input type='text'  class='timepicker' name='endTime' placeholder='17:00:00' />";
 
         } else {
-            result += "End Time <input type='text' name='endTime' value='" + meeting.getEndTime() + "' />";
+            result += "End Time <input type='text' class='timepicker' name='endTime' value='" + meeting.getEndTime() + "' />";
         }
 
         if (meeting.correctLocation == false) {
@@ -402,10 +402,10 @@ public class GUI {
         result = "<form name='form' action='tutorial.jsp' method='POST'>";
 
         result += "Group to set tutorial with<input type='text' name='recipient' placeholder='Enter a users ID' />";
-        result += "Start Date <input type='text' name='startDate' placeholder='2015/02/08' />";
-        result += "End Date <input type='text' name='endDate' placeholder='2015/03/08' />";
-        result += "Start Time <input type='text' name='startTime' placeholder='12:00:00' />";
-        result += "End Time <input type='text' name='endTime' placeholder='17:00:00' />";
+        result += "Start Date <input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' />";
+        result += "End Date <input type='text' class='datepicker' name='endDate' placeholder='2015/03/08' />";
+        result += "Start Time <input type='text' class='timepicker' name='startTime' placeholder='12:00:00' />";
+        result += "End Time <input type='text' class='timepicker' name='endTime' placeholder='17:00:00' />";
         result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
         result += "Recurring <select name='recurring'>";
         result += "  <option value='none'>None</option>";
