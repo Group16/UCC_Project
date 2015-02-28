@@ -89,7 +89,7 @@
             <div class = "modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header"> 
-                        <p>Create Your Meeting</p>
+                        <p>Create Your Event !</p>
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                       
                     </div>
@@ -98,12 +98,12 @@
                             <div class="control-group">
                                  <label class="control-label" for="eventTitle"></label>
                                      <div>
-                                         Event Title<input type='text' name='eventTitle' id='eventTitle' placeholder='DataBase Tutorial' />
+                                         Event Title<input type='text' name='eventTitle' id='eventTitle' placeholder='&nbsp;e.g. DataBase Tutorial' />
                                      </div>
                              
                                 <label >Location:</label>
                                 <div class="controls">
-                                    <input type="text" name="patientName" id="patientName" >
+                                    <input type="text" name="patientName" id="patientName"  placeholder='&nbsp;e.g. WGB 1.07' />
                                     <input type="hidden" id="apptStartTime"/>
                                     <input type="hidden" id="apptEndTime"/>
                                     <input type="hidden" id="apptAllDay" />
@@ -158,12 +158,12 @@
                     editable: true,
                     selectable: true,
                     selectHelper: true,
-                    
+                    firstDay: 1,
                     height: 846,
                     select: function (start, end, allDay) {
 
-                        starttime = moment(start).format('ddd, MMM Do, h:mma ');
-                        endtime = moment(end).format('ddd, MMM Do, h:mma ');
+                        starttime = moment(start).format('dddd MMM Do @ h:mma ');
+                        endtime = moment(end).format('dddd MMM Do @ h:mma ');
                  
                         var from = starttime;
                         var to = endtime ;
