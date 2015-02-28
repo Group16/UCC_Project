@@ -74,7 +74,7 @@ public class CheckerClass {
         this.password1 = "";
         this.password2="";
         this.generatedPassword="";
-        array = new String[8];
+        array = new String[7];
     } 
     /**
      * A method which sets the date
@@ -274,25 +274,10 @@ public class CheckerClass {
              //Add empty string to array
              array[1] =  "";
         }
-        //If the problem field is empty
-        if( getProblem().equals( "" ) ){
-            ///Add error ouput to the array
-            array[2] = "*Problem Description required";
-            //validation set to false
-            valid = false;
-            //correctProblem set to false
-            correctProblem = false;
-         //if not empty
-        }else{   
-            //Set correctProblem to true
-             correctProblem = true;
-             //Add empty string to array
-             array[2] =  "";
-        }
         
         if( getFirstName().equals( "" ) ){
             ///Add error ouput to the array
-            array[3] = "*First name required";
+            array[2] = "*First name required";
             //validation set to false
             valid = false;
             //correctProblem set to false
@@ -302,12 +287,12 @@ public class CheckerClass {
             //Set correctProblem to true
              correctFirstName = true;
              //Add empty string to array
-             array[3] =  "";
+             array[2] =  "";
         }
         
         if( getLastName().equals( "" ) ){
             ///Add error ouput to the array
-            array[4] = "*Last name required";
+            array[3] = "*Last name required";
             //validation set to false
             valid = false;
             //correctProblem set to false
@@ -317,12 +302,12 @@ public class CheckerClass {
             //Set correctProblem to true
              correctLastName = true;
              //Add empty string to array
-             array[4] =  "";
+             array[3] =  "";
         }
         
         if( getPassword1().equals( "" ) ){
             ///Add error ouput to the array
-            array[5] = "*Password required";
+            array[4] = "*Password required";
             //validation set to false
             valid = false;
             //correctProblem set to false
@@ -332,12 +317,12 @@ public class CheckerClass {
             //Set correctProblem to true
              correctPassword1 = true;
              //Add empty string to array
-             array[5] =  "";
+             array[4] =  "";
         }
         
         if( getPassword2().equals( "" ) ){
             ///Add error ouput to the array
-            array[6] = "*You must re-eneter password";
+            array[5] = "*You must re-eneter password";
             //validation set to false
             valid = false;
             //correctProblem set to false
@@ -347,19 +332,19 @@ public class CheckerClass {
             //Set correctProblem to true
              correctPassword2 = true;
              //Add empty string to array
-             array[6] =  "";
+             array[5] =  "";
         }
         
         if( !getPassword1().equals( getPassword2() ) ){
             ///Add error ouput to the array
-            array[7] = "*Passwords do not match";
+            array[6] = "*Passwords do not match";
             //validation set to false
             valid = false;
             
          //if not empty
         }else{ 
              //Add empty string to array
-             array[7] =  "";
+             array[6] =  "";
         }
         //returns whether validation is true or false
         return valid;

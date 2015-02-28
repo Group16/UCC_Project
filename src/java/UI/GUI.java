@@ -48,10 +48,10 @@ public class GUI {
         }
         //Last Name
         if (checker.getLastName().equals("") || checker.correctLastName == false) {
-            result += "<label>Last Name*<input type='text' name='LastName' id='LastNamre' placeholder='Doe' /></label>";
+            result += "<label>Last Name*<input type='text' name='lastName' id='LastNamre' placeholder='Doe' /></label>";
             //if not empty and true
         } else {
-            result += "<label>Last Name*<input type='text' name='LastName' id='LastNamre' value='" + checker.getLastName() + "' /></label>";
+            result += "<label>Last Name*<input type='text' name='lastName' id='LastNamre' value='" + checker.getLastName() + "' /></label>";
         }
 
         //Student Number: If the student ID is empty or the ID is incorrect format
@@ -69,13 +69,6 @@ public class GUI {
         } else {
             result += "<label>Email Address<input type='text' name='email' id='email' value='" + checker.getEmail() + "' /></label>";
         }
-//        //If the problem description is empty or the description is incorrect format
-//        if (checker.getProblem().equals("") || checker.correctProblem == false) {
-//            result += "Stream: <input type='text' name='problem' placeholder='Web sys lll' />";
-//            //if not empty and true
-//        } else {
-//            result += "Stream: <input type='text' name='problem' value='" + checker.getProblem() + "' />";
-//        }
 
         if (checker.getPassword1().equals("") || checker.correctPassword1 == false) {
             result += "<label>Password<input type='password' name='password1' id='password1' /></label>";
@@ -118,7 +111,7 @@ public class GUI {
         result = "<form name='form' action='registration.jsp' method='POST'>"; // start of form 
         result += "<input type='hidden' name='date' value='1993/12/15' />"; // hidden date field
         result += "<label>First Name*<input type='text' name='firstName' id='firstname' placeholder='John' /></label>"; // first name 
-        result += "<label>Last Name*<input type='text' name='LastName' id='secondname' placeholder='Doe' /></label>";   //last name 
+        result += "<label>Last Name*<input type='text' name='lastName' id='secondname' placeholder='Doe' /></label>";   //last name 
         result += "<label>Student Number* <input type='text' name='ID' id='studentNumber' placeholder='123456789'/></label>";   // Student Number 
         result += "<label>Email Address<input type='text' name='email' id='email' placeholder='1234@gmail.com' /></label>"; // email address
         result += "<label>Password<input type='password' name='password1' id='password1' /></label>"; // password 

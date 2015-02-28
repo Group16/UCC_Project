@@ -28,6 +28,7 @@
             Statement statementObject;
             Connection connectionObject;
             
+            control.MeetingChecker meeting = new control.MeetingChecker();
             
             if( session.getAttribute( "firstName" ) == null ) {
                 response.sendRedirect( "login.jsp" );
@@ -80,6 +81,7 @@
                         for(String id: meetingIDs){
                             db.Insert("UPDATE meetings SET confirmed = '1' WHERE m_id = '"+ id +"'");
                             db.Insert("DELETE FROM notifications WHERE m_id = '"+ id +"' ");
+                            meeting.insertPIMQuery((String) session.getAttribute("id"));
                         }
                         response.sendRedirect("notification.jsp");
                     }

@@ -151,7 +151,7 @@
                     select: function (start, end, allDay) {
 
                         starttime = moment(start).format('ddd, MMM do, h:mma ');
-                         endtime = moment(end).format('ddd, MMM do, h:mma ');
+                        endtime = moment(end).format('ddd, MMM do, h:mma ');
                  
                         var mywhen = starttime + ' To ' + endtime;
                         $('#createEventModal #apptStartTime').val(start);
@@ -175,7 +175,6 @@
                     console.log($('#apptStartTime').val());
                     console.log($('#apptEndTime').val());
                     console.log($('#apptAllDay').val());
-                    alert("form submitted");
 
                     $("#calendar").fullCalendar('renderEvent',
                             {

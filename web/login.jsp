@@ -42,7 +42,6 @@
                      session.setAttribute("id", id);
                      session.setAttribute("p_type", p_type);
                      response.sendRedirect( "welcome.jsp" );
-                     
                 } 
                 else 
                 {

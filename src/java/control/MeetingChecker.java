@@ -190,9 +190,14 @@ public class MeetingChecker {
         database.Insert( "INSERT INTO notifications( m_id, is_seen, type, content, date, p_id )" +
                          "VALUES( '" + getMeetingID() + "', '" + "0" + "', '" + typeOfNotification + "',  '" + this.description+ "', '" + this.startDate + "',  '" +
                                                     recipient + "');");
-        
-        System.out.println( recipient);
     }
+    
+    public void insertPIMQuery(String p_id){
+        database.Insert( "INSERT INTO people_in_meetings( p_id, m_id, is_manager )" +
+                         "VALUES( '" + p_id + "', '" + getMeetingID() + "', '" + '0' + "' );");
+    }
+    
+    
     
     
     public String dateSent(){
