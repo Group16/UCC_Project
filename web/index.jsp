@@ -292,7 +292,9 @@
                             <div class="action_btns">
                                 <a href="pages/scheduler.html"><button type="button" class="btn btn-success">Continue</button></a>
                             </div>
-                        </form>-->                        
+                        </form>-->
+
+                        
                         <%
 
                             //Calling the User Interface.                           
@@ -313,7 +315,7 @@
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <!--  Load Google hosted jQuery OR local copy if offline -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>       
-        <script>window.jQuery || document.write('<script src="MarkUp/js/jquery.min.js"><\/script>');</script>
+        <script>window.jQuery || document.write('<script src="MarkUp/js/jquery.min.js"><\/script>')</script>
 
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script  type="text/javascript" src="MarkUp/js/bootstrap.min.js"></script>
