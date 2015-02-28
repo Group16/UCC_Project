@@ -180,6 +180,18 @@ public class MeetingChecker {
         return this.meetingID;
     }
     
+    public int getNextMeetingID(){
+        
+        String num[] = database.SelectRow("SELECT * FROM meetings ORDER BY m_id DESC LIMIT 1;");
+        String count = num[0];
+        
+        int realNum = Integer.parseInt(count);
+        
+        this.meetingID = realNum;
+        
+        return this.meetingID;
+    }
+    
     public void insertMeetQuery( String type, String confirmed){
         database.Insert( "INSERT INTO meetings( m_id, confirmed, time, date, location, recur, recur_end, type, description, dateToday )" +
                          "VALUES( '" + getMeetingID() + "', '" + confirmed + "', '" + this.startTime + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "', '" + this.endDate + "',  '" +
@@ -192,9 +204,14 @@ public class MeetingChecker {
                                                     recipient + "');");
     }
     
-    public void insertPIMQuery(String p_id){
+    public void insertPIMQuery(String p_id, String is_manager){
         database.Insert( "INSERT INTO people_in_meetings( p_id, m_id, is_manager )" +
-                         "VALUES( '" + p_id + "', '" + getMeetingID() + "', '" + '0' + "' );");
+                         "VALUES( '" + p_id + "', '" + getMeetingID()  + "', '" + is_manager + "' );");
+    }
+    
+    public void insertNextPIMQuery(String p_id, String is_manager){
+        database.Insert( "INSERT INTO people_in_meetings( p_id, m_id, is_manager )" +
+                         "VALUES( '" + p_id + "', '" + getNextMeetingID()  + "', '" + is_manager + "' );");
     }
     
     

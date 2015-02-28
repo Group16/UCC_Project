@@ -81,7 +81,8 @@
                         for(String id: meetingIDs){
                             db.Insert("UPDATE meetings SET confirmed = '1' WHERE m_id = '"+ id +"'");
                             db.Insert("DELETE FROM notifications WHERE m_id = '"+ id +"' ");
-                            meeting.insertPIMQuery((String) session.getAttribute("id"));
+                            meeting.insertNextPIMQuery((String) session.getAttribute("id"), "0");
+                            //db.Insert("UPDATE people_in_meetings SET people_in_meetings.m_id = '"+ id +"' WHERE p_id = '"+ id +"'");
                         }
                         response.sendRedirect("notification.jsp");
                     }
