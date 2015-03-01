@@ -250,15 +250,10 @@ public class GUI {
         if (meeting.correctStartTime == false) {
             result += "Start Time <input type='text' class='timepicker' name='startTime' placeholder='12:00:00' />";
         } else {
-            result += "Start Time<input type='text' class='timepicker' name='startTime' value='" + meeting.getStartTime() + "' />";
+            result += "Start Time<input type='text' class='timepicker' name='startTime' value='" + meeting.getTime() + "' />";
         }
 
-        if (meeting.correctEndTime == false) {
-            result += "End Time <input type='text' class='timepicker' name='endTime' placeholder='17:00:00' />";
-
-        } else {
-            result += "End Time <input type='text' class='timepicker' name='endTime' value='" + meeting.getEndTime() + "' />";
-        }
+        
 
         if (meeting.correctLocation == false) {
             result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
@@ -343,15 +338,10 @@ public class GUI {
         if (meeting.correctStartTime == false) {
             result += "Start Time <input type='text' class='timepicker' name='startTime' placeholder='12:00:00' />";
         } else {
-            result += "Start Time<input type='text' class='timepicker' name='startTime' value='" + meeting.getStartTime() + "' />";
+            result += "Start Time<input type='text' class='timepicker' name='startTime' value='" + meeting.getTime() + "' />";
         }
 
-        if (meeting.correctEndTime == false) {
-            result += "End Time <input type='text'  class='timepicker' name='endTime' placeholder='17:00:00' />";
-
-        } else {
-            result += "End Time <input type='text' class='timepicker' name='endTime' value='" + meeting.getEndTime() + "' />";
-        }
+        
 
         if (meeting.correctLocation == false) {
             result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
