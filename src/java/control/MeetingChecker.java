@@ -80,7 +80,6 @@ public class MeetingChecker {
         this.location="";
         this.description="";
         this.group ="";
-        this.notificationID  =0;
         array = new String[7];
     }
     
@@ -104,7 +103,6 @@ public class MeetingChecker {
         this.location= location;
         this.description= description;
         this.group ="";
-        this.notificationID  =0;
         array = new String[7];
     }
     
