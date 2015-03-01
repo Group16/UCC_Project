@@ -63,9 +63,8 @@ public class MeetingChecker {
     
     public boolean correctGroup;
     
-    
-    
-    public MeetingChecker(){
+    public MeetingChecker()
+    {
         database = new DbClass();
         database2 = new DbClass();
         database.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
@@ -80,6 +79,30 @@ public class MeetingChecker {
         this.time="";
         this.location="";
         this.description="";
+        this.group ="";
+        this.notificationID  =0;
+        array = new String[7];
+    }
+    
+    public MeetingChecker( String meetingID, String startDate, String endDate, String recourring, String time, String location, String description ){
+        database = new DbClass();
+        database2 = new DbClass();
+        database.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
+        database2.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
+        try {
+            this.meetingID = Integer.parseInt(meetingID);
+        } catch( Exception e ) {
+            e.printStackTrace();
+        }
+        this.sender ="";
+        this.recipient="";
+        this.dateSent="";
+        this.startDate= startDate;
+        this.endDate= endDate;
+        this.recurring= recourring;
+        this.time= time;
+        this.location= location;
+        this.description= description;
         this.group ="";
         this.notificationID  =0;
         array = new String[7];
@@ -185,8 +208,8 @@ public class MeetingChecker {
     }
     
     public void insertMeetQuery( String type, String confirmed){
-        database.Insert("INSERT INTO meetings( m_id, confirmed, time, date, location, recur, recur_end, type, description, dateToday )" +
-                         "VALUES( '" + getMeetingID() + "', '" + confirmed + "', '" + this.time + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "', '" + this.endDate + "',  '" +
+        database.Insert( "INSERT INTO meetings( m_id, confirmed, time, date, location, recur, recur_end, type, description, dateToday )" +
+                         "VALUES( '" + getMeetingID() + "', '" + confirmed + "', '" + this.startTime + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "', '" + this.endDate + "',  '" +
                                                     type + "', '" + this.description + "', '" + dateSent() + "');");
     }
     
@@ -199,10 +222,6 @@ public class MeetingChecker {
     public void insertPIMQuery(String p_id, String is_manager){
         database.Insert( "INSERT INTO people_in_meetings( p_id, n_id, m_id, is_manager )" +
                          "VALUES( '" + p_id + "','" + getNotificationID()  + "', '" + getMeetingID()  + "', '" + is_manager + "' );");
-    } 
-    public void insertPIMQuery(String is_manager){
-        database.Insert( "INSERT INTO people_in_meetings( p_id, n_id, m_id, is_manager )" +
-                         "VALUES( '" + recipient + "','" + getNotificationID()  + "', '" + getMeetingID()  + "', '" + is_manager + "' );");
     }   
     
     public String dateSent(){
