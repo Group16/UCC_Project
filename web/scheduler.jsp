@@ -4,6 +4,8 @@
     Author     : murphy
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="control.MeetingChecker"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.Connection"%>
@@ -247,7 +249,8 @@
         </script>
         
         <%
-                 control.MeetingChecker meeting = new control.MeetingChecker();
+                 ArrayList<MeetingChecker> meetings = new ArrayList<MeetingChecker>();
+                 
                  
                  Statement statementObject;
                  Connection connectionObject;
@@ -257,6 +260,13 @@
                  try{
                     statementObject = connectionObject.createStatement();
                     ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" +session.getAttribute("id")+ "' AND m.date BETWEEN '" +"2015/03/02"+ "' AND '" +"2015/03/11"+ "'");
+                    
+                    while(statementResult.next()){
+                        
+                        String  = statementResult.getString(2) + ", ";
+                        MeetingChecker meeting = new MeetingChecker();
+                    }
+                    
                  }catch(Exception E){
                      
                  }
