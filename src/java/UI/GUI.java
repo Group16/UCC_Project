@@ -190,7 +190,7 @@ public class GUI {
      */
     public String generateLogGUI() {
 
-        result = "<form id='log' name='form' action='login.jsp' method='POST'>";
+        result = "<form id='log' name='form' action='index.jsp' method='POST'>";
         result += "<label>Student Number<input type='text' name='studentID' id='username' placeholder='123456789' /></label>";
         result += "<label>Password<input type='password' name='pword' id='passwordlog' /></label>";
 

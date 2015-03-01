@@ -49,7 +49,7 @@
                 <ul class="nav navbar-nav navbar-right"> 				
                     <li><a href="#">UCC</a></li>
                     <li><a href="#">Features</a></li>
-                    <li><a href="#login" data-toggle="modal">Login</a></li>
+                    <li><a href="http://localhost:8080/UCC_Scheduler_Program/logout.jsp">Logout</a></li>
                     <li><a href="https://mohittare.wordpress.com/2013/07/28/using-fullcalendarwithjava/">Help</a></li>															
                 </ul>							
             </div>	
@@ -72,9 +72,48 @@
                         <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Your Calenders <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <li><a href="#">Acedemic</a></li>
-                            <li><a href="#">Personal</a></li>
+                            <li><a href="#">Personal</a></li>                      
+
                         </ul>
                     </div>
+                    
+                        <%
+                                if (session.getAttribute("lastName") == null) {
+                                    response.sendRedirect("index.jsp");
+                                } else {
+                                    String firstName;
+                                    String lastName;
+                                    firstName = session.getAttribute("firstName").toString();
+                                    lastName = session.getAttribute("lastName").toString();
+                                    out.println("You are logged in. Welcome " + firstName + " " + lastName);
+
+                                    if (request.getParameter("meetingSubmit") != null) {
+                                        response.sendRedirect("meeting.jsp");
+                                    }
+
+                                    if (request.getParameter("notificationSubmit") != null) {
+                                        response.sendRedirect("notification.jsp");
+                                    }
+
+
+
+                            %>
+                            
+                            <form name='form' action='welcome.jsp' method='POST'>
+                                <input type="submit" name="meetingSubmit" value="Arrange a meeting"/>
+
+                                <input type="submit" name="notificationSubmit" value="Notifcations"/>
+
+                                <%
+                                    if (session.getAttribute("p_type").equals("lecturer")) {
+                                %><input type="submit" name="tutorialSubmit" value="Arrange a Tutorial"/><%
+
+                                               if (request.getParameter("tutorialSubmit") != null) {
+                                                   response.sendRedirect("tutorial.jsp");
+                                               }
+                                           }
+                                       }
+                                %>
                 </div>
 
                 <div class="col-lg-10 col-md-10 col-sm-10 text pull-right">
@@ -90,17 +129,17 @@
                 <div class="modal-content">
                     <div class="modal-header"> 
                         <p>Create Your Event !</p>
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
                     </div>
                     <div class="modal-body">
                         <form id="createAppointmentForm" class="form-horizontal">
                             <div class="control-group">
-                                 <label class="control-label" for="eventTitle"></label>
-                                     <div>
-                                         Event Title<input type='text' name='eventTitle' id='eventTitle' placeholder='&nbsp;e.g. DataBase Tutorial' />
-                                     </div>
-                             
+                                <label class="control-label" for="eventTitle"></label>
+                                <div>
+                                    Event Title<input type='text' name='eventTitle' id='eventTitle' placeholder='&nbsp;e.g. DataBase Tutorial' />
+                                </div>
+
                                 <label >Location:</label>
                                 <div class="controls">
                                     <input type="text" name="patientName" id="patientName"  placeholder='&nbsp;e.g. WGB 1.07' />
@@ -110,12 +149,12 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                
-                                
+
+
                                 <label for="from">From</label>
                                 <div class="controls controls-row" id="from" >
                                 </div>  
-                                    
+
                                 <label  for="to">To</label>
                                 <div class="controls controls-row" id="to">
                                 </div>
@@ -146,61 +185,56 @@
 
         <script type="text/javascript">
 
-            $(document).ready(function () {
-
-               $('#calendar').fullCalendar({
-                    header: {
-                        left: 'prev,next, today',
-                        center: 'title',
-                        right: 'agendaWeek,agendaDay,month'
-                    },
-                    defaultView: 'agendaWeek',
-                    editable: true,
-                    selectable: true,
-                    selectHelper: true,
-                    firstDay: 1,
-                    height: 846,
-                    
-                    select: function (start, end, allDay) {
-
-                        starttime = moment(start).format('dddd MMM Do @ h:mma ');
-                        endtime = moment(end).format('dddd MMM Do @ h:mma ');
-                 
-                        var from = starttime;
-                        var to = endtime ;
-                        $('#createEventModal #apptStartTime').val(start);
-                        $('#createEventModal #apptEndTime').val(end);
-                        $('#createEventModal #apptAllDay').val(allDay);
-                        $('#createEventModal #from').text(from);
-                        $('#createEventModal #to').text(to);
-                        $('#createEventModal').modal('show');                     
+            var matchingDaysBetween = function(start, end, test) {
+                var days = [];
+                for (var day = moment(start); day.isBefore(end); day.add(1, 'd')) {
+                    if (test(day)) {
+                        days.push(moment(day)); // push a copy of day
                     }
-                });
-
-                $('#submitButton').on('click', function (e) {
-                    // We don't want this to act as a link so cancel the link action
-                    e.preventDefault();
-                    doSubmit();
-                });
-
-                function doSubmit() {
-                    $("#createEventModal").modal('hide');
-                    console.log($('#apptStartTime').val());
-                    console.log($('#apptEndTime').val());
-                    console.log($('#apptAllDay').val());
-                    
-                    $("#calendar").fullCalendar('renderEvent',
-                        {
-                            title: $('#eventTitle').val(),
-
-                            start: new Date($('#apptStartTime').val()),
-                            end: new Date($('#apptEndTime').val()),
-                            allDay: ($('#apptAllDay').val() == "true"),
-                        },
-                        true);
                 }
-            });
+                return days;
+            }
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                eventSources: [{
+                        // Every sunday as a background event
+                        events: function(start, end, timezone, callback) {
 
+                            // Get the days
+                            var days = matchingDaysBetween(start, end, function(day) {
+                                return day.format('dddd') === 'Sunday'; //test function
+                            });
+
+                            // Map days to events
+                            callback(days.map(function(day) {
+                                return {
+                                    start: moment(day).startOf('day'),
+                                    end: moment(day).endOf('day'),
+                                    title: "sunday",
+                                    rendering: 'background'
+                                };
+                            }));
+                        }
+                    }, {
+                        //Every tuesday noon to 2pm
+                        events: function(start, end, timezone, callback) {
+                            var days = matchingDaysBetween(start, end, function(day) {
+                                return day.format('dddd') === 'Tuesday'; //test function
+                            });
+                            callback(days.map(function(day) { // map days to events
+                                return {
+                                    start: moment(day).hour(12),
+                                    end: moment(day).hour(14),
+                                    title: "lunch",
+                                };
+                            }));
+                        }
+                    }]
+            });
 
         </script>
 

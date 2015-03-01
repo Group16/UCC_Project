@@ -154,7 +154,7 @@
                     </div>
 
                     <div class="modal-body">
-
+                        <!--  login-->
                         <%
 
                             //Calling the User Interface.
@@ -178,7 +178,7 @@
                                     session.setAttribute("lastName", lastName);
                                     session.setAttribute("id", id);
                                      session.setAttribute("p_type", p_type);
-                                    response.sendRedirect("welcome.jsp");
+                                    response.sendRedirect("scheduler.jsp");
 
                                 } else {
                                     out.println("Wrong username/password");
@@ -226,7 +226,7 @@
                                     String lastName = request.getParameter("lastName");
                                     session.setAttribute("firstName", firstName);
                                     session.setAttribute("lastName", lastName);
-                                    response.sendRedirect("welcome.jsp");
+                                    response.sendRedirect("scheduler.jsp");
                                 }
                             } else {
                                 //print the standard form
