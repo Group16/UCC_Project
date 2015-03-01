@@ -39,9 +39,7 @@ public class MeetingChecker {
     
     private String recurring;
     
-    private String startTime;
-    
-    private String endTime;
+    private String time;
     
     private String location;
     
@@ -79,8 +77,7 @@ public class MeetingChecker {
         this.startDate="";
         this.endDate="";
         this.recurring="";
-        this.startTime="";
-        this.endTime="";
+        this.time="";
         this.location="";
         this.description="";
         this.group ="";
@@ -129,20 +126,12 @@ public class MeetingChecker {
         return this.endDate;
     }
     
-    public void setStartTime( String enteredStartTime){
-        this.startTime = enteredStartTime;
+    public void setTime( String enterdtime ){
+        this.time = enterdtime;
     }
     
-    public String getStartTime(){
-        return this.startTime;
-    }
-    
-    public void setEndTime( String enteredEndTime){
-        this.endTime = enteredEndTime;
-    }
-    
-    public String getEndTime( ){
-        return this.endTime;
+    public String getTime(){
+        return this.time;
     }
     
     public void setLocation( String enteredLocation){
@@ -289,7 +278,7 @@ public class MeetingChecker {
          }
         
         //If the date is null
-        if(getStartTime().equals("")){
+        if(getTime().equals("")){
            valid = false;
            correctStartTime = false;
            //place empty string in the array
@@ -301,21 +290,6 @@ public class MeetingChecker {
            
            //Add error to the array
            array[3] ="";
-            
-         }
-        
-        if(getEndTime().equals("")){
-           valid = false;
-           correctEndTime = false;
-           //place empty string in the array
-           array[4] ="*End Time Required.";
-        //If the date is not null
-        }else{
-           //set the correctDate to true
-           correctEndTime = true;
-           
-           //Add error to the array
-            array[4] ="";
             
          }
         
