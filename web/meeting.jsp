@@ -52,6 +52,7 @@
                      out.println("Your meeting has been set");
                      meeting.insertNotQuery("meeting");
                      meeting.insertPIMQuery((String)session.getAttribute("id"), "1");
+                     meeting.insertPIMQuery((String)session.getAttribute("id"), "0");
                      meeting.insertMeetQuery("meeting", "0");
                  }
              }

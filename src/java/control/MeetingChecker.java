@@ -210,6 +210,10 @@ public class MeetingChecker {
     public void insertPIMQuery(String p_id, String is_manager){
         database.Insert( "INSERT INTO people_in_meetings( p_id, n_id, m_id, is_manager )" +
                          "VALUES( '" + p_id + "','" + getNotificationID()  + "', '" + getMeetingID()  + "', '" + is_manager + "' );");
+    } 
+    public void insertPIMQuery(String is_manager){
+        database.Insert( "INSERT INTO people_in_meetings( p_id, n_id, m_id, is_manager )" +
+                         "VALUES( '" + recipient + "','" + getNotificationID()  + "', '" + getMeetingID()  + "', '" + is_manager + "' );");
     }   
     
     public String dateSent(){
