@@ -235,8 +235,16 @@
                         }
                     }]
             });
-
+                
         </script>
+        
+        <%
+                 control.MeetingChecker meeting = new control.MeetingChecker();
+                 
+                 //String []  
+        
+        
+        %>
 
     </body>
 </html>
