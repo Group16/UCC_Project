@@ -13,7 +13,6 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="database.SQL"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -122,7 +121,7 @@
                                                    response.sendRedirect("tutorial.jsp");
                                                }
                                            }
-                                       }
+                                       
                                 %>
                 </div>
 
@@ -249,7 +248,7 @@
         </script>
         
         <%
-                 ArrayList<MeetingChecker> meetings = new ArrayList<MeetingChecker>();
+                 //JSONArray meetings = new JSONArray();
                  
                  
                  Statement statementObject;
@@ -259,10 +258,10 @@
                  
                  try{
                     statementObject = connectionObject.createStatement();
-                    ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" +session.getAttribute("id")+ "' AND m.date BETWEEN '" +"2015/03/02"+ "' AND '" +"2015/03/11"+ "'");
+                    ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" +session.getAttribute("id")+ "' AND m.date BETWEEN '" +"2014/03/02"+ "' AND '" +"2016/03/11"+ "'");
                     
                     while(statementResult.next()){
-                        
+                        out.print("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
                         String m_id  = statementResult.getString(0);
                         String time  = statementResult.getString(2);
                         String startDate  = statementResult.getString(3);
@@ -273,12 +272,13 @@
                         String description  = statementResult.getString(8);
                         
                         MeetingChecker meeting = new MeetingChecker(m_id, time, startDate, location, recurring, endDate, type, description);
-                    }
+                        
+                   }
                     
                  }catch(Exception E){
                      
                  }
-                 
+        }   
         
         
         %>
