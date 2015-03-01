@@ -8,10 +8,14 @@ package database;
  *
  * @author Shiny
  */
+import Classes.Meeting;
 import java.sql.*;
 import java.text.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import control.MeetingChecker;
+
 
 public class DbClass {
 

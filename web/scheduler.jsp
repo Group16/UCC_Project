@@ -4,6 +4,14 @@
     Author     : murphy
 --%>
 
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="database.SQL"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -241,7 +249,18 @@
         <%
                  control.MeetingChecker meeting = new control.MeetingChecker();
                  
-                 //String []  
+                 Statement statementObject;
+                 Connection connectionObject;
+                 connectionObject = DriverManager.getConnection("jdbc:mysql://"+"cs1.ucc.ie"+"/" + "2016_mm37", "mm37", "uohongah");
+                 database.DbClass db = new database.DbClass();
+                 
+                 try{
+                    statementObject = connectionObject.createStatement();
+                    ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" +session.getAttribute("id")+ "' AND m.date BETWEEN '" +"2015/03/02"+ "' AND '" +"2015/03/11"+ "'");
+                 }catch(Exception E){
+                     
+                 }
+                 
         
         
         %>
