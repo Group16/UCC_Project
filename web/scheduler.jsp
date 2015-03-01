@@ -148,7 +148,7 @@
 
             $(document).ready(function () {
 
-                var calendar = $('#calendar').fullCalendar({
+               $('#calendar').fullCalendar({
                     header: {
                         left: 'prev,next, today',
                         center: 'title',
@@ -160,6 +160,7 @@
                     selectHelper: true,
                     firstDay: 1,
                     height: 846,
+                    
                     select: function (start, end, allDay) {
 
                         starttime = moment(start).format('dddd MMM Do @ h:mma ');
@@ -172,8 +173,7 @@
                         $('#createEventModal #apptAllDay').val(allDay);
                         $('#createEventModal #from').text(from);
                         $('#createEventModal #to').text(to);
-                        $('#createEventModal').modal('show');
-                     
+                        $('#createEventModal').modal('show');                     
                     }
                 });
 
@@ -188,18 +188,19 @@
                     console.log($('#apptStartTime').val());
                     console.log($('#apptEndTime').val());
                     console.log($('#apptAllDay').val());
-
+                    
                     $("#calendar").fullCalendar('renderEvent',
-                            {
-                                title: $('#eventTitle').val(),
-                       
-                                start: new Date($('#apptStartTime').val()),
-                                end: new Date($('#apptEndTime').val()),
-                                allDay: ($('#apptAllDay').val() == "true"),
-                            },
-                            true);
+                        {
+                            title: $('#eventTitle').val(),
+
+                            start: new Date($('#apptStartTime').val()),
+                            end: new Date($('#apptEndTime').val()),
+                            allDay: ($('#apptAllDay').val() == "true"),
+                        },
+                        true);
                 }
             });
+
 
         </script>
 
