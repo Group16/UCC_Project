@@ -22,8 +22,7 @@ public class MeetingChecker {
     DbClass database2;
     
     private int meetingID;
-    
-    private int notificationID;
+   
     
     private String sender;
     
@@ -64,6 +63,30 @@ public class MeetingChecker {
     public boolean correctGroup;
     
     
+    public MeetingChecker(String meetingID, String time, String startDate, String location, String recurring, String endDate, String type, String description){
+        database = new DbClass();
+        database2 = new DbClass();
+        database.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
+        database2.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
+        
+        try{
+            this.meetingID = Integer.parseInt(meetingID);
+        }catch(Exception e){
+            
+        }
+        
+        this.sender ="";
+        this.recipient="";
+        this.dateSent="";
+        this.startDate=startDate;
+        this.endDate=endDate;
+        this.recurring=recurring;
+        this.time=time;
+        this.location=location;
+        this.description=description;
+        this.group ="";
+        array = new String[7];
+    }
     
     public MeetingChecker(){
         database = new DbClass();
@@ -81,7 +104,6 @@ public class MeetingChecker {
         this.location="";
         this.description="";
         this.group ="";
-        this.notificationID  =0;
         array = new String[7];
     }
     

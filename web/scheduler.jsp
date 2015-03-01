@@ -263,8 +263,16 @@
                     
                     while(statementResult.next()){
                         
-                        String  = statementResult.getString(2) + ", ";
-                        MeetingChecker meeting = new MeetingChecker();
+                        String m_id  = statementResult.getString(0);
+                        String time  = statementResult.getString(2);
+                        String startDate  = statementResult.getString(3);
+                        String location = statementResult.getString(4);
+                        String recurring  = statementResult.getString(5);
+                        String endDate  = statementResult.getString(6);
+                        String type  = statementResult.getString(7);
+                        String description  = statementResult.getString(8);
+                        
+                        MeetingChecker meeting = new MeetingChecker(m_id, time, startDate, location, recurring, endDate, type, description);
                     }
                     
                  }catch(Exception E){
