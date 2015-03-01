@@ -13,8 +13,7 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <jsp:useBean id="meeting" class="control.MeetingChecker" scope="session" />
-        <jsp:setProperty name="meeting" property="*"/>
+        
         
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -33,12 +32,13 @@
             });
         </script>
   
-        
+            <jsp:useBean id="meeting" class="control.MeetingChecker" scope="session" />
+        <jsp:setProperty name="meeting" property="*"/>
         <%
          //String user=session.getValue("userid").toString();
          UI.GUI gui = new UI.GUI();
          notification.Notify not = new notification.Notify();
-         if( session.getAttribute( "firstName" ) == null ) {
+         if( session.getAttribute( "lastName" ) == null ) {
                 response.sendRedirect( "login.jsp" );
          }
          else
@@ -50,8 +50,8 @@
                  else
                  {
                      out.println("Your meeting has been set");
-                     meeting.insertPIMQuery((String)session.getAttribute("id"), "1");
                      meeting.insertNotQuery("meeting");
+                     meeting.insertPIMQuery((String)session.getAttribute("id"), "1");
                      meeting.insertMeetQuery("meeting", "0");
                  }
              }

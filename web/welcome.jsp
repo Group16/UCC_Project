@@ -18,25 +18,27 @@
         
         
         <%
-        String firstName;
-        String lastName;
-        if( session.getAttribute( "firstName" ) == null ) {
+        if( session.getAttribute( "lastName" ) == null ) {
                 response.sendRedirect( "login.jsp" );
         }
         else
         {
+            String firstName;
+            String lastName;
             firstName=session.getAttribute("firstName").toString();
             lastName=session.getAttribute("lastName").toString();
             out.println("You are logged in. Welcome " + firstName + " " + lastName);
+            
             if(request.getParameter("meetingSubmit")!= null){
                 response.sendRedirect( "meeting.jsp" );
             }
+            
             if(request.getParameter("notificationSubmit")!= null){
                 response.sendRedirect( "notification.jsp" );
             }
             
             
-        }
+        
         %>
         <a href="http://localhost:8080/UCC_Scheduler_Program/logout.jsp">Logout</a>
         <form name='form' action='welcome.jsp' method='POST'>
@@ -52,6 +54,7 @@
                     response.sendRedirect( "tutorial.jsp" );
                 }
             }
+        }
         %>
         </form>
     </body>

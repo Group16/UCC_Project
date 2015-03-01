@@ -39,9 +39,10 @@
                     checker.insertQuery( );
                     String firstName = request.getParameter("firstName");
                     String lastName = request.getParameter("lastName");
+                    String student ="student";
                     session.setAttribute("firstName",firstName);
                     session.setAttribute("lastName",lastName);
-
+                    session.setAttribute("p_type", student);
                     response.sendRedirect( "welcome.jsp" );
                 }
             }else{

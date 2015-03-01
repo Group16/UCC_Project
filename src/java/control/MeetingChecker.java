@@ -23,6 +23,8 @@ public class MeetingChecker {
     
     private int meetingID;
     
+    private int notificationID;
+    
     private String sender;
     
     private String recipient;
@@ -82,6 +84,7 @@ public class MeetingChecker {
         this.location="";
         this.description="";
         this.group ="";
+        this.notificationID  =0;
         array = new String[7];
     }
     
@@ -180,9 +183,9 @@ public class MeetingChecker {
         return this.meetingID;
     }
     
-    public int getNextMeetingID(){
+    public int getNotificationID(){
         
-        String num[] = database.SelectRow("SELECT * FROM meetings ORDER BY m_id DESC LIMIT 1;");
+        String num[] = database.SelectRow("SELECT * FROM notifications ORDER BY n_id DESC LIMIT 1;");
         String count = num[0];
         
         int realNum = Integer.parseInt(count);
@@ -205,17 +208,9 @@ public class MeetingChecker {
     }
     
     public void insertPIMQuery(String p_id, String is_manager){
-        database.Insert( "INSERT INTO people_in_meetings( p_id, m_id, is_manager )" +
-                         "VALUES( '" + p_id + "', '" + getMeetingID()  + "', '" + is_manager + "' );");
-    }
-    
-    public void insertNextPIMQuery(String p_id, String is_manager){
-        database.Insert( "INSERT INTO people_in_meetings( p_id, m_id, is_manager )" +
-                         "VALUES( '" + p_id + "', '" + getNextMeetingID()  + "', '" + is_manager + "' );");
-    }
-    
-    
-    
+        database.Insert( "INSERT INTO people_in_meetings( p_id, n_id, m_id, is_manager )" +
+                         "VALUES( '" + p_id + "','" + getNotificationID()  + "', '" + getMeetingID()  + "', '" + is_manager + "' );");
+    }   
     
     public String dateSent(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
