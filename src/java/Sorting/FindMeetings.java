@@ -1,7 +1,6 @@
 package Sorting;
 
 import Classes.Meeting;
-import database.SQL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,40 +17,36 @@ public class FindMeetings
         this.db = db;
     }
     
-    public Date getFreeTime( ArrayList<Integer> p_ids, Date startDate, Date endDate )
+    public String getFreeTime( ArrayList<Integer> p_ids, Date date )
     {
-        DateTime start = new DateTime( startDate );
-        DateTime end = new DateTime( endDate );
-
-        Interval interval = new Interval(end, start);
-        int hours = ((Long)(((interval.getEndMillis() / 60) / 60) / 60)).intValue();
+        final DateTime start = new DateTime( date );
+        final int hours = 9;
         
         for ( Integer p_id : p_ids )
         {
             byte[] bytes = new byte[hours];
             
-            ArrayList<Meeting> meetings = db.getAllMeetingsBetweenDates( p_id.toString(), startDate.toString(), endDate.toString() );
+            ArrayList<Meeting> meetings = db.getAllMeetingsOnDate( p_id.toString(), date.toString() );
             
-            int counter = 0;
-            DateTime lastMeeting = start;
-            
-            for ( byte currentByte : bytes )
+            for ( int i=0 ; i < bytes.length ; i++ )
             {
+                String bTime = "";
+                if ( i < 10 )
+                {
+                    bTime = "0";
+                }
+                bTime = bTime + i + ":00:00";
+                
                 for ( Meeting meeting : meetings )
                 {
-                    Date time = meeting.getTime();
-                    
-                    if ( time.equals(byteTime) || (counter >= 9 && counter <= 19) )
+                    if ( meeting.getTime().toString().equals( bTime ) )
                     {
-                        currentByte = 1;
+                        bytes[i] = 1;
                     }
                 }
-                
-                counter++;
             }
             
-            MeetingMap meetingMap = new MeetingMap( p_id, bytes, start );
-            
+            MeetingMap meetingMap = new MeetingMap( p_id, bytes );
             meetingMaps.add(meetingMap);
         }
 
@@ -67,38 +62,29 @@ public class FindMeetings
                 }
             }
             
-            if ( startBytes[i] == 0 )
+            if ( startBytes[i] == 1 )
             {
-                return i;
+                String mTime = "";
+                if ( i < 10 )
+                {
+                    mTime = "0";
+                }
+                mTime = mTime + i + ":00:00";
+                return  mTime;
             }
         }
-    }
-   
-    private Date dateFromByteTime( byte time )
-    {
-        SimpleDateFormat format = new SimpleDateFormat("hh");
-                    
-        Date byteTime;
-        try
-        {
-            byteTime = format.parse( ((Integer)(counter + 9)).toString() );
-        }
-        catch( Exception e )
-        {
-        }
+        return null;
     }
     
     private class MeetingMap
     {
         private final int p_id;
         private final byte[] bytes;
-        private final DateTime start;
         
-        public MeetingMap( int p_id, byte[] bytes, DateTime start )
+        public MeetingMap( int p_id, byte[] bytes )
         {
             this.bytes = bytes;
             this.p_id = p_id;
-            this.start = start;
         }
         
         public int getP_id()
@@ -109,11 +95,6 @@ public class FindMeetings
         public byte[] getBytes()
         {
             return this.bytes;
-        }
-        
-        public DateTime getStart()
-        {
-            return this.start;
         }
     }
 }
