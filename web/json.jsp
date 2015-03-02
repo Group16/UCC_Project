@@ -50,6 +50,7 @@
                         while(statementResult.next())
                         {
                             String m_id  = statementResult.getString(1);
+                            String confirmed = statementResult.getString(2);
                             String time  = statementResult.getString(3);
                             String startDate  = statementResult.getString(4);
                             String location = statementResult.getString(5);
@@ -58,7 +59,7 @@
                             String type  = statementResult.getString(8);
                             String description  = statementResult.getString(9);
                             
-                            if ( recurring.equals("weekly") || recurring.equals("daily") || recurring.equals("fortnightly") )
+                            if ( recurring.equals("weekly") || recurring.equals("daily") || recurring.equals("fortnight") )
                             {
                                 Date recurDate = dateFormat.parse(startDate);
 
@@ -79,7 +80,7 @@
                                     {
                                         recurCal.add(Calendar.DAY_OF_YEAR, 1);
                                     }
-                                    else if ( recurring.equals("fortnightly") )
+                                    else if ( recurring.equals("fortnight") )
                                     {
                                         recurCal.add(Calendar.DAY_OF_YEAR, 14);
                                     }
@@ -94,7 +95,10 @@
                                     obj.put("recur_end", endDate);
                                     obj.put("type", type);
                                     obj.put("title", description);
-
+                                    if(confirmed.equals("0"))
+                                    {
+                                        obj.put("color", "#000");
+                                    }
                                     objArray.add(obj);
 
                                 }
