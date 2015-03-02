@@ -48,14 +48,13 @@
                         
                         
                         JSONObject obj = new JSONObject();
-                        obj.put("m_id", m_id);
-                        obj.put("time", time);
-                        obj.put("date", startDate);
+                        obj.put("m_id", m_id);                        
+                        obj.put("start", startDate + " " + time );
                         obj.put("location", location);
                         obj.put("recur",recurring);
                         obj.put("recur_end", endDate);
                         obj.put("type", type);
-                        obj.put("decription", description);
+                        obj.put("title", description);
                         
                         //JSONValue.toJSONString( obj );
                         

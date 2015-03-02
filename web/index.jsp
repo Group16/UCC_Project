@@ -300,6 +300,8 @@
 
                             //Calling the User Interface.                           
                             out.println(ui.generateReg2GUI());
+                            
+                            
                            
                         %>
                     </div>

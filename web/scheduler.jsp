@@ -89,44 +89,44 @@
 
                         </ul>
                     </div>
-                    
+
+                    <%
+                        if (session.getAttribute("lastName") == null) {
+                            response.sendRedirect("index.jsp");
+                        } else {
+                            String firstName;
+                            String lastName;
+                            firstName = session.getAttribute("firstName").toString();
+                            lastName = session.getAttribute("lastName").toString();
+                            out.println("You are logged in. Welcome " + firstName + " " + lastName);
+
+                            if (request.getParameter("meetingSubmit") != null) {
+                                response.sendRedirect("meeting.jsp");
+                            }
+
+                            if (request.getParameter("notificationSubmit") != null) {
+                                response.sendRedirect("notification.jsp");
+                            }
+
+
+
+                    %>
+
+                    <form name='form' action='welcome.jsp' method='POST'>
+                        <input type="submit" name="meetingSubmit" value="Arrange a meeting"/>
+
+                        <input type="submit" name="notificationSubmit" value="Notifcations"/>
+
                         <%
-                                if (session.getAttribute("lastName") == null) {
-                                    response.sendRedirect("index.jsp");
-                                } else {
-                                    String firstName;
-                                    String lastName;
-                                    firstName = session.getAttribute("firstName").toString();
-                                    lastName = session.getAttribute("lastName").toString();
-                                    out.println("You are logged in. Welcome " + firstName + " " + lastName);
+                            if (session.getAttribute("p_type").equals("lecturer")) {
+                        %><input type="submit" name="tutorialSubmit" value="Arrange a Tutorial"/><%
 
-                                    if (request.getParameter("meetingSubmit") != null) {
-                                        response.sendRedirect("meeting.jsp");
-                                    }
+                                if (request.getParameter("tutorialSubmit") != null) {
+                                    response.sendRedirect("tutorial.jsp");
+                                }
+                            }
 
-                                    if (request.getParameter("notificationSubmit") != null) {
-                                        response.sendRedirect("notification.jsp");
-                                    }
-
-
-
-                            %>
-                            
-                            <form name='form' action='welcome.jsp' method='POST'>
-                                <input type="submit" name="meetingSubmit" value="Arrange a meeting"/>
-
-                                <input type="submit" name="notificationSubmit" value="Notifcations"/>
-
-                                <%
-                                    if (session.getAttribute("p_type").equals("lecturer")) {
-                                %><input type="submit" name="tutorialSubmit" value="Arrange a Tutorial"/><%
-
-                                               if (request.getParameter("tutorialSubmit") != null) {
-                                                   response.sendRedirect("tutorial.jsp");
-                                               }
-                                           }
-                                       
-                                %>
+                        %>
                 </div>
 
                 <div class="col-lg-10 col-md-10 col-sm-10 text pull-right">
@@ -198,111 +198,80 @@
 
         <script type="text/javascript">
 
-            var matchingDaysBetween = function(start, end, test) {
-                var days = [];
-                for (var day = moment(start); day.isBefore(end); day.add(1, 'd')) {
-                    if (test(day)) {
-                        days.push(moment(day)); // push a copy of day
-                    }
-                }
-                return days;
-            }
+
             $('#calendar').fullCalendar({
                 header: {
                     left: 'prev,next today',
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
                 },
-                eventSources: [{
-                        // Every sunday as a background event
-                        events: function(start, end, timezone, callback) {
+                eventSources: [
+                    // your event source
+                    {
+                        url: 'json.jsp' // use the `url` property                   
+                    }
 
-                            // Get the days
-                            var days = matchingDaysBetween(start, end, function(day) {
-                                return day.format('dddd') === 'Sunday'; //test function
-                            });
+                    // any other sources...
 
-                            // Map days to events
-                            callback(days.map(function(day) {
-                                return {
-                                    start: moment(day).startOf('day'),
-                                    end: moment(day).endOf('day'),
-                                    title: "sunday",
-                                    rendering: 'background'
-                                };
-                            }));
-                        }
-                    }, {
-                        //Every tuesday noon to 2pm
-                        events: function(start, end, timezone, callback) {
-                            var days = matchingDaysBetween(start, end, function(day) {
-                                return day.format('dddd') === 'Tuesday'; //test function
-                            });
-                            callback(days.map(function(day) { // map days to events
-                                return {
-                                    start: moment(day).hour(12),
-                                    end: moment(day).hour(14),
-                                    title: "lunch",
-                                };
-                            }));
-                        }
-                    }]
+                ]
+
             });
-                
+
+
+
         </script>
-        
+
         <%
-                 //JSONArray meetings = new JSONArray();
-                 
-                 ArrayList<MeetingChecker> meetings = new ArrayList<MeetingChecker>();
-                 Statement statementObject;
-                 Connection connectionObject;
-                 connectionObject = DriverManager.getConnection("jdbc:mysql://"+"cs1.ucc.ie"+"/" + "2016_mm37", "mm37", "uohongah");
-                 database.DbClass db = new database.DbClass();
-                 
-                 try{
+                //JSONArray meetings = new JSONArray();
+
+                ArrayList<MeetingChecker> meetings = new ArrayList<MeetingChecker>();
+                Statement statementObject;
+                Connection connectionObject;
+                connectionObject = DriverManager.getConnection("jdbc:mysql://" + "cs1.ucc.ie" + "/" + "2016_mm37", "mm37", "uohongah");
+                database.DbClass db = new database.DbClass();
+
+                try {
                     statementObject = connectionObject.createStatement();
-                    ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" +session.getAttribute("id")+ "' AND m.date BETWEEN '" +"2015/03/02"+ "' AND '" +"2015/03/11"+ "'");
-                    
-                    while(statementResult.next()){
-                        
-                        String m_id  = statementResult.getString(1);
-                        String time  = statementResult.getString(3);
-                        String startDate  = statementResult.getString(4);
+                    ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" + session.getAttribute("id") + "' AND m.date BETWEEN '" + "2015/03/02" + "' AND '" + "2015/03/11" + "'");
+
+                    while (statementResult.next()) {
+
+                        String m_id = statementResult.getString(1);
+                        String time = statementResult.getString(3);
+                        String startDate = statementResult.getString(4);
                         String location = statementResult.getString(5);
-                        String recurring  = statementResult.getString(6);
-                        String endDate  = statementResult.getString(7);
-                        String type  = statementResult.getString(8);
-                        String description  = statementResult.getString(9);
-                       
+                        String recurring = statementResult.getString(6);
+                        String endDate = statementResult.getString(7);
+                        String type = statementResult.getString(8);
+                        String description = statementResult.getString(9);
+
                         //MeetingChecker eeting = new MeetingChecker(m_id, time, startDate, location, recurring, endDate, type, description);
-                        
+
                         //meetings.add(meeting);
-                        
+
                         JSONObject obj = new JSONObject();
-                        
+
                         JSONArray objArray = new JSONArray();
 
                         obj.put("m_id", m_id);
                         obj.put("time", time);
                         obj.put("date", startDate);
                         obj.put("location", location);
-                        obj.put("recur",recurring);
+                        obj.put("recur", recurring);
                         obj.put("recur_end", endDate);
                         obj.put("type", type);
                         obj.put("decription", description);
-                        
+
                         //JSONValue.toJSONString( obj );
-                        
+
                         objArray.add(obj);
-                   }
-                    
-                 }catch(Exception E){
-                     
-                 }
-        }   
-        
-        
+                    }
+
+                } catch (Exception E) {
+                }
+            }
+
+
         %>
 
     </body>
