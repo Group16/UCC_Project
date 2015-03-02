@@ -4,6 +4,11 @@
     Author     : murphy
 --%>
 
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.json.simple.JSONArray"%>
 <%@page import="org.json.simple.JSONValue"%>
 <%@page import="java.util.ArrayList"%>
@@ -221,10 +226,25 @@
                 Connection connectionObject;
                 connectionObject = DriverManager.getConnection("jdbc:mysql://" + "cs1.ucc.ie" + "/" + "2016_mm37", "mm37", "uohongah");
                 database.DbClass db = new database.DbClass();
-
+                
+                Date date = new Date();
+                String past;
+                String future;
+                
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);
+                int month = cal.get(Calendar.MONTH);
+                
+                //ADD AN IF SOME TIME
+                
+                cal.set(Calendar.MONTH, month-2);
+                past = cal.getTime().toString();
+                cal.set(Calendar.MONTH, month+2);
+                future = cal.getTime().toString();
+                
                 try {
                     statementObject = connectionObject.createStatement();
-                    ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" + session.getAttribute("id") + "' AND m.date BETWEEN '" + "2015/03/02" + "' AND '" + "2015/03/11" + "'");
+                    ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" + session.getAttribute("id") + "' AND m.date BETWEEN '" + past + "' AND '" + future + "'");
 
                     while (statementResult.next()) {
 
@@ -247,8 +267,6 @@
 
                         obj.put("m_id", m_id);
                         obj.put("start", startDate+"T"+time);
-                    
-                       
                         obj.put("location", location);
                         obj.put("recur", recurring);
                         obj.put("recur_end", endDate);
