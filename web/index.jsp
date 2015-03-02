@@ -249,60 +249,21 @@
                     </div>
 
                     <div class="modal-body">
-<!--                        <form action="none.php" method="POST">
-
-                            <select class="div-toggler" data-target=".streams">
-                                <option value="">Choose Your Computer Science Stream</option>
-                                <option value="CK401" >CK401 Computer Science</option>
-                            </select>
-                            </br>
-                            <select class="div-toggler" data-target=".streams">
-                                <option value="">Choose Your Computer Science Stream</option>
-                                <option value="compSciValue" data-show=".compSci">BSc in Computer Science</option>
-                                <option value="webSciValue" data-show=".webSys">BSc in Computer Science (Web Systems Engineering)</option>
-
-                            </select>
-
-                            <div class="streams">
-                                <div class="compSci hide">
-                                    <label>CS3300 Work Placement<input type="checkbox" name="module" value="CS3300" /></label></br>
-                                    <label>CS3301 Work Placement<input type="checkbox" name="module" value="CS3301" /></label></br>
-                                    <label>CS3306 Workplace Technology and Skills<input type="checkbox" name="module" value="CS3306" /></label></br>
-                                    <label>CS3311 Middleware<input type="checkbox" name="module" value="CS3311" /></label><br>
-                                    <label>CS3500 Software Engineering<input type="checkbox" name="module" value="CS3500" /></label></br>
-                                    <label>CS3505 Web Systems Team Project<input type="checkbox" name="module" value="CS3505" /></label></br>
-                                    <label>CS3506 Networks and Data Communications<input type="checkbox" name="module" value="CS3506" /></label></br>
-                                    <label>CS3508 Algorithms and Non-linear Data Structures<input type="checkbox" name="module" value="CS3508" /></label></br>
-                                    <label>CS3509 Theory of Computation<input type="checkbox" name="module" value="CS3509" /></label></br>
-                                    <label>CS3514 C-Programming for Microcontrollers<input type="checkbox" name="module" value="CS3514" /></label></br>
-                                </div>
-                                <div class="webSys hide">
-                                    <label>CS3300 Work Placement<input type="checkbox" name="module" value="CS3300" /></label></br>
-                                    <label>CS3301 Work Placement<input type="checkbox" name="module" value="CS3301" /></label></br>
-                                    <label>CS3306 Workplace Technology and Skills<input type="checkbox" name="module" value="CS3306" /></label></br>
-                                    <label>CS3311 Middleware<input type="checkbox" name="module" value="CS3311" /></label></br>
-                                    <label>CS3500 Software Engineering<input type="checkbox" name="module" value="CS3500" /></label></br>
-                                    <label>CS3505 Web Systems Team Project<input type="checkbox" name="module" value="CS3505" /></label></br>
-                                    <label>CS3510 Advanced Server-Side Programming<input type="checkbox" name="module" value="CS3510" /></label></br>
-                                    <label>CS3511 Web Security<input type="checkbox" name="module" value="CS3511" /></label></br>
-                                    <label>CS3512 Advanced XML Technologies<input type="checkbox" name="module" value="CS3512" /></label></br>
-                                    <label>CS3513 Client-side Programming<input type="checkbox" name="module" value="CS3513" /></label></br>
-
-                                </div>
-                            </div>
-                            <div class="action_btns">
-                                <a href="pages/scheduler.html"><button type="button" class="btn btn-success">Continue</button></a>
-                            </div>
-                        </form>-->
-
                         
                         <%
-
                             //Calling the User Interface.                           
                             out.println(ui.generateReg2GUI());
-                            
-                            
-                           
+
+                            String[] courseModules;
+
+                            courseModules = request.getParameterValues("modules");
+                            if (courseModules != null) {
+                                for (int i = 0; i < courseModules.length; i++) {
+                                    out.println(courseModules[i]);
+                                }
+                            } else {
+                                out.println("Please Check Some Boxes");
+                            }
                         %>
                     </div>
                 </div>
@@ -312,7 +273,6 @@
 
         <footer>
             UCC CONNECT - A Software Engineering Project &copy; Group 16
-
         </footer>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
