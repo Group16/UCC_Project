@@ -73,25 +73,16 @@
             </div>	
         </div> <!-- div .navbar navbar-inverse navbar-fixed-top-->
 
-
-
-
-
         <!-- container class for three feture icons and paragraphs -->	
         <div class="container" id="scheduler_container">
-
-
-
             <div class="row">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center pull-left">
-
 
                     <div class="btn-group dropdown">
                         <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Your Calenders <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <li><a href="#">Acedemic</a></li>
-                            <li><a href="#">Personal</a></li>                      
-
+                            <li><a href="#">Personal</a></li>
                         </ul>
                     </div>
 
@@ -103,7 +94,7 @@
                             String lastName;
                             firstName = session.getAttribute("firstName").toString();
                             lastName = session.getAttribute("lastName").toString();
-                            out.println("You are logged in. Welcome " + firstName + " " + lastName);
+                            out.println("</br>You are logged in.</br> Welcome " + firstName + " " + lastName);
 
                             if (request.getParameter("meetingSubmit") != null) {
                                 response.sendRedirect("meeting.jsp");
@@ -112,27 +103,30 @@
                             if (request.getParameter("notificationSubmit") != null) {
                                 response.sendRedirect("notification.jsp");
                             }
-
-
-
                     %>
-
+                        
                     <form name='form' action='welcome.jsp' method='POST'>
+
+                     
                         <input type="submit" name="meetingSubmit" value="Arrange a meeting"/>
-
                         <input type="submit" name="notificationSubmit" value="Notifcations"/>
-
+                 
                         <%
                             if (session.getAttribute("p_type").equals("lecturer")) {
-                        %><input type="submit" name="tutorialSubmit" value="Arrange a Tutorial"/><%
+                        %>
 
-                                if (request.getParameter("tutorialSubmit") != null) {
-                                    response.sendRedirect("tutorial.jsp");
+                        <input type="submit" name="tutorialSubmit" value="Arrange a Tutorial"/>
+                        </form>
+                        <%
+
+                                    if (request.getParameter("tutorialSubmit") != null) {
+                                        response.sendRedirect("tutorial.jsp");
+                                    }
                                 }
                             }
-                        }
 
                         %>
+                        
                 </div>
 
                 <div class="col-lg-10 col-md-10 col-sm-10 text pull-right">
@@ -211,7 +205,7 @@
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
                 },
-                  defaultTimedEventDuration: "01:00:00",
+                defaultTimedEventDuration: "01:00:00",
                 events: 'json.jsp'
             });
 
@@ -219,7 +213,7 @@
 
         </script>
 
-       
+
     </body>
 </html>
 
