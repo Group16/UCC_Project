@@ -4,6 +4,11 @@
     Author     : mm37
 --%>
 
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
@@ -26,11 +31,27 @@
                  Connection connectionObject;
                  connectionObject = DriverManager.getConnection("jdbc:mysql://"+"cs1.ucc.ie"+"/" + "2016_mm37", "mm37", "uohongah");
                  database.DbClass db = new database.DbClass();
-                 
-                 try{
+                
+                 Date date = new Date();
+                String past;
+                String future;
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);
+                int month = cal.get(Calendar.MONTH);
+                
+                //ADD AN IF SOME TIME
+                
+                cal.set(Calendar.MONTH, month-2);
+                past = dateFormat.format(cal.getTime().toString());
+                cal.set(Calendar.MONTH, month+2);
+                future = dateFormat.format(cal.getTime().toString());
+                
+                try {
                     statementObject = connectionObject.createStatement();
-                    ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" +session.getAttribute("id")+ "' AND m.date BETWEEN '" +"2015/03/02"+ "' AND '" +"2015/03/11"+ "'");
-                    
+                    ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" + session.getAttribute("id") + "' AND m.date BETWEEN '" + past + "' AND '" + future + "'");
+                    out.print("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" + session.getAttribute("id") + "' AND m.date BETWEEN '" + past + "' AND '" + future + "'");
                     while(statementResult.next()){
                         
                         String m_id  = statementResult.getString(1);
@@ -41,26 +62,47 @@
                         String endDate  = statementResult.getString(7);
                         String type  = statementResult.getString(8);
                         String description  = statementResult.getString(9);
-                       
-                        //MeetingChecker eeting = new MeetingChecker(m_id, time, startDate, location, recurring, endDate, type, description);
                         
-                        //meetings.add(meeting);
-                        
-                        
-                        JSONObject obj = new JSONObject();
-                        obj.put("m_id", m_id);                        
-                        obj.put("start", startDate + " " + time );
-                        obj.put("location", location);
-                        obj.put("recur",recurring);
-                        obj.put("recur_end", endDate);
-                        obj.put("type", type);
-                        obj.put("title", description);
-                        
-                        //JSONValue.toJSONString( obj );
-                        
-                        objArray.add(obj);
-                        
-                        
+                        if ( recurring.equals("weekly") )
+                        {
+                                Date recurDate = new Date( startDate );
+                                String newDate;
+                                DateFormat recurDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+                                Calendar recurCal = Calendar.getInstance();
+                                cal.setTime(date);
+                                int recurWeek = cal.get(Calendar.DATE);
+                            
+                            for ( int i=0 ; i < 12 ; i++ )
+                            {
+                                cal.set(Calendar.DATE, recurWeek+7);
+                                newDate = dateFormat.format(cal.getTime().toString());
+                                
+                                JSONObject obj = new JSONObject();
+                                obj.put("m_id", m_id);                        
+                                obj.put("start", newDate + " " + time );
+                                obj.put("location", location);
+                                obj.put("recur",recurring);
+                                obj.put("recur_end", endDate);
+                                obj.put("type", type);
+                                obj.put("title", description);
+                                
+                                objArray.add(obj);
+                            }
+                        }
+                        else
+                        {
+                            JSONObject obj = new JSONObject();
+                            obj.put("m_id", m_id);                        
+                            obj.put("start", startDate + " " + time );
+                            obj.put("location", location);
+                            obj.put("recur",recurring);
+                            obj.put("recur_end", endDate);
+                            obj.put("type", type);
+                            obj.put("title", description);
+
+                            objArray.add(obj);
+                        }
                    }
                    out.print(objArray);
                     

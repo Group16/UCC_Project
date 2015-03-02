@@ -4,6 +4,11 @@
     Author     : murphy
 --%>
 
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.json.simple.JSONArray"%>
 <%@page import="org.json.simple.JSONValue"%>
 <%@page import="java.util.ArrayList"%>
@@ -125,6 +130,7 @@
                                     response.sendRedirect("tutorial.jsp");
                                 }
                             }
+                        }
 
                         %>
                 </div>
@@ -213,58 +219,7 @@
 
         </script>
 
-        <%
-                //JSONArray meetings = new JSONArray();
-
-                ArrayList<MeetingChecker> meetings = new ArrayList<MeetingChecker>();
-                Statement statementObject;
-                Connection connectionObject;
-                connectionObject = DriverManager.getConnection("jdbc:mysql://" + "cs1.ucc.ie" + "/" + "2016_mm37", "mm37", "uohongah");
-                database.DbClass db = new database.DbClass();
-
-                try {
-                    statementObject = connectionObject.createStatement();
-                    ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" + session.getAttribute("id") + "' AND m.date BETWEEN '" + "2015/03/02" + "' AND '" + "2015/03/11" + "'");
-
-                    while (statementResult.next()) {
-
-                        String m_id = statementResult.getString(1);
-                        String time = statementResult.getString(3);
-                        String startDate = statementResult.getString(4);
-                        String location = statementResult.getString(5);
-                        String recurring = statementResult.getString(6);
-                        String endDate = statementResult.getString(7);
-                        String type = statementResult.getString(8);
-                        String description = statementResult.getString(9);
-
-                        //MeetingChecker eeting = new MeetingChecker(m_id, time, startDate, location, recurring, endDate, type, description);
-
-                        //meetings.add(meeting);
-
-                        JSONObject obj = new JSONObject();
-
-                        JSONArray objArray = new JSONArray();
-
-                        obj.put("m_id", m_id);
-                        obj.put("start", startDate+"T"+time);
-                    
-                       
-                        obj.put("location", location);
-                        obj.put("recur", recurring);
-                        obj.put("recur_end", endDate);
-                        obj.put("type", type);
-                        obj.put("title", description);
-
-                        objArray.add(obj);
-                    }
-
-                } catch (Exception E) {
-                }
-            }
-
-
-        %>
-
+       
     </body>
 </html>
 
