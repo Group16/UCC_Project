@@ -4,6 +4,8 @@
     Author     : murphy
 --%>
 
+<%@page import="org.json.simple.JSONArray"%>
+<%@page import="org.json.simple.JSONValue"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="control.MeetingChecker"%>
 <%@page import="java.sql.DriverManager"%>
@@ -13,6 +15,8 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.ResultSet"%>
+<%@page import="org.json.simple.JSONObject"%>";
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +62,7 @@
                 <ul class="nav navbar-nav navbar-right"> 				
                     <li><a href="#">UCC</a></li>
                     <li><a href="#">Features</a></li>
-                    <li><a href="http://localhost:8080/UCC_Scheduler_Program/index.jsp">Logout</a></li>
+                    <li><a href="http://localhost:8080/UCC_Scheduler_Program/logout.jsp">Logout</a></li>
                     <li><a href="https://mohittare.wordpress.com/2013/07/28/using-fullcalendarwithjava/">Help</a></li>															
                 </ul>							
             </div>	
@@ -117,10 +121,10 @@
                                     if (session.getAttribute("p_type").equals("lecturer")) {
                                 %><input type="submit" name="tutorialSubmit" value="Arrange a Tutorial"/><%
 
-                                       if (request.getParameter("tutorialSubmit") != null) {
-                                           response.sendRedirect("tutorial.jsp");
-                                       }
-                                   }
+                                               if (request.getParameter("tutorialSubmit") != null) {
+                                                   response.sendRedirect("tutorial.jsp");
+                                               }
+                                           }
                                        
                                 %>
                 </div>
@@ -250,7 +254,7 @@
         <%
                  //JSONArray meetings = new JSONArray();
                  
-                 
+                 ArrayList<MeetingChecker> meetings = new ArrayList<MeetingChecker>();
                  Statement statementObject;
                  Connection connectionObject;
                  connectionObject = DriverManager.getConnection("jdbc:mysql://"+"cs1.ucc.ie"+"/" + "2016_mm37", "mm37", "uohongah");
@@ -258,21 +262,39 @@
                  
                  try{
                     statementObject = connectionObject.createStatement();
-                    ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" +session.getAttribute("id")+ "' AND m.date BETWEEN '" +"2014/03/02"+ "' AND '" +"2016/03/11"+ "'");
+                    ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" +session.getAttribute("id")+ "' AND m.date BETWEEN '" +"2015/03/02"+ "' AND '" +"2015/03/11"+ "'");
                     
                     while(statementResult.next()){
-                        out.print("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-                        String m_id  = statementResult.getString(0);
-                        String time  = statementResult.getString(2);
-                        String startDate  = statementResult.getString(3);
-                        String location = statementResult.getString(4);
-                        String recurring  = statementResult.getString(5);
-                        String endDate  = statementResult.getString(6);
-                        String type  = statementResult.getString(7);
-                        String description  = statementResult.getString(8);
                         
-                        MeetingChecker meeting = new MeetingChecker(m_id, time, startDate, location, recurring, endDate, type, description);
+                        String m_id  = statementResult.getString(1);
+                        String time  = statementResult.getString(3);
+                        String startDate  = statementResult.getString(4);
+                        String location = statementResult.getString(5);
+                        String recurring  = statementResult.getString(6);
+                        String endDate  = statementResult.getString(7);
+                        String type  = statementResult.getString(8);
+                        String description  = statementResult.getString(9);
+                       
+                        //MeetingChecker eeting = new MeetingChecker(m_id, time, startDate, location, recurring, endDate, type, description);
                         
+                        //meetings.add(meeting);
+                        
+                        JSONObject obj = new JSONObject();
+                        
+                        JSONArray objArray = new JSONArray();
+
+                        obj.put("m_id", m_id);
+                        obj.put("time", time);
+                        obj.put("date", startDate);
+                        obj.put("location", location);
+                        obj.put("recur",recurring);
+                        obj.put("recur_end", endDate);
+                        obj.put("type", type);
+                        obj.put("decription", description);
+                        
+                        //JSONValue.toJSONString( obj );
+                        
+                        objArray.add(obj);
                    }
                     
                  }catch(Exception E){
