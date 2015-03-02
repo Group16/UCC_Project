@@ -205,16 +205,7 @@
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
                 },
-                eventSources: [
-                    // your event source
-                    {
-                        url: 'json.jsp' // use the `url` property                   
-                    }
-
-                    // any other sources...
-
-                ]
-
+                events: 'json.jsp'
             });
 
 
@@ -254,15 +245,12 @@
                         JSONArray objArray = new JSONArray();
 
                         obj.put("m_id", m_id);
-                        obj.put("time", time);
-                        obj.put("date", startDate);
+                        obj.put("start", startDate+"T"+time);
                         obj.put("location", location);
                         obj.put("recur", recurring);
                         obj.put("recur_end", endDate);
                         obj.put("type", type);
-                        obj.put("decription", description);
-
-                        //JSONValue.toJSONString( obj );
+                        obj.put("title", description);
 
                         objArray.add(obj);
                     }
