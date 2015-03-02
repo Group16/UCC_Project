@@ -60,14 +60,16 @@
 
                             if ( recurring.equals("weekly") )
                             {
-                                    Date recurDate = new Date();
-                                    String newDate;
-                                    
-                                    Calendar recurCal = Calendar.getInstance();
-                                    recurCal.setTime(recurDate);
+                                DateFormat recurFormat = new SimpleDateFormat("yyyy-MM-dd");
+                                Date recurDate = recurFormat.parse(startDate);
 
-                                    int days = recurCal.get(Calendar.DAY_OF_YEAR);
-                                    out.print(days + " ");
+                                String newDate;
+
+                                Calendar recurCal = Calendar.getInstance();
+                                recurCal.setTime(recurDate);
+
+                                int days = recurCal.get(Calendar.DAY_OF_YEAR);
+
                                 for ( int i=0 ; i < 12 ; i++ )
                                 {
                                     days += 7;
