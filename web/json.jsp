@@ -4,6 +4,9 @@
     Author     : mm37
 --%>
 
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
@@ -26,11 +29,25 @@
                  Connection connectionObject;
                  connectionObject = DriverManager.getConnection("jdbc:mysql://"+"cs1.ucc.ie"+"/" + "2016_mm37", "mm37", "uohongah");
                  database.DbClass db = new database.DbClass();
-                 
-                 try{
+                 Date date = new Date();
+                 String past;
+                 String future;
+                
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);
+                int month = cal.get(Calendar.MONTH);
+                
+                //ADD AN IF SOME TIME
+                
+                cal.set(Calendar.MONTH, month-2);
+                past = cal.getTime().toString();
+                cal.set(Calendar.MONTH, month+2);
+                future = cal.getTime().toString();
+                
+                try {
                     statementObject = connectionObject.createStatement();
-                    ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" +session.getAttribute("id")+ "' AND m.date BETWEEN '" +"2015/03/02"+ "' AND '" +"2015/03/11"+ "'");
-                    
+                    ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" + session.getAttribute("id") + "' AND m.date BETWEEN '" + past + "' AND '" + future + "'");
+                    out.print("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" + session.getAttribute("id") + "' AND m.date BETWEEN '" + past + "' AND '" + future + "'");
                     while(statementResult.next()){
                         
                         String m_id  = statementResult.getString(1);
