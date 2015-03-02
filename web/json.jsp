@@ -21,11 +21,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-                 //JSONArray meetings = new JSONArray();
-                 
-                 ArrayList<MeetingChecker> meetings = new ArrayList<MeetingChecker>();
-                 
-                        
                  JSONArray objArray = new JSONArray();
                  Statement statementObject;
                  Connection connectionObject;
@@ -44,69 +39,85 @@
                 //ADD AN IF SOME TIME
                 
                 cal.set(Calendar.MONTH, month-2);
-                past = dateFormat.format(cal.getTime().toString());
+                past = dateFormat.format(cal.getTime());
                 cal.set(Calendar.MONTH, month+2);
-                future = dateFormat.format(cal.getTime().toString());
+                future = dateFormat.format(cal.getTime());
                 
                 try {
-                    statementObject = connectionObject.createStatement();
-                    ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" + session.getAttribute("id") + "' AND m.date BETWEEN '" + past + "' AND '" + future + "'");
-                    out.print("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" + session.getAttribute("id") + "' AND m.date BETWEEN '" + past + "' AND '" + future + "'");
-                    while(statementResult.next()){
+                        statementObject = connectionObject.createStatement();
+                        ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" + session.getAttribute("id") + "' AND m.date BETWEEN '" + past + "' AND '" + future + "'");
                         
-                        String m_id  = statementResult.getString(1);
-                        String time  = statementResult.getString(3);
-                        String startDate  = statementResult.getString(4);
-                        String location = statementResult.getString(5);
-                        String recurring  = statementResult.getString(6);
-                        String endDate  = statementResult.getString(7);
-                        String type  = statementResult.getString(8);
-                        String description  = statementResult.getString(9);
-                        
-                        if ( recurring.equals("weekly") )
+                        while(statementResult.next())
                         {
-                                Date recurDate = new Date( startDate );
+                            String m_id  = statementResult.getString(1);
+                            String confirmed = statementResult.getString(2);
+                            String time  = statementResult.getString(3);
+                            String startDate  = statementResult.getString(4);
+                            String location = statementResult.getString(5);
+                            String recurring  = statementResult.getString(6);
+                            String endDate  = statementResult.getString(7);
+                            String type  = statementResult.getString(8);
+                            String description  = statementResult.getString(9);
+                            
+                            if ( recurring.equals("weekly") || recurring.equals("daily") || recurring.equals("fortnight") )
+                            {
+                                Date recurDate = dateFormat.parse(startDate);
+
                                 String newDate;
-                                DateFormat recurDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
                                 Calendar recurCal = Calendar.getInstance();
-                                cal.setTime(date);
-                                int recurWeek = cal.get(Calendar.DATE);
-                            
-                            for ( int i=0 ; i < 12 ; i++ )
+                                recurCal.setTime(recurDate);
+
+                                int days = recurCal.get(Calendar.DAY_OF_YEAR);
+
+                                for ( int i=0 ; i < 12 ; i++ )
+                                {
+                                    if ( recurring.equals("weekly") )
+                                    {
+                                        recurCal.add(Calendar.DAY_OF_YEAR, 7);
+                                    }
+                                    else if ( recurring.equals("daily") )
+                                    {
+                                        recurCal.add(Calendar.DAY_OF_YEAR, 1);
+                                    }
+                                    else if ( recurring.equals("fortnight") )
+                                    {
+                                        recurCal.add(Calendar.DAY_OF_YEAR, 14);
+                                    }
+                                    
+                                    newDate = dateFormat.format(recurCal.getTime());
+
+                                    JSONObject obj = new JSONObject();
+                                    obj.put("m_id", m_id);                        
+                                    obj.put("start", newDate + "T" + time );
+                                    obj.put("location", location);
+                                    obj.put("recur",recurring);
+                                    obj.put("recur_end", endDate);
+                                    obj.put("type", type);
+                                    obj.put("title", description);
+                                    if(confirmed.equals("0"))
+                                    {
+                                        obj.put("color", "#000");
+                                    }
+                                    objArray.add(obj);
+
+                                }
+                            }
+                            else
                             {
-                                cal.set(Calendar.DATE, recurWeek+7);
-                                newDate = dateFormat.format(cal.getTime().toString());
-                                
                                 JSONObject obj = new JSONObject();
                                 obj.put("m_id", m_id);                        
-                                obj.put("start", newDate + " " + time );
+                                obj.put("start", startDate + "T" + time );
                                 obj.put("location", location);
                                 obj.put("recur",recurring);
                                 obj.put("recur_end", endDate);
                                 obj.put("type", type);
                                 obj.put("title", description);
-                                
+
                                 objArray.add(obj);
                             }
                         }
-                        else
-                        {
-                            JSONObject obj = new JSONObject();
-                            obj.put("m_id", m_id);                        
-                            obj.put("start", startDate + " " + time );
-                            obj.put("location", location);
-                            obj.put("recur",recurring);
-                            obj.put("recur_end", endDate);
-                            obj.put("type", type);
-                            obj.put("title", description);
-
-                            objArray.add(obj);
+                           out.print(objArray);
                         }
-                   }
-                   out.print(objArray);
-                    
-                 }catch(Exception E){
-                     
-                 }   
+                catch(Exception E) {}   
         %>
