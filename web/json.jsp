@@ -61,9 +61,7 @@
                             
                             if ( recurring.equals("weekly") )
                             {
-                                
-                                DateFormat recurFormat = new SimpleDateFormat("yyyy-MM-dd");
-                                Date recurDate = recurFormat.parse(startDate);
+                                Date recurDate = dateFormat.parse(startDate);
 
                                 String newDate;
 
@@ -74,9 +72,7 @@
                                 
                                 for ( int i=0 ; i < 12 ; i++ )
                                 {
-                                    days += 7;
-                                    
-                                    recurCal.add(Calendar.DAY_OF_YEAR, days);
+                                    recurCal.add(Calendar.DAY_OF_YEAR, 7);
                                     newDate = dateFormat.format(recurCal.getTime());
                                    
                                     JSONObject obj = new JSONObject();
