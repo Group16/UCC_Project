@@ -248,14 +248,12 @@ public class GUI {
         }
 
         if (meeting.correctStartTime == false) {
-            result += "Start Time <input type='text' class='timepicker' name='startTime' placeholder='12:00:00' />";
+            result += "Start Time <input type='text' class='timepicker' name='time' placeholder='12:00:00' />";
         } else {
-            result += "Start Time<input type='text' class='timepicker' name='startTime' value='" + meeting.getTime() + "' />";
+            result += "Start Time<input type='text' class='timepicker' name='time' value='" + meeting.getTime() + "' />";
         }
 
-        
-
-        if (meeting.correctLocation == false) {
+       if (meeting.correctLocation == false) {
             result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
 
         } else {
@@ -298,8 +296,7 @@ public class GUI {
         result += "ID of person you wish to meet with <input type='text' name='recipient' placeholder='Enter a users ID' />";
         result += "Start Date <input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' />";
         result += "End Date <input type='text' class='datepicker' name='endDate' placeholder='2015/03/08' />";
-        result += "Start Time <input type='text' class='timepicker' name='startTime' placeholder='12:00:00' />";
-        result += "End Time <input type='text' class='timepicker' name='endTime' placeholder='17:00:00' />";
+        result += "Start Time <input type='text' class='timepicker' name='time' placeholder='12:00:00' />";
         result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
         result += "Recurring <select name='recurring'>";
         result += "  <option value='none'>None</option>";

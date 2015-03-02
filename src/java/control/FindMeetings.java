@@ -1,6 +1,7 @@
-package Sorting;
+package control;
 
 import Classes.Meeting;
+import database.DbClass;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,24 +10,30 @@ import org.joda.time.Interval;
 
 public class FindMeetings 
 {
-    SQL db;
-    ArrayList<MeetingMap> meetingMaps;
+    DbClass db = new DbClass();
     
-    public FindMeetings( SQL db )
+    ArrayList<MeetingMap> meetingMaps = new ArrayList<MeetingMap>();
+    
+    public FindMeetings( )
     {
-        this.db = db;
+        db.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
     }
     
-    public String getFreeTime( ArrayList<Integer> p_ids, Date date )
+    public ArrayList<String> getMeetingsSlot(String p_id, String date){
+        
+        return db.outputAllRows("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" + p_id + "' AND m.date = '" + date + "'");
+    }
+    
+    public String getFreeTime( ArrayList<String> p_ids, String date )
     {
-        final DateTime start = new DateTime( date );
+        
         final int hours = 9;
         
-        for ( Integer p_id : p_ids )
+        for ( String p_id : p_ids )
         {
             byte[] bytes = new byte[hours];
             
-            ArrayList<Meeting> meetings = db.getAllMeetingsOnDate( p_id.toString(), date.toString() );
+           ArrayList<String> meetings = getMeetingsSlot(p_id, date);
             
             for ( int i=0 ; i < bytes.length ; i++ )
             {
@@ -37,9 +44,9 @@ public class FindMeetings
                 }
                 bTime = bTime + i + ":00:00";
                 
-                for ( Meeting meeting : meetings )
+                for ( String meetingTime : meetings )
                 {
-                    if ( meeting.getTime().toString().equals( bTime ) )
+                    if ( meetingTime.equals( bTime ) )
                     {
                         bytes[i] = 1;
                     }
@@ -52,7 +59,7 @@ public class FindMeetings
 
         byte[] startBytes = new byte[hours];
         
-        for ( int i=0 ; i <= startBytes.length ; i++ )
+        for ( int i=0 ; i < startBytes.length ; i++ )
         {
             for ( MeetingMap meetingMap : meetingMaps )
             {
@@ -62,14 +69,15 @@ public class FindMeetings
                 }
             }
             
-            if ( startBytes[i] == 1 )
+            if ( startBytes[i] == 0 )
             {
+                int k = i+9;
                 String mTime = "";
-                if ( i < 10 )
+                if ( k < 10 )
                 {
                     mTime = "0";
                 }
-                mTime = mTime + i + ":00:00";
+                mTime = mTime + k + ":00:00";
                 return  mTime;
             }
         }
@@ -78,16 +86,16 @@ public class FindMeetings
     
     private class MeetingMap
     {
-        private final int p_id;
+        private final String p_id;
         private final byte[] bytes;
         
-        public MeetingMap( int p_id, byte[] bytes )
+        public MeetingMap( String p_id, byte[] bytes )
         {
             this.bytes = bytes;
             this.p_id = p_id;
         }
         
-        public int getP_id()
+        public String getP_id()
         {
             return this.p_id;
         }
