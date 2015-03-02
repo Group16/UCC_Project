@@ -70,13 +70,13 @@
                                 DateFormat recurDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
                                 Calendar recurCal = Calendar.getInstance();
-                                cal.setTime(date);
-                                int recurWeek = cal.get(Calendar.DATE);
+                                recurCal.setTime(recurDate);
+                                int recurWeek = recurCal.get(Calendar.DATE);
                             
                             for ( int i=0 ; i < 12 ; i++ )
                             {
-                                cal.set(Calendar.DATE, recurWeek+7);
-                                newDate = dateFormat.format(cal.getTime().toString());
+                                recurCal.set(Calendar.DATE, recurWeek+7);
+                                newDate = dateFormat.format(recurCal.getTime().toString());
                                 
                                 JSONObject obj = new JSONObject();
                                 obj.put("m_id", m_id);                        
