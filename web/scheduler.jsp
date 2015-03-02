@@ -205,6 +205,7 @@
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
                 },
+                  defaultTimedEventDuration: "01:00:00",
                 events: 'json.jsp'
             });
 
@@ -246,20 +247,8 @@
 
                         obj.put("m_id", m_id);
                         obj.put("start", startDate+"T"+time);
-                        String[] endStart = time.split(":");
-                        int endTime = 0;
-                        try {
-                            endTime = Integer.parseInt( endStart[0] );
-                        }
-                        catch ( Exception e ) {}
-                        endTime = endTime++;
-                        String endTimeString = "";
-                        if ( endTime < 10 )
-                        {
-                            endTimeString = "0";
-                        }
-                        endTimeString = endTimeString + endTime + ":00:00";
-                        obj.put( "end", startDate+"T"+endTimeString );
+                    
+                       
                         obj.put("location", location);
                         obj.put("recur", recurring);
                         obj.put("recur_end", endDate);
