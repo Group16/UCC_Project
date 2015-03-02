@@ -177,7 +177,7 @@
                                     session.setAttribute("firstName", firstName);
                                     session.setAttribute("lastName", lastName);
                                     session.setAttribute("id", id);
-                                     session.setAttribute("p_type", p_type);
+                                    session.setAttribute("p_type", p_type);
                                     response.sendRedirect("scheduler.jsp");
 
                                 } else {
@@ -207,6 +207,7 @@
                     </div>
 
                     <div class="modal-body">
+                        <!--  Reg-->
                         <%
                             EmailSender.Email email = new EmailSender.Email();
                             //Calling the User Interface

@@ -58,7 +58,7 @@
                 <ul class="nav navbar-nav navbar-right"> 				
                     <li><a href="#">UCC</a></li>
                     <li><a href="#">Features</a></li>
-                    <li><a href="http://localhost:8080/UCC_Scheduler_Program/logout.jsp">Logout</a></li>
+                    <li><a href="http://localhost:8080/UCC_Scheduler_Program/index.jsp">Logout</a></li>
                     <li><a href="https://mohittare.wordpress.com/2013/07/28/using-fullcalendarwithjava/">Help</a></li>															
                 </ul>							
             </div>	
@@ -117,10 +117,10 @@
                                     if (session.getAttribute("p_type").equals("lecturer")) {
                                 %><input type="submit" name="tutorialSubmit" value="Arrange a Tutorial"/><%
 
-                                               if (request.getParameter("tutorialSubmit") != null) {
-                                                   response.sendRedirect("tutorial.jsp");
-                                               }
-                                           }
+                                       if (request.getParameter("tutorialSubmit") != null) {
+                                           response.sendRedirect("tutorial.jsp");
+                                       }
+                                   }
                                        
                                 %>
                 </div>
