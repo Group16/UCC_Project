@@ -62,26 +62,47 @@
                         String endDate  = statementResult.getString(7);
                         String type  = statementResult.getString(8);
                         String description  = statementResult.getString(9);
-                       
-                        //MeetingChecker eeting = new MeetingChecker(m_id, time, startDate, location, recurring, endDate, type, description);
                         
-                        //meetings.add(meeting);
-                        
-                        
-                        JSONObject obj = new JSONObject();
-                        obj.put("m_id", m_id);                        
-                        obj.put("start", startDate + " " + time );
-                        obj.put("location", location);
-                        obj.put("recur",recurring);
-                        obj.put("recur_end", endDate);
-                        obj.put("type", type);
-                        obj.put("title", description);
-                        
-                        //JSONValue.toJSONString( obj );
-                        
-                        objArray.add(obj);
-                        
-                        
+                        if ( recurring.equals("weekly") )
+                        {
+                                Date recurDate = new Date( startDate );
+                                String newDate;
+                                DateFormat recurDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+                                Calendar recurCal = Calendar.getInstance();
+                                cal.setTime(date);
+                                int recurWeek = cal.get(Calendar.DATE);
+                            
+                            for ( int i=0 ; i < 12 ; i++ )
+                            {
+                                cal.set(Calendar.DATE, recurWeek+7);
+                                newDate = dateFormat.format(cal.getTime().toString());
+                                
+                                JSONObject obj = new JSONObject();
+                                obj.put("m_id", m_id);                        
+                                obj.put("start", newDate + " " + time );
+                                obj.put("location", location);
+                                obj.put("recur",recurring);
+                                obj.put("recur_end", endDate);
+                                obj.put("type", type);
+                                obj.put("title", description);
+                                
+                                objArray.add(obj);
+                            }
+                        }
+                        else
+                        {
+                            JSONObject obj = new JSONObject();
+                            obj.put("m_id", m_id);                        
+                            obj.put("start", startDate + " " + time );
+                            obj.put("location", location);
+                            obj.put("recur",recurring);
+                            obj.put("recur_end", endDate);
+                            obj.put("type", type);
+                            obj.put("title", description);
+
+                            objArray.add(obj);
+                        }
                    }
                    out.print(objArray);
                     
