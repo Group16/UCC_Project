@@ -42,14 +42,13 @@
                 past = dateFormat.format(cal.getTime());
                 cal.set(Calendar.MONTH, month+2);
                 future = dateFormat.format(cal.getTime());
-               
+                
                 try {
                         statementObject = connectionObject.createStatement();
                         ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" + session.getAttribute("id") + "' AND m.date BETWEEN '" + past + "' AND '" + future + "'");
-                       
+                        
                         while(statementResult.next())
                         {
-                            
                             String m_id  = statementResult.getString(1);
                             String time  = statementResult.getString(3);
                             String startDate  = statementResult.getString(4);
@@ -59,7 +58,7 @@
                             String type  = statementResult.getString(8);
                             String description  = statementResult.getString(9);
                             
-                            if ( recurring.equals("weekly") )
+                            if ( recurring.equals("weekly") || recurring.equals("daily") || recurring.equals("fortnightly") )
                             {
                                 Date recurDate = dateFormat.parse(startDate);
 
@@ -69,12 +68,24 @@
                                 recurCal.setTime(recurDate);
 
                                 int days = recurCal.get(Calendar.DAY_OF_YEAR);
-                                
+
                                 for ( int i=0 ; i < 12 ; i++ )
                                 {
-                                    recurCal.add(Calendar.DAY_OF_YEAR, 7);
+                                    if ( recurring.equals("weekly") )
+                                    {
+                                        recurCal.add(Calendar.DAY_OF_YEAR, 7);
+                                    }
+                                    else if ( recurring.equals("daily") )
+                                    {
+                                        recurCal.add(Calendar.DAY_OF_YEAR, 1);
+                                    }
+                                    else if ( recurring.equals("fortnightly") )
+                                    {
+                                        recurCal.add(Calendar.DAY_OF_YEAR, 14);
+                                    }
+                                    
                                     newDate = dateFormat.format(recurCal.getTime());
-                                   
+
                                     JSONObject obj = new JSONObject();
                                     obj.put("m_id", m_id);                        
                                     obj.put("start", newDate + "T" + time );
