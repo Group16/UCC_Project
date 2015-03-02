@@ -62,18 +62,19 @@
                             {
                                     Date recurDate = new Date();
                                     String newDate;
-
+                                    
                                     Calendar recurCal = Calendar.getInstance();
                                     recurCal.setTime(recurDate);
 
                                     int days = recurCal.get(Calendar.DAY_OF_YEAR);
-
+                                    out.print(days + " ");
                                 for ( int i=0 ; i < 12 ; i++ )
                                 {
                                     days += 7;
+                                    out.print(days + " ");
                                     recurCal.add(Calendar.DAY_OF_YEAR, days);
                                     newDate = dateFormat.format(recurCal.getTime());
-
+                                    
                                     JSONObject obj = new JSONObject();
                                     obj.put("m_id", m_id);                        
                                     obj.put("start", newDate + "T" + time );
@@ -101,7 +102,7 @@
                                 objArray.add(obj);
                             }
                         }
-                           out.print(objArray);
+                           //out.print(objArray);
                         }
                 catch(Exception E) {}   
         %>
