@@ -4,6 +4,8 @@
     Author     : mm37
 --%>
 
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.Date"%>
@@ -29,9 +31,11 @@
                  Connection connectionObject;
                  connectionObject = DriverManager.getConnection("jdbc:mysql://"+"cs1.ucc.ie"+"/" + "2016_mm37", "mm37", "uohongah");
                  database.DbClass db = new database.DbClass();
+                
                  Date date = new Date();
-                 String past;
-                 String future;
+                String past;
+                String future;
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(date);
@@ -40,9 +44,9 @@
                 //ADD AN IF SOME TIME
                 
                 cal.set(Calendar.MONTH, month-2);
-                past = cal.getTime().toString();
+                past = dateFormat.format(cal.getTime().toString());
                 cal.set(Calendar.MONTH, month+2);
-                future = cal.getTime().toString();
+                future = dateFormat.format(cal.getTime().toString());
                 
                 try {
                     statementObject = connectionObject.createStatement();
