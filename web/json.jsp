@@ -57,8 +57,8 @@
                             String endDate  = statementResult.getString(7);
                             String type  = statementResult.getString(8);
                             String description  = statementResult.getString(9);
-
-                            if ( recurring.equals("weekly") )
+                            
+                            if ( recurring.equals("weekly") || recurring.equals("daily") || recurring.equals("fortnightly") )
                             {
                                 Date recurDate = dateFormat.parse(startDate);
 
@@ -71,7 +71,19 @@
 
                                 for ( int i=0 ; i < 12 ; i++ )
                                 {
-                                    recurCal.add(Calendar.DAY_OF_YEAR, 7);
+                                    if ( recurring.equals("weekly") )
+                                    {
+                                        recurCal.add(Calendar.DAY_OF_YEAR, 7);
+                                    }
+                                    else if ( recurring.equals("daily") )
+                                    {
+                                        recurCal.add(Calendar.DAY_OF_YEAR, 1);
+                                    }
+                                    else if ( recurring.equals("fortnightly") )
+                                    {
+                                        recurCal.add(Calendar.DAY_OF_YEAR, 14);
+                                    }
+                                    
                                     newDate = dateFormat.format(recurCal.getTime());
 
                                     JSONObject obj = new JSONObject();
