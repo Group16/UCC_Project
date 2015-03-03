@@ -46,7 +46,7 @@ public class FindMeetings
         
         do
         {
-            cal.add(Calendar.DAY_OF_YEAR, daysToAdd);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             
             for ( String p_id : p_ids )
             {
@@ -116,7 +116,7 @@ public class FindMeetings
         } while ( ! isDone );
         
         TreeMap<String,String> returnMap = new TreeMap<>();
-        returnMap.put(mTime, cal.getTime().toString());
+        returnMap.put(mTime, dateFormat.format(cal.getTime()));
 
         return returnMap;
     }
