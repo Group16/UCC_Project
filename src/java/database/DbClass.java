@@ -200,7 +200,8 @@ public class DbClass
     {
         String Result[];
         // Send an SQL query to a database and return the *single column* result in an array of strings
-        try {// Make connection to database
+        try 
+        {// Make connection to database
             statementObject = connectionObject.createStatement(); //Should connection be left open?
 
             ResultSet statementResult = statementObject.executeQuery(SQLquery);
@@ -225,12 +226,15 @@ public class DbClass
 
             }
             // Close the link to the database when finished
-        } catch (Exception e) {
+        } 
+        catch (Exception e) 
+        {
             System.err.println("Select problems with SQL " + SQLquery);
             System.err.println("Select problem is " + e.getMessage());
             Result = new String[0]; //Need to setup result array to avoid initialisation error
             writeLogSQL(SQLquery + " caused error " + e.getMessage());
-            }
+        }
+        
         writeLogSQL(SQLquery + "worked ");
         return Result;
     } // End Select
@@ -238,7 +242,8 @@ public class DbClass
     public void writeLogSQL(String message) 
     {
         PrintStream output;
-        try {
+        try 
+        {
             output = new PrintStream(new FileOutputStream("sql-logfile.txt", true));
             output.println(new java.util.Date() + " " + message);
             System.out.println(new java.util.Date() + " " + message);
