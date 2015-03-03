@@ -254,17 +254,27 @@
                         
                         <%
                             //Calling the User Interface.                           
-                            out.println(ui.generateReg2GUI());
+                            if (request.getParameter("submit") != null) 
+                            {
+                                String[] courseModules = request.getParameterValues("modules");
 
-                            String[] courseModules;
-
-                            courseModules = request.getParameterValues("modules");
-                            if (courseModules != null) {
-                                for (int i = 0; i < courseModules.length; i++) {
-                                    out.println(courseModules[i]);
+                                if ( courseModules != null ) 
+                                {
+                                    for (int i = 0; i < courseModules.length; i++) 
+                                    {
+                                        db.Insert( "INSERT INTO people_in_modules (p_id, mod_id) VALUES ('" + session.getAttribute("id") + "','" + courseModules[i] + "');" );
+                                    }
+                                    
+                                    response.sendRedirect("scheduler.jsp");
+                                } 
+                                else 
+                                {
+                                    out.println("Please Check Some Boxes");
                                 }
-                            } else {
-                                out.println("Please Check Some Boxes");
+                            }
+                            else
+                            {
+                                out.println(ui.generateReg2GUI());
                             }
                         %>
                     </div>
