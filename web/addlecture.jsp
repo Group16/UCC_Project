@@ -35,6 +35,7 @@
             {
                 out.print("<form action='addlecture.jsp'>"
                         + "Title: <input type='text' name='description' />"
+                        + "Location: <input type='text' name='location' />"
                         + "Start Date:<input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' />"
                         + "Time: <input type='text' name='time' />"
                         + "Module: <input type='text' name='module' />"

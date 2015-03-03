@@ -207,7 +207,7 @@ public class MeetingChecker {
             String type = "lecture";
         
             database.Insert("INSERT INTO meetings( m_id, confirmed, time, date, location, recur, type, description, dateToday )" +
-                             "VALUES( '" + getMeetingID() + "', '1', 'time', 'date', '" + this.location + "',  '" + this.recurring + "',  '" +
+                             "VALUES( '" + getMeetingID() + "', '1', '"+time+"', '"+date+"', '" + this.location + "',  'weekly',  '" +
                                                         type + "', '" + this.description + "', '" + dateSent() + "');");
     }
     
