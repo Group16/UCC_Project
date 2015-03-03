@@ -132,7 +132,7 @@ public class GUI {
      */
     public String generateReg2GUI() {
 
-        result = "<form action='none.php' method='POST'>";
+        result = "<form action='addmodules.jsp' method='POST'>";
 //        result += "<select class='div-toggler' data-target='.streams'>";
 //        result += "<option value=''>Choose Your Computer Science Stream</option>";
 //        result += "<option value='CK401' >CK401 Computer Science</option>";
@@ -170,7 +170,7 @@ public class GUI {
         result += " </div>";
         result += " </div>";
         result += " <div class='action_btns'>";
-        result += " <a href='scheduler.jsp'><button type='button' class='btn btn-success'>Continue</button></a>";
+        result += " <input type='submit' class='btn btn-success' value='Finish' />";
         result += " </div>";
         result += " </form>";
 
