@@ -53,7 +53,7 @@
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">	
 
 
-             <a href="#" class="navbar-brand">UCC CONNECT<img src="MarkUp/images/logoUC.ico" height="29px" /></a>
+            <a href="#" class="navbar-brand">UCC CONNECT<img src="MarkUp/images/logoUC.ico" height="29px" /></a>
             <div class="navbar-header">
                 <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse" >
                     <span class="icon-bar"></span>
@@ -78,15 +78,10 @@
             <div class="row">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center pull-left">
 
-                    <div class="btn-group dropdown">
-                        <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Your Calenders <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Acedemic</a></li>
-                            <li><a href="#">Personal</a></li>
-                        </ul>
-                    </div>
+
 
                     <%
+                        UI.GUI ui = new UI.GUI();
                         if (session.getAttribute("lastName") == null) {
                             response.sendRedirect("index.jsp");
                         } else {
@@ -94,39 +89,29 @@
                             String lastName;
                             firstName = session.getAttribute("firstName").toString();
                             lastName = session.getAttribute("lastName").toString();
-                            out.println("</br>You are logged in.</br> Welcome " + firstName + " " + lastName);
-
-                            if (request.getParameter("meetingSubmit") != null) {
-                                response.sendRedirect("meeting.jsp");
-                            }
-
-                            if (request.getParameter("notificationSubmit") != null) {
-                                response.sendRedirect("notification.jsp");
-                            }
+                            out.println("</br> Welcome " + firstName + " " + lastName);
                     %>
-                        
-                    <form name='form' action='welcome.jsp' method='POST'>
+                    <div class="btn-group dropdown">
+                        <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Arrange A Meeting ? <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <% out.println(ui.generateMeetingGUI());%>
+                        </ul>
+                    </div>
 
-                     
-                        <input type="submit" name="meetingSubmit" value="Arrange a meeting"/>
-                        <input type="submit" name="notificationSubmit" value="Notifcations"/>
-                 
-                        <%
-                            if (session.getAttribute("p_type").equals("lecturer")) {
-                        %>
-
-                        <input type="submit" name="tutorialSubmit" value="Arrange a Tutorial"/>
-                        </form>
-                        <%
-
-                                    if (request.getParameter("tutorialSubmit") != null) {
-                                        response.sendRedirect("tutorial.jsp");
+                   
+                            <% 
+                            
+                                if (session.getAttribute("p_type").equals("lecturer")) {
+                                    out.println(ui.tutorialButton());
                                     }
                                 }
-                            }
+                            %>
+                  
 
-                        %>
-                        
+                    
+
+                    <form name='form' action='welcome.jsp' method='POST'>
+
                 </div>
 
                 <div class="col-lg-10 col-md-10 col-sm-10 text pull-right">
@@ -195,7 +180,8 @@
         <script src="MarkUp/js/fullcalendar.min.js"></script>
 
         <script src="MarkUp/js/bootstrap.min.js"></script>
-
+ 
+        <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
         <script type="text/javascript">
 
 
@@ -210,7 +196,14 @@
             });
 
 
+            $(function( ) {
+                $(".datepicker").datepicker({dateFormat: "yy/mm/dd"});
+            });
 
+
+            $(function( ) {
+                $(".timepicker").timepicker({timeFormat: "H:i:s"});
+            });
         </script>
 
 
