@@ -16,6 +16,9 @@
     <body>
         <h1>Add Modules</h1>
         <%
+            GUI ui = new GUI();
+            ui.generateReg2GUI();
+            
             if( request.getParameter( "submit" ) != null )
             {
                 DbClass db = new DbClass();
@@ -39,9 +42,6 @@
             }
             else
             {
-                GUI ui = new GUI();
-                
-                ui.generateReg2GUI();
             }
         %>
     </body>
