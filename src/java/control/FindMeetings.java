@@ -1,12 +1,12 @@
 package control;
 
-import Classes.Meeting;
 import database.DbClass;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
-import org.joda.time.DateTime;
-import org.joda.time.Interval;
+import java.util.TreeMap;
 
 public class FindMeetings 
 {
@@ -24,71 +24,101 @@ public class FindMeetings
         return db.outputAllRows("SELECT * FROM meetings AS m JOIN people_in_meetings AS pm ON m.m_id = pm.m_id WHERE pm.p_id = '" + p_id + "' AND m.date = '" + date + "'");
     }
     
-    public String getFreeTime( ArrayList<String> p_ids, String date )
+    public TreeMap<String,String> getFreeTime( ArrayList<String> p_ids, String date )
     {
-        
         final int hours = 9;
         
-        for ( String p_id : p_ids )
+        String mTime = "";
+        boolean isDone = false;
+        
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date meetingDate = new Date();
+        try
         {
-            byte[] bytes = new byte[hours];
+            meetingDate = dateFormat.parse(date);
+        } 
+        catch ( Exception e ) {}
+        
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(meetingDate);
+        
+        int daysToAdd = 0;
+        
+        do
+        {
+            cal.add(Calendar.DAY_OF_YEAR, daysToAdd);
             
-           ArrayList<String> meetings = getMeetingsSlot(p_id, date);
-            
-            for ( int i=0 ; i < bytes.length ; i++ )
+            for ( String p_id : p_ids )
             {
-                int j = i+9;
-                String bTime = "";
-                
-                if ( j < 10 )
+                byte[] bytes = new byte[hours];
+
+                ArrayList<String> meetings = getMeetingsSlot(p_id, cal.getTime().toString());
+
+                for ( int i=0 ; i < bytes.length ; i++ )
                 {
-                    bTime = "0";
-                }
-                bTime = bTime + j + ":00:00";
-                
-                for ( String meetingTime : meetings )
-                {
-                    System.out.println(meetingTime);
-                    if ( meetingTime.equals( bTime ) )
+                    int j = i+9;
+                    String bTime = "";
+
+                    if ( j < 10 )
                     {
-                        bytes[i] = 1;
+                        bTime = "0";
+                    }
+                    bTime = bTime + j + ":00:00";
+
+                    for ( String meetingTime : meetings )
+                    {
+                        System.out.println(meetingTime);
+                        if ( meetingTime.equals( bTime ) )
+                        {
+                            bytes[i] = 1;
+                        }
                     }
                 }
+                 System.out.print(p_id + " : ");
+                for(byte diffword : bytes){
+                    System.out.print( diffword);
+                }
+                System.out.println("!!!!!!");
+                MeetingMap meetingMap = new MeetingMap( p_id, bytes );
+                meetingMaps.add(meetingMap);
             }
-             System.out.print(p_id + " : ");
-            for(byte diffword : bytes){
-                System.out.print( diffword);
-            }
-            System.out.println("!!!!!!");
-            MeetingMap meetingMap = new MeetingMap( p_id, bytes );
-            meetingMaps.add(meetingMap);
-        }
 
-        byte[] startBytes = new byte[hours];
-        
-        for ( int i=0 ; i < startBytes.length ; i++ )
-        {
-            for ( MeetingMap meetingMap : meetingMaps )
+            byte[] startBytes = new byte[hours];
+
+            for ( int i=0 ; i < startBytes.length ; i++ )
             {
-                if ( meetingMap.getBytes()[i] == 1 )
+                for ( MeetingMap meetingMap : meetingMaps )
                 {
-                    startBytes[i] = 1;
+                    if ( meetingMap.getBytes()[i] == 1 )
+                    {
+                        startBytes[i] = 1;
+                    }
+                }
+
+                if ( startBytes[i] == 0 )
+                {
+                    int k = i+9;
+                    if ( k < 10 )
+                    {
+                        mTime = "0";
+                    }
+                    mTime = mTime + k + ":00:00";
+                    
+                    isDone = true;
                 }
             }
             
-            if ( startBytes[i] == 0 )
+            if ( ! isDone )
             {
-                int k = i+9;
-                String mTime = "";
-                if ( k < 10 )
-                {
-                    mTime = "0";
-                }
-                mTime = mTime + k + ":00:00";
-                return  mTime;
+                daysToAdd++;
             }
-        }
-        return null;
+            
+        } while ( ! isDone );
+        
+        TreeMap<String,String> returnMap = new TreeMap<>();
+        returnMap.put(mTime, cal.getTime().toString());
+
+        return returnMap;
     }
     
     private class MeetingMap
