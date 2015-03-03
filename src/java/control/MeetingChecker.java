@@ -198,7 +198,7 @@ public class MeetingChecker {
         System.out.println(list);
         
         TreeMap<String,String> freeTime = findmeetings.getFreeTime(list, startDate);
-        
+        System.out.println("");
         database.Insert("INSERT INTO meetings( m_id, confirmed, time, date, location, recur, type, description, dateToday )" +
                          "VALUES( '" + getMeetingID() + "', '" + confirmed + "', '" + freeTime.firstEntry().getKey() + "', '" + freeTime.get(freeTime.firstKey()) + "', '" + this.location + "',  '" + this.recurring + "',  '" +
                                                     type + "', '" + this.description + "', '" + dateSent() + "');");
