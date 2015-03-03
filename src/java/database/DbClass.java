@@ -8,17 +8,12 @@ package database;
  *
  * @author Shiny
  */
-import Classes.Meeting;
 import java.sql.*;
-import java.text.*;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import control.MeetingChecker;
 
-
-public class DbClass {
-
+public class DbClass 
+{
     private Statement statementObject;
     private Connection connectionObject;
    
@@ -29,102 +24,111 @@ public class DbClass {
     private boolean setup=false;
     public boolean queryCorrect = false;
     
-    public String setup(String dbserver, String DSN,String username,String password)
-        {
-	   this.dbserver=dbserver;
-	   this.DSN=DSN;
-	   this.username=username;
-	   this.password=password;
+    public String setup( String dbserver, String DSN, String username, String password )
+    {
+        this.dbserver=dbserver;
+        this.DSN=DSN;
+        this.username=username;
+        this.password=password;
         String URL = "jdbc:mysql://"+dbserver+"/" + DSN;
         
-        try {// Initialiase drivers
+        try 
+        {// Initialiase drivers
             Class.forName("com.mysql.jdbc.Driver");
-        } catch (Exception exceptionObject) {
+        } 
+        catch (Exception exceptionObject) 
+        {
             writeLogSQL(URL + " caused error " + exceptionObject.getMessage()+" Error dbclass.setup.1. ");
             return("Failed to load JDBC/ODBC driver. Error dbclass.setup.1 PLEASE report this error");
         }
-        try {
+        
+        try 
+        {
             // Establish connection to database
             connectionObject = DriverManager.getConnection(URL, username, password);
             setup=true;
             
            
-        } catch (SQLException exceptionObject) {
+        } 
+        catch (SQLException exceptionObject) 
+        {
             writeLogSQL(URL + " caused error " + exceptionObject.getMessage()+" Error dbclass.setup.2");
             return("Problem with setting up " + URL+" Error dbclass.setup.2 PLEASE report this error");
         }
 
-    return "";
+        return "";
     } // DatabaseConnectorNew constructor
 
     
     public String checkQuery(String query)
+    { 
+        try 
         {
-	  
-        try {
             // Establish connection to database
             setup=true;
             
-            Statement st= connectionObject.createStatement(); 
+            Statement st = connectionObject.createStatement(); 
             ResultSet rs = st.executeQuery(query); 
             
-            if(rs.next()) 
+            if( rs.next() ) 
             { 
                queryCorrect = true;
             } 
  
-        } catch (SQLException exceptionObject) {
-           
-        }
+        } catch (SQLException exceptionObject) {}
 
-    return "";
+        return "";
     }
     
-    public int getLength(String query){
+    public int getLength(String query)
+    {
         int rowcount = 0;
-        try {
+        
+        try 
+        {
             statementObject = connectionObject.createStatement();
 
             ResultSet statementResult = statementObject.executeQuery(query); //Should connection be left open?
             rowcount = 0;
-            if (statementResult.last()) {
+            if (statementResult.last()) 
+            {
                 rowcount = statementResult.getRow();
                 statementResult.beforeFirst(); // not rs.first() because the rs.next() below will move on, missing the first element
-                }
+            }
         
-        } catch (SQLException exceptionObject) {
-           
-        }
+        } catch (SQLException exceptionObject) {}
         
         return rowcount;
     }
- public  ArrayList<String> outputAllRows(String query){
-     
-     ArrayList<String> list = new ArrayList<>();
-     try {// Make connection to database
-        statementObject = connectionObject.createStatement();
-        ResultSet statementResult = statementObject.executeQuery(query);
-
-        while(statementResult.next()){
-            list.add(statementResult.getString(3));
-        }
+    
+    public  ArrayList<String> outputAllRows(String query)
+    {
+        ArrayList<String> list = new ArrayList<>();
         
-     } catch (SQLException exceptionObject) {
-            
-     }
+        try 
+        {// Make connection to database
+           statementObject = connectionObject.createStatement();
+           ResultSet statementResult = statementObject.executeQuery(query);
+
+           while( statementResult.next() )
+           {
+               list.add(statementResult.getString(3));
+           }
+        } 
+        catch (SQLException exceptionObject) {}
      
-     return list;
+        return list;
  }
     
     
- public boolean issetup()
+    public boolean issetup()
     {
-    return setup;
+        return setup;
     }
     
- public void Close()
+    public void Close()
     {
-    try {
+        try {
             // Establish connection to database
             connectionObject.close(); 
         }
@@ -135,9 +139,8 @@ public class DbClass {
         }
     } //CloseDatabaseConnection
 
-   public void Insert(String SQLinsert)
-        {
-
+    public void Insert(String SQLinsert)
+    {
         // Setup database connection details
         try {
             // Setup statement object
@@ -151,13 +154,14 @@ public class DbClass {
             System.out.println(SQLinsert+" - Problem is : " + exceptionObject.getMessage());
             writeLogSQL(SQLinsert + " caused error " + exceptionObject.getMessage());
             }
-        } // End Insert
+    } // End Insert
 
    public String[] SelectRow(String SQLquery)
-    {
+   {
         String Result[];
         // Send an SQL query to a database and return the *single column* result in an array of strings
-        try {// Make connection to database
+        try 
+        {   // Make connection to database
             statementObject = connectionObject.createStatement();
 
             ResultSet statementResult = statementObject.executeQuery(SQLquery); //Should connection be left open?
@@ -176,17 +180,19 @@ public class DbClass {
                 // Get the first cell in the current row
                 Result[currentCounter] = statementResult.getString(currentCounter+1);
                 currentCounter++;
-
             }
-            // Close the link to the database when finished
-            
-        } catch (Exception e) {
+            // Close the link to the database when finished 
+        } 
+        catch (Exception e) 
+        {
             System.err.println("Select problems with SQL " + SQLquery);
             System.err.println("Select problem is " + e.getMessage());
             Result = new String[0]; //Need to setup result array to avoid initialisation error
             writeLogSQL(SQLquery + " caused error " + e.getMessage());
-            }
+        
+        }
         writeLogSQL(SQLquery + "worked ");
+        
         return Result;
     } // End SelectRow
    
@@ -194,7 +200,8 @@ public class DbClass {
     {
         String Result[];
         // Send an SQL query to a database and return the *single column* result in an array of strings
-        try {// Make connection to database
+        try 
+        {// Make connection to database
             statementObject = connectionObject.createStatement(); //Should connection be left open?
 
             ResultSet statementResult = statementObject.executeQuery(SQLquery);
@@ -219,25 +226,29 @@ public class DbClass {
 
             }
             // Close the link to the database when finished
-        } catch (Exception e) {
+        } 
+        catch (Exception e) 
+        {
             System.err.println("Select problems with SQL " + SQLquery);
             System.err.println("Select problem is " + e.getMessage());
             Result = new String[0]; //Need to setup result array to avoid initialisation error
             writeLogSQL(SQLquery + " caused error " + e.getMessage());
-            }
+        }
+        
         writeLogSQL(SQLquery + "worked ");
         return Result;
     } // End Select
 
-public void writeLogSQL(String message) {
+    public void writeLogSQL(String message) 
+    {
         PrintStream output;
-        try {
+        try 
+        {
             output = new PrintStream(new FileOutputStream("sql-logfile.txt", true));
             output.println(new java.util.Date() + " " + message);
             System.out.println(new java.util.Date() + " " + message);
             output.close();
-        } catch (IOException ieo) {
-        }
+        } catch (IOException ieo) {}
     } // End writeLog
 
 } //End dblib
