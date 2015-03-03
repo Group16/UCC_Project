@@ -231,9 +231,9 @@ public class GUI {
         result = "<form name='form' action='meeting.jsp' method='POST'>";
 
         if (meeting.correctRecipient == false) {
-            result += "ID of person you wish to meet <input type='text' name='recipient' placeholder='Enter a users ID' />";
+            result += "ID of person(s) you wish to meetwith <input type='text' name='recipient' placeholder='Enter a users ID' />";
         } else {
-            result += "Person you wish to meet <input type='text' name='recipient' value='" + meeting.getRecipient() + "' />";
+            result += "ID of person(s) you wish to meet with <input type='text' name='recipient' value='" + meeting.getRecipient() + "' />";
         }
         if (meeting.correctStartDate == false) {
             result += "Start date<input type='text' name='startDate' class='datepicker' placeholder='2014/02/09' />";
@@ -293,7 +293,7 @@ public class GUI {
 
         result = "<form name='form' action='meeting.jsp' method='POST'>";
 
-        result += "ID of person you wish to meet with <input type='text' name='recipient' placeholder='Enter a users ID' />";
+        result += "ID of person you wish to meet with (s) <input type='text' name='recipient' placeholder='Enter a users ID' />";
         result += "Start Date <input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' />";
         result += "End Date <input type='text' class='datepicker' name='endDate' placeholder='2015/03/08' />";
         result += "Start Time <input type='text' class='timepicker' name='time' placeholder='12:00:00' />";
