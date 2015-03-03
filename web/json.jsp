@@ -118,6 +118,7 @@
                             }
                         }
                            out.print(objArray);
+                           objArray.clear();
                         }
                 catch(Exception E) {}   
         %>
