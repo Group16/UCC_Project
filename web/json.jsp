@@ -53,9 +53,8 @@
                             String startDate  = statementResult.getString(4);
                             String location = statementResult.getString(5);
                             String recurring  = statementResult.getString(6);
-                            String endDate  = statementResult.getString(7);
-                            String type  = statementResult.getString(8);
-                            String description  = statementResult.getString(9);
+                            String type  = statementResult.getString(7);
+                            String description  = statementResult.getString(8);
                             
                             if ( recurring.equals("weekly") || recurring.equals("daily") || recurring.equals("fortnight") )
                             {
@@ -77,7 +76,6 @@
                                     obj.put("start", newDate + "T" + time );
                                     obj.put("location", location);
                                     obj.put("recur",recurring);
-                                    obj.put("recur_end", endDate);
                                     obj.put("type", type);
                                     obj.put("title", description);
                                     if(confirmed.equals("0"))
@@ -108,7 +106,6 @@
                                 obj.put("start", startDate + "T" + time );
                                 obj.put("location", location);
                                 obj.put("recur",recurring);
-                                obj.put("recur_end", endDate);
                                 obj.put("type", type);
                                 obj.put("title", description);
 
