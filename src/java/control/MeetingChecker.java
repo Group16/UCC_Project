@@ -5,7 +5,6 @@
 package control;
 
 import database.DbClass;
-import control.FindMeetings;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -282,6 +281,7 @@ public class MeetingChecker {
                 }
                 
             
+<<<<<<< HEAD
             //If the date is null
             if(getStartDate().equals("")){
                valid = false;

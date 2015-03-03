@@ -46,9 +46,7 @@ public class FindMeetings
         do
         {   
             for ( String p_id : p_ids )
-            {
-                System.out.print( dateFormat.format(cal.getTime()) );
-                
+            {   
                 byte[] bytes = new byte[hours];
 
                 ArrayList<String> meetings = getMeetingsSlot(p_id, dateFormat.format(cal.getTime()));
@@ -66,24 +64,20 @@ public class FindMeetings
 
                     for ( String meetingTime : meetings )
                     {
-                        System.out.println(meetingTime);
                         if ( meetingTime.equals( bTime ) )
                         {
                             bytes[i] = 1;
                         }
                     }
                 }
-                 System.out.print(p_id + " : ");
-                for(byte diffword : bytes){
-                    System.out.print( diffword);
-                }
-                System.out.println("!!!!!!");
+
                 MeetingMap meetingMap = new MeetingMap( p_id, bytes );
                 meetingMaps.add(meetingMap);
             }
 
             byte[] startBytes = new byte[hours];
-
+            int lastFreeSlot = -1;
+            
             for ( int i=0 ; i < startBytes.length ; i++ )
             {
                 for ( MeetingMap meetingMap : meetingMaps )
@@ -96,7 +90,11 @@ public class FindMeetings
 
                 if ( startBytes[i] == 0 )
                 {
-                    int k = i+8;
+                    lastFreeSlot = i;
+                }
+                else if ( lastFreeSlot != -1 )
+                {
+                    int k = lastFreeSlot+8;
                     mTime = "";
                     if ( k < 10 )
                     {
