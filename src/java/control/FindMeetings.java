@@ -31,7 +31,7 @@ public class FindMeetings
         String mTime = "";
         boolean isDone = false;
         
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date meetingDate = new Date();
         try
         {
@@ -42,17 +42,13 @@ public class FindMeetings
         Calendar cal = Calendar.getInstance();
         cal.setTime(meetingDate);
         
-        int daysToAdd = 0;
-        
         do
-        {
-            cal.add(Calendar.DAY_OF_YEAR, 1);
-            
+        {   
             for ( String p_id : p_ids )
             {
                 byte[] bytes = new byte[hours];
 
-                ArrayList<String> meetings = getMeetingsSlot(p_id, cal.getTime().toString());
+                ArrayList<String> meetings = getMeetingsSlot(p_id, dateFormat.format(cal.getTime()));
 
                 for ( int i=0 ; i < bytes.length ; i++ )
                 {
@@ -98,6 +94,7 @@ public class FindMeetings
                 if ( startBytes[i] == 0 )
                 {
                     int k = i+9;
+                    mTime = "";
                     if ( k < 10 )
                     {
                         mTime = "0";
@@ -110,7 +107,7 @@ public class FindMeetings
             
             if ( ! isDone )
             {
-                daysToAdd++;
+                cal.add(Calendar.DAY_OF_YEAR, 1);
             }
             
         } while ( ! isDone );
