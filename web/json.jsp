@@ -69,20 +69,7 @@
                                 int days = recurCal.get(Calendar.DAY_OF_YEAR);
 
                                 for ( int i=0 ; i < 12 ; i++ )
-                                {
-                                    if ( recurring.equals("weekly") )
-                                    {
-                                        recurCal.add(Calendar.DAY_OF_YEAR, 7);
-                                    }
-                                    else if ( recurring.equals("daily") )
-                                    {
-                                        recurCal.add(Calendar.DAY_OF_YEAR, 1);
-                                    }
-                                    else if ( recurring.equals("fortnight") )
-                                    {
-                                        recurCal.add(Calendar.DAY_OF_YEAR, 14);
-                                    }
-                                    
+                                {   
                                     newDate = dateFormat.format(recurCal.getTime());
 
                                     JSONObject obj = new JSONObject();
@@ -98,7 +85,20 @@
                                         obj.put("color", "pink");
                                     }
                                     objArray.add(obj);
-
+                                    
+                                    // This needs to be after the object is created for reasons.
+                                    if ( recurring.equals("weekly") )
+                                    {
+                                        recurCal.add(Calendar.DAY_OF_YEAR, 7);
+                                    }
+                                    else if ( recurring.equals("daily") )
+                                    {
+                                        recurCal.add(Calendar.DAY_OF_YEAR, 1);
+                                    }
+                                    else if ( recurring.equals("fortnight") )
+                                    {
+                                        recurCal.add(Calendar.DAY_OF_YEAR, 14);
+                                    }
                                 }
                             }
                             else

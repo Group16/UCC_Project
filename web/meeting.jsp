@@ -15,11 +15,9 @@
     <body>
         <h1>Hello World!</h1>
         
-        
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
-        
         
         <script>
             $( function( ) {
@@ -39,31 +37,34 @@
          //String user=session.getValue("userid").toString();
          UI.GUI gui = new UI.GUI();
          notification.Notify not = new notification.Notify();
-         if( session.getAttribute( "lastName" ) == null ) {
+         
+         if( session.getAttribute( "lastName" ) == null ) 
+         {
                 response.sendRedirect( "login.jsp" );
          }
          else
          {
             if(request.getParameter( "submit" ) != null){
-                 if( !meeting.validate() ){  
+                 if( !meeting.validate() )
+                 {  
                       out.println(gui.generateMeetingGUI(meeting));
                  }
                  else
                  {
                      String [] people = request.getParameter("recipient").split(","); 
                      ArrayList<String> list = new ArrayList();
-                     for(String person : people){
+                     for(String person : people)
+                     {
                          list.add(person.trim());
                      }
-                     
+                     list.add( session.getAttribute("id").toString() );
                      
                      out.println("Your meeting has been set");
                      out.print(list);
+                     
                      meeting.insertNotQuery("meeting");
-                     meeting.insertPIMQuery((String)session.getAttribute("id"), "1");
                      meeting.insertOtherPIMQuery( "0", list);
                      meeting.insertMeetQuery("meeting", "0", list);
-                     
                  }
              }
              else
