@@ -26,7 +26,7 @@ public class FindMeetings
     
     public TreeMap<String,String> getFreeTime( ArrayList<String> p_ids, String date )
     {
-        final int hours = 9;
+        final int hours = 10;
         
         String mTime = "";
         boolean isDone = false;
@@ -55,7 +55,7 @@ public class FindMeetings
 
                 for ( int i=0 ; i < bytes.length ; i++ )
                 {
-                    int j = i+9;
+                    int j = i+8;
                     String bTime = "";
 
                     if ( j < 10 )
@@ -96,7 +96,7 @@ public class FindMeetings
 
                 if ( startBytes[i] == 0 )
                 {
-                    int k = i+9;
+                    int k = i+8;
                     mTime = "";
                     if ( k < 10 )
                     {
