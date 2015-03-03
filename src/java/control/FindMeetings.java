@@ -21,7 +21,7 @@ public class FindMeetings
     
     public ArrayList<String> getMeetingsSlot(String p_id, String date){
         
-        return db.outputAllRows("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" + p_id + "' AND m.date = '" + date + "'");
+        return db.outputAllRows("SELECT * FROM meetings AS m JOIN people_in_meetings AS pm ON m.m_id = pm.m_id WHERE pm.p_id = '" + p_id + "' AND m.date = '" + date + "'");
     }
     
     public String getFreeTime( ArrayList<String> p_ids, String date )

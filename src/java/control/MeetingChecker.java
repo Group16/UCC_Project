@@ -219,9 +219,11 @@ public class MeetingChecker {
         database.Insert( "INSERT INTO people_in_meetings( p_id, m_id, is_manager )" +
                          "VALUES( '" + p_id + "', '" + getMeetingID()  + "', '" + is_manager + "' );");
     } 
-    public void insertOtherPIMQuery(String is_manager){
-        database.Insert( "INSERT INTO people_in_meetings( p_id,  m_id, is_manager )" +
-                         "VALUES( '" + recipient + "', '" + getMeetingID()  + "', '" + is_manager + "' );");
+    public void insertOtherPIMQuery(String is_manager, ArrayList<String> recipients){
+        for(String recip : recipients ){
+            database.Insert( "INSERT INTO people_in_meetings( p_id,  m_id, is_manager )" +
+                         "VALUES( '" + recip + "', '" + getMeetingID()  + "', '" + is_manager + "' );");
+        }
     }   
     
     public String dateSent(){

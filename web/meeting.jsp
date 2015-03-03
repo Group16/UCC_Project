@@ -53,7 +53,7 @@
                      String [] people = request.getParameter("recipient").split(","); 
                      ArrayList<String> list = new ArrayList();
                      for(String person : people){
-                         list.add(person);
+                         list.add(person.trim());
                      }
                      
                      
@@ -61,7 +61,7 @@
                      out.print(list);
                      meeting.insertNotQuery("meeting");
                      meeting.insertPIMQuery((String)session.getAttribute("id"), "1");
-                     meeting.insertOtherPIMQuery( "0");
+                     meeting.insertOtherPIMQuery( "0", list);
                      meeting.insertMeetQuery("meeting", "0", list);
                      
                  }

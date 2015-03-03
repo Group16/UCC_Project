@@ -95,7 +95,7 @@
                                     obj.put("title", description);
                                     if(confirmed.equals("0"))
                                     {
-                                        obj.put("color", "#000");
+                                        obj.put("color", "pink");
                                     }
                                     objArray.add(obj);
 
