@@ -99,22 +99,20 @@ public class DbClass {
         return rowcount;
     }
  public  ArrayList<String> outputAllRows(String query){
-     String output="";
-     ArrayList<String> list = new ArrayList<String>();
+     
+     ArrayList<String> list = new ArrayList<>();
      try {// Make connection to database
         statementObject = connectionObject.createStatement();
         ResultSet statementResult = statementObject.executeQuery(query);
 
         while(statementResult.next()){
-            output = statementResult.getString(1);
-            output += statementResult.getString(2);
-            output += statementResult.getString(3);
-            System.out.println("");
-            list.add(output);
+            list.add(statementResult.getString(3));
         }
-        } catch (SQLException exceptionObject) {
+        
+     } catch (SQLException exceptionObject) {
             
-        }
+     }
+     
      return list;
  }
     

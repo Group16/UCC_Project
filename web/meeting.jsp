@@ -4,6 +4,7 @@
     Author     : mm37
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -49,11 +50,20 @@
                  }
                  else
                  {
+                     String [] people = request.getParameter("recipient").split(","); 
+                     ArrayList<String> list = new ArrayList();
+                     for(String person : people){
+                         list.add(person);
+                     }
+                     
+                     
                      out.println("Your meeting has been set");
+                     out.print(list);
                      meeting.insertNotQuery("meeting");
                      meeting.insertPIMQuery((String)session.getAttribute("id"), "1");
-                     meeting.insertPIMQuery((String)session.getAttribute("id"), "0");
-                     meeting.insertMeetQuery("meeting", "0");
+                     meeting.insertOtherPIMQuery( "0");
+                     meeting.insertMeetQuery("meeting", "0", list);
+                     
                  }
              }
              else

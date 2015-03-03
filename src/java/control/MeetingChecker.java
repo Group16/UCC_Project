@@ -5,8 +5,10 @@
 package control;
 
 import database.DbClass;
+import control.FindMeetings;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
@@ -21,8 +23,11 @@ public class MeetingChecker {
     
     DbClass database2;
     
+    FindMeetings findmeetings = new FindMeetings();
+    
     private int meetingID;
    
+    ArrayList<String> list;
     
     private String sender;
     
@@ -85,7 +90,7 @@ public class MeetingChecker {
         this.location=location;
         this.description=description;
         this.group ="";
-        array = new String[7];
+        array = new String[6];
     }
     
     public MeetingChecker(){
@@ -104,7 +109,8 @@ public class MeetingChecker {
         this.location="";
         this.description="";
         this.group ="";
-        array = new String[7];
+        array = new String[6];
+        list = new ArrayList<>();
     }
     
     public void setSender( String enteredSender){
@@ -195,9 +201,11 @@ public class MeetingChecker {
     }
     
     
-    public void insertMeetQuery( String type, String confirmed){
+    public void insertMeetQuery( String type, String confirmed, ArrayList<String> list){
+        
+        System.out.println(list);
         database.Insert("INSERT INTO meetings( m_id, confirmed, time, date, location, recur, recur_end, type, description, dateToday )" +
-                         "VALUES( '" + getMeetingID() + "', '" + confirmed + "', '" + this.time + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "', '" + this.endDate + "',  '" +
+                         "VALUES( '" + getMeetingID() + "', '" + confirmed + "', '" + findmeetings.getFreeTime(list, startDate) + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "', '" + this.endDate + "',  '" +
                                                     type + "', '" + this.description + "', '" + dateSent() + "');");
     }
     
@@ -211,7 +219,7 @@ public class MeetingChecker {
         database.Insert( "INSERT INTO people_in_meetings( p_id, m_id, is_manager )" +
                          "VALUES( '" + p_id + "', '" + getMeetingID()  + "', '" + is_manager + "' );");
     } 
-    public void insertPIMQuery(String is_manager){
+    public void insertOtherPIMQuery(String is_manager){
         database.Insert( "INSERT INTO people_in_meetings( p_id,  m_id, is_manager )" +
                          "VALUES( '" + recipient + "', '" + getMeetingID()  + "', '" + is_manager + "' );");
     }   
@@ -312,28 +320,28 @@ public class MeetingChecker {
            valid = false;
            correctLocation = false;
            //place empty string in the array
-           array[5] ="*Location Required.";
+           array[4] ="*Location Required.";
         //If the date is not null
         }else{
            //set the correctDate to true
            correctLocation = true;
            
            //Add error to the array
-            array[5] ="";
+            array[4] ="";
         }
         
         if(getDescription().equals("")){
            valid = false;
            correctDescription = false;
            //place empty string in the array
-           array[6] ="*Description Required.";
+           array[5] ="*Description Required.";
         //If the date is not null
         }else{
            //set the correctDate to true
            correctDescription = true;
            
            //Add error to the array
-            array[6] ="";
+            array[5] ="";
             
          }
         
