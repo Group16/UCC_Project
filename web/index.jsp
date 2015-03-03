@@ -31,7 +31,7 @@
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">	
 
 
-            <a href="#" class="navbar-brand">UCC CONNECT</a>	
+            <a href="#" class="navbar-brand">UCC CONNECT<img src="MarkUp/images/logoUC.ico" height="29px" /></a>	
             <div class="navbar-header">
                 <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse" >
                     <span class="icon-bar"></span>
@@ -77,15 +77,17 @@
         <div class="bannertext">
             <div class="container">			
                 <h1>Not convinced yet ?  check out some of our features to see what we can do for <strong>you!</strong></h1>	
-                <hr>
+                  <hr id="jump"> <a href="#jump" class="godown"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
+              
+
             </div><!--container-->
         </div><!--bannertext-->
 
         <!-- container class for three feture icons and paragraphs -->	
-        <div class="container">
+        <div class="container" >
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12 text-center pull-right">
-                    <img src="MarkUp/images/map.png"  alt="Icon depicting world map with connection icons"class="img-responsive fadeUp_animate fadeInUp">
+                    <img src="MarkUp/images/newworldmap.jpg"  alt="Icon depicting world map with connection icons"class="img-responsive fadeUp_animate fadeInUp">
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-7 text pull-left">
@@ -105,7 +107,7 @@
 
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12 text-center pull-left">
-                    <img src="MarkUp/images/schedule.png"  alt="Icon depicting Scheduling calender" class="lazy-load img-responsive fadeUp_animate fadeInUp">
+                    <img src="MarkUp/images/newcalender.jpg"  alt="Icon depicting Scheduling calender" class="lazy-load img-responsive fadeUp_animate fadeInUp">
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-7 text pull-right">
@@ -113,7 +115,7 @@
                     <p class="text-muted">Remove the hassle by organising in one place.</p>
                     <p>
                         Quickly create and edit personal and academic time tables for your own use. Allow others to connect 
-                        to your schedule to arrange meetings , tutorial or even group meetings. 
+                        to your schedule and arrange meetings , tutorial or even group meetings. 
                     </p>
                     <div class="buttons-hold">
                         <button type="button" class="btn btn-success">Learn More</button>
@@ -125,7 +127,7 @@
 
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12 text-center pull-right">
-                    <img src="MarkUp/images/security.png"  alt="Icon depicting security" class="lazy-load img-responsive fadeUp_animate fadeInUp">
+                    <img src="MarkUp/images/clound.jpg"  alt="Icon depicting security" class="lazy-load img-responsive fadeUp_animate fadeInUp">
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-7 text pull-left">

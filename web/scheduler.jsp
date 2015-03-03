@@ -53,7 +53,7 @@
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">	
 
 
-            <a href="#" class="navbar-brand">UCC CONNECT</a>	
+             <a href="#" class="navbar-brand">UCC CONNECT<img src="MarkUp/images/logoUC.ico" height="29px" /></a>
             <div class="navbar-header">
                 <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse" >
                     <span class="icon-bar"></span>
