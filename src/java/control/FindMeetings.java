@@ -83,7 +83,8 @@ public class FindMeetings
             }
 
             byte[] startBytes = new byte[hours];
-
+            int lastFreeSlot = 0;
+            
             for ( int i=0 ; i < startBytes.length ; i++ )
             {
                 for ( MeetingMap meetingMap : meetingMaps )
@@ -96,7 +97,11 @@ public class FindMeetings
 
                 if ( startBytes[i] == 0 )
                 {
-                    int k = i+8;
+                    lastFreeSlot = i;
+                }
+                else
+                {
+                    int k = lastFreeSlot+8;
                     mTime = "";
                     if ( k < 10 )
                     {
