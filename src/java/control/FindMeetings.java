@@ -42,6 +42,7 @@ public class FindMeetings
         Calendar cal = Calendar.getInstance();
         cal.setTime(meetingDate);
         
+        int failsafe = 0;
         do
         {   
             for ( String p_id : p_ids )
@@ -109,7 +110,15 @@ public class FindMeetings
             
             if ( ! isDone )
             {
+                meetingMaps.clear();
                 cal.add(Calendar.DAY_OF_YEAR, 1);
+            }
+            
+            // Kill the loop after x days.
+            failsafe++;
+            if ( failsafe > 20 )
+            {
+                return null;
             }
             
         } while ( ! isDone );
