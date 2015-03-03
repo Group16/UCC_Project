@@ -46,6 +46,8 @@ public class FindMeetings
         {   
             for ( String p_id : p_ids )
             {
+                System.out.print( dateFormat.format(cal.getTime()) );
+                
                 byte[] bytes = new byte[hours];
 
                 ArrayList<String> meetings = getMeetingsSlot(p_id, dateFormat.format(cal.getTime()));
