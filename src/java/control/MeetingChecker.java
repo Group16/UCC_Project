@@ -189,6 +189,7 @@ public class MeetingChecker {
     public int getMeetingID(){
         
         String num[] = database.SelectRow("SELECT * FROM meetings ORDER BY m_id DESC LIMIT 1;");
+        System.out.println(num[0]);
         String count = num[0];
         
         int realNum = Integer.parseInt(count);
@@ -224,12 +225,16 @@ public class MeetingChecker {
         }
     }
     
-    public void insertPersonalQuery( String type, String confirmed ){
+    public void insertPersonalPIMQuery(String user){
+        database.Insert( "INSERT INTO people_in_meetings( p_id,  m_id, is_manager )" +
+                         "VALUES( '" + user + "', '" + getMeetingID()  + "', '" + "1" + "' );");
+    }
+    
+    public void insertPersonalQuery(){
         
-        System.out.println(list);
         database.Insert("INSERT INTO meetings( m_id, confirmed, time, date, location, recur, recur_end, type, description, dateToday )" +
-                         "VALUES( '" + getMeetingID() + "', '" + confirmed + "', '" + this.time + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "', '" + this.endDate + "',  '" +
-                                                    type + "', '" + this.description + "', '" + dateSent() + "');");
+                         "VALUES( '" + getMeetingID() + "','" + "1" + "', '" + this.time + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "', '" + this.endDate + "',  '" +
+                                                    "personal"+ "', '" + this.description + "', '" + dateSent() + "');");
     }
     
     public String dateSent(){
@@ -277,83 +282,167 @@ public class MeetingChecker {
                 }
                 
             
-        //If the date is null
-        if(getStartDate().equals("")){
-           valid = false;
-           correctStartDate = false;
-           //place empty string in the array
-           array[1] ="*Start Date Required.";
-        //If the date is not null
-        }else{
-           //set the correctDate to true
-           correctStartDate = true;
-           
-           //Add error to the array
-           array[1] ="";
-            
-         }
+            //If the date is null
+            if(getStartDate().equals("")){
+               valid = false;
+               correctStartDate = false;
+               //place empty string in the array
+               array[1] ="*Start Date Required.";
+            //If the date is not null
+            }else{
+               //set the correctDate to true
+               correctStartDate = true;
+
+               //Add error to the array
+               array[1] ="";
+
+             }
+
+            if(getEndDate().equals("")){
+               valid = false;
+               correctEndDate = false;
+               //place empty string in the array
+               array[2] ="*End Date Required.";
+            //If the date is not null
+            }else{
+               //set the correctDate to true
+               correctEndDate = true;
+
+               //Add error to the array
+                array[2] ="";
+
+             }
+
+            //If the date is null
+            if(getTime().equals("")){
+               valid = false;
+               correctStartTime = false;
+               //place empty string in the array
+               array[3] ="*Start Time Required. ";
+            //If the date is not null
+            }else{
+               //set the correctDate to true
+               correctStartTime = true;
+
+               //Add error to the array
+               array[3] ="";
+
+             }
+
+            if(getLocation().equals("")){
+               valid = false;
+               correctLocation = false;
+               //place empty string in the array
+               array[4] ="*Location Required.";
+            //If the date is not null
+            }else{
+               //set the correctDate to true
+               correctLocation = true;
+
+               //Add error to the array
+                array[4] ="";
+            }
+
+            if(getDescription().equals("")){
+               valid = false;
+               correctDescription = false;
+               //place empty string in the array
+               array[5] ="*Description Required.";
+            //If the date is not null
+            }else{
+               //set the correctDate to true
+               correctDescription = true;
+
+               //Add error to the array
+                array[5] ="";
+
+             }
+
+             return valid;
+    }
+    
+    public boolean validatePersonal(){
+        //Boolean value which is returned
+        boolean valid = true;
         
-        if(getEndDate().equals("")){
-           valid = false;
-           correctEndDate = false;
-           //place empty string in the array
-           array[2] ="*End Date Required.";
-        //If the date is not null
-        }else{
-           //set the correctDate to true
-           correctEndDate = true;
-           
-           //Add error to the array
-            array[2] ="";
-            
-         }
-        
-        //If the date is null
-        if(getTime().equals("")){
-           valid = false;
-           correctStartTime = false;
-           //place empty string in the array
-           array[3] ="*Start Time Required. ";
-        //If the date is not null
-        }else{
-           //set the correctDate to true
-           correctStartTime = true;
-           
-           //Add error to the array
-           array[3] ="";
-            
-         }
-        
-        if(getLocation().equals("")){
-           valid = false;
-           correctLocation = false;
-           //place empty string in the array
-           array[4] ="*Location Required.";
-        //If the date is not null
-        }else{
-           //set the correctDate to true
-           correctLocation = true;
-           
-           //Add error to the array
-            array[4] ="";
-        }
-        
-        if(getDescription().equals("")){
-           valid = false;
-           correctDescription = false;
-           //place empty string in the array
-           array[5] ="*Description Required.";
-        //If the date is not null
-        }else{
-           //set the correctDate to true
-           correctDescription = true;
-           
-           //Add error to the array
-            array[5] ="";
-            
-         }
-        
-         return valid;
+            array[0] = "";
+            //If the date is null
+            if(getStartDate().equals("")){
+               valid = false;
+               correctStartDate = false;
+               //place empty string in the array
+               array[1] ="*Start Date Required.";
+            //If the date is not null
+            }else{
+               //set the correctDate to true
+               correctStartDate = true;
+
+               //Add error to the array
+               array[1] ="";
+
+             }
+
+            if(getEndDate().equals("")){
+               valid = false;
+               correctEndDate = false;
+               //place empty string in the array
+               array[2] ="*End Date Required.";
+            //If the date is not null
+            }else{
+               //set the correctDate to true
+               correctEndDate = true;
+
+               //Add error to the array
+                array[2] ="";
+
+             }
+
+            //If the date is null
+            if(getTime().equals("")){
+               valid = false;
+               correctStartTime = false;
+               //place empty string in the array
+               array[3] ="*Start Time Required. ";
+            //If the date is not null
+            }else{
+               //set the correctDate to true
+               correctStartTime = true;
+
+               //Add error to the array
+               array[3] ="";
+
+             }
+
+            if(getLocation().equals("")){
+               valid = false;
+               correctLocation = false;
+               //place empty string in the array
+               array[4] ="*Location Required.";
+            //If the date is not null
+            }else{
+               //set the correctDate to true
+               correctLocation = true;
+
+               //Add error to the array
+                array[4] ="";
+            }
+
+            if(getDescription().equals("")){
+               valid = false;
+               correctDescription = false;
+               //place empty string in the array
+               array[5] ="*Description Required.";
+            //If the date is not null
+            }else{
+               //set the correctDate to true
+               correctDescription = true;
+
+               //Add error to the array
+                array[5] ="";
+
+             }
+
+             return valid;
     }
     
     public String[] getErrors(){

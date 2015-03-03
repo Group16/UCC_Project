@@ -413,13 +413,13 @@ public class GUI {
         if (meeting.correctStartDate == false) {
             result += "Start date<input type='text' class='datepicker' class='datepicker' name='startDate' placeholder='2014/02/09' />";
         } else {
-            result += "Start date<input type='text' class='datepicker' name='startDate' value='" + meeting.getStartDate() + "' />";
+            result += "Start date<input type='text' class='datepicker' class='datepicker' name='startDate' value='" + meeting.getStartDate() + "' />";
         }
 
         if (meeting.correctEndDate == false) {
-            result += "End date<input type='text' class='datepicker' name='endDate' placeholder='2014/02/09' />";
+            result += "End date<input type='text' class='datepicker' class='datepicker' name='endDate' placeholder='2014/02/09' />";
         } else {
-            result += "End date<input type='text' class='datepicker' name='endDate' value='" + meeting.getEndDate() + "' />";
+            result += "End date<input type='text' class='datepicker' class='datepicker' name='endDate' value='" + meeting.getEndDate() + "' />";
         }
         
         if (meeting.correctStartTime == false) {
@@ -459,8 +459,8 @@ public class GUI {
         result = "<form name='form' action='personal.jsp' method='POST'>";
 
         result += "Personal Event: <input type='text' name='description' placeholder='Doctor Appointment' />";
-        result += "Start Date <input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' />";
-        result += "End Date <input type='text' class='datepicker' name='endDate' placeholder='2015/03/08' />";
+        result += "Start Date <input type='text' class='datepicker' class='datepicker' name='startDate' placeholder='2015/02/08' />";
+        result += "End Date <input type='text' class='datepicker' class='datepicker' name='endDate' placeholder='2015/03/08' />";
         result += "Start Time <input type='text' class='timepicker' name='time' placeholder='12:00:00' />";
         result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
         result += "Recurring <select name='recurring'>";
