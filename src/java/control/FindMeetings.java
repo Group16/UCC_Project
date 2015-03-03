@@ -12,7 +12,7 @@ public class FindMeetings
 {
     DbClass db = new DbClass();
     
-    ArrayList<MeetingMap> meetingMaps = new ArrayList<MeetingMap>();
+    ArrayList<MeetingMap> meetingMaps = new ArrayList<>();
     
     public FindMeetings( )
     {
