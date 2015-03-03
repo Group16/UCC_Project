@@ -15,16 +15,13 @@
     </head>
     <body>
         <h1>Add Modules</h1>
-        <%
-            GUI ui = new GUI();
-            ui.generateReg2GUI();
-            
+        <%        
             if( request.getParameter( "submit" ) != null )
             {
                 DbClass db = new DbClass();
                 db.setup("cs1.ucc.ie", "2016_mm37", "mm37", "uohongah");
                 
-                String[] courseModules = request.getParameterValues("modules");
+                String[] courseModules = request.getParameterValues("module");
 
                 if ( courseModules != null ) 
                 {
@@ -42,6 +39,8 @@
             }
             else
             {
+                GUI ui = new GUI();
+                out.print( ui.generateReg2GUI() );
             }
         %>
     </body>

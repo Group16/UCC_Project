@@ -170,7 +170,7 @@ public class GUI {
         result += " </div>";
         result += " </div>";
         result += " <div class='action_btns'>";
-        result += " <input type='submit' class='btn btn-success' value='Finish' />";
+        result += " <input type='submit' class='btn btn-success' name='submit' value='Finish' />";
         result += " </div>";
         result += " </form>";
 
