@@ -83,7 +83,7 @@ public class FindMeetings
             }
 
             byte[] startBytes = new byte[hours];
-            int lastFreeSlot = 0;
+            int lastFreeSlot = -1;
             
             for ( int i=0 ; i < startBytes.length ; i++ )
             {
@@ -99,7 +99,7 @@ public class FindMeetings
                 {
                     lastFreeSlot = i;
                 }
-                else
+                else if ( lastFreeSlot != -1 )
                 {
                     int k = lastFreeSlot+8;
                     mTime = "";
