@@ -193,15 +193,22 @@ public class MeetingChecker {
     }
     
     
-    public void insertMeetQuery( String type, String confirmed, ArrayList<String> list){
-        
-        System.out.println(list);
-        
+    public void insertMeetQuery( String type, String confirmed, ArrayList<String> list)
+    {
         TreeMap<String,String> freeTime = findmeetings.getFreeTime(list, startDate);
         
         database.Insert("INSERT INTO meetings( m_id, confirmed, time, date, location, recur, type, description, dateToday )" +
                          "VALUES( '" + getMeetingID() + "', '" + confirmed + "', '" + freeTime.firstEntry().getKey() + "', '" + freeTime.get(freeTime.firstKey()) + "', '" + this.location + "',  '" + this.recurring + "',  '" +
                                                     type + "', '" + this.description + "', '" + dateSent() + "');");
+    }
+    
+    public void insertLectureQuery( String date, String time )
+    {
+            String type = "lecture";
+        
+            database.Insert("INSERT INTO meetings( m_id, confirmed, time, date, location, recur, type, description, dateToday )" +
+                             "VALUES( '" + getMeetingID() + "', '1', 'time', 'date', '" + this.location + "',  '" + this.recurring + "',  '" +
+                                                        type + "', '" + this.description + "', '" + dateSent() + "');");
     }
     
     public void insertNotQuery( String typeOfNotification){
