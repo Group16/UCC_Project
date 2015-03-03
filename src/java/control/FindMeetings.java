@@ -37,6 +37,7 @@ public class FindMeetings
             
             for ( int i=0 ; i < bytes.length ; i++ )
             {
+                
                 String bTime = "";
                 if ( i < 10 )
                 {
