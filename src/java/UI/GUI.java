@@ -396,8 +396,82 @@ public class GUI {
         result += "</select>";
         result += "Description: <textarea name='description' cols='-40' rows='20' placeholder='Insert meeting description here' ></textarea>";
         result += "<input type='submit' name='submit' />";
+        
+        
+        //returns html form
+        return result;
+    }
+    
+    public String generatePersonalGUI(MeetingChecker meeting){
+        result = "<form name='form' action='personal.jsp' method='POST'>";
+        
+         if (meeting.correctDescription == false) {
+            result += "Personal Event: <input type='text' name='description' placeholder='Doctor Appointment' />";
+         }else{
+             result += "Personal Event: <input type='text' name='description' value='" + meeting.getDescription() + "' />";
+         }
+        if (meeting.correctStartDate == false) {
+            result += "Start date<input type='text' class='datepicker' class='datepicker' name='startDate' placeholder='2014/02/09' />";
+        } else {
+            result += "Start date<input type='text' class='datepicker' name='startDate' value='" + meeting.getStartDate() + "' />";
+        }
+
+        if (meeting.correctEndDate == false) {
+            result += "End date<input type='text' class='datepicker' name='endDate' placeholder='2014/02/09' />";
+        } else {
+            result += "End date<input type='text' class='datepicker' name='endDate' value='" + meeting.getEndDate() + "' />";
+        }
+        
+        if (meeting.correctStartTime == false) {
+            result += "Start Time <input type='text' class='timepicker' name='time' placeholder='12:00:00' />";
+        }else{
+            result += "Start Time <input type='text' class='timepicker' name='time' value='" + meeting.getTime() + "' />";
+        }
+        if (meeting.correctLocation == false) {
+            result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
+
+        } else {
+            result += "Location <input type='text' name='location' value='" + meeting.getLocation() + "' />";
+        }
+        
+        result += "Recurring <select name='recurring'>";
+        result += "  <option value='none'>None</option>";
+        result += "  <option value='weekly'>Weekly</option>";
+        result += "  <option value='fortnight'>Fortnightly</option>";
+        result += "  <option value='monthly'>Monthly</option>";
+        result += "  <option value='semester'>Semester</option>";
+        result += "</select>";
+        
+        result += "<input type='submit' name='submit' />";
+        
+        String[] list = meeting.getErrors();
+        //a enhanced for loop to loop through everything in list
+        for (String y : list) {
+            //print out erros
+            result += "<p>" + y + "</p>";
+
+        }
+        //returns html form
+        return result;
+    }
+    
+    public String generatePersonalGUI(){
+        result = "<form name='form' action='personal.jsp' method='POST'>";
+
+        result += "Personal Event: <input type='text' name='description' placeholder='Doctor Appointment' />";
+        result += "Start Date <input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' />";
+        result += "End Date <input type='text' class='datepicker' name='endDate' placeholder='2015/03/08' />";
+        result += "Start Time <input type='text' class='timepicker' name='time' placeholder='12:00:00' />";
+        result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
+        result += "Recurring <select name='recurring'>";
+        result += "  <option value='none'>None</option>";
+        result += "  <option value='weekly'>Weekly</option>";
+        result += "  <option value='fortnight'>Fortnightly</option>";
+        result += "  <option value='monthly'>Monthly</option>";
+        result += "</select>";
+        result += "<input type='submit' name='submit' />";
 
         //returns html form
         return result;
-    }    
+    }
 }

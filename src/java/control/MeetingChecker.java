@@ -224,7 +224,15 @@ public class MeetingChecker {
             database.Insert( "INSERT INTO people_in_meetings( p_id,  m_id, is_manager )" +
                          "VALUES( '" + recip + "', '" + getMeetingID()  + "', '" + is_manager + "' );");
         }
-    }   
+    } 
+    
+    public void insertPersonalQuery( String type, String confirmed ){
+        
+        System.out.println(list);
+        database.Insert("INSERT INTO meetings( m_id, confirmed, time, date, location, recur, recur_end, type, description, dateToday )" +
+                         "VALUES( '" + getMeetingID() + "', '" + confirmed + "', '" + this.time + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "', '" + this.endDate + "',  '" +
+                                                    type + "', '" + this.description + "', '" + dateSent() + "');");
+    }
     
     public String dateSent(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");

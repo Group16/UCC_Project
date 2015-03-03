@@ -33,7 +33,7 @@
             });
         </script>
   
-            <jsp:useBean id="meeting" class="control.MeetingChecker" scope="session" />
+        <jsp:useBean id="meeting" class="control.MeetingChecker" scope="session" />
         <jsp:setProperty name="meeting" property="*"/>
         <%
          //String user=session.getValue("userid").toString();
