@@ -54,6 +54,8 @@ public class FindMeetings
                 }
             }
             
+            System.out.print(p_id + " : " + bytes + " !! ");
+            
             MeetingMap meetingMap = new MeetingMap( p_id, bytes );
             meetingMaps.add(meetingMap);
         }
