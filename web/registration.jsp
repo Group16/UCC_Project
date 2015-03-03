@@ -20,7 +20,7 @@
         <jsp:useBean id="checker" class="control.CheckerClass" scope="session" />
         <jsp:setProperty name="checker" property="*"/>
         <%
-             EmailSender.Email email = new EmailSender.Email();
+            EmailSender.Email email = new EmailSender.Email();
             //Calling the User Interface.
             UI.GUI ui = new UI.GUI();
             String pwd=request.getParameter("password1");
@@ -45,7 +45,7 @@
                     session.setAttribute("lastName",lastName);
                     session.setAttribute("p_type", student);
                     session.setAttribute("id", id);
-                    response.sendRedirect( "welcome.jsp" );
+                    response.sendRedirect( "addmodules.jsp" );
                 }
             }else{
                  //print the standard form
