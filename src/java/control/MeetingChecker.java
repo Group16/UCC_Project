@@ -5,7 +5,6 @@
 package control;
 
 import database.DbClass;
-import control.FindMeetings;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -292,38 +291,7 @@ public class MeetingChecker {
            array[1] ="";
             
          }
-        
-        if(getEndDate().equals("")){
-           valid = false;
-           correctEndDate = false;
-           //place empty string in the array
-           array[2] ="*End Date Required.";
-        //If the date is not null
-        }else{
-           //set the correctDate to true
-           correctEndDate = true;
            
-           //Add error to the array
-            array[2] ="";
-            
-         }
-        
-        //If the date is null
-        if(getTime().equals("")){
-           valid = false;
-           correctStartTime = false;
-           //place empty string in the array
-           array[3] ="*Start Time Required. ";
-        //If the date is not null
-        }else{
-           //set the correctDate to true
-           correctStartTime = true;
-           
-           //Add error to the array
-           array[3] ="";
-            
-         }
-        
         if(getLocation().equals("")){
            valid = false;
            correctLocation = false;
