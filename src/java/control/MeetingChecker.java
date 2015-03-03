@@ -199,8 +199,8 @@ public class MeetingChecker {
         
         TreeMap<String,String> freeTime = findmeetings.getFreeTime(list, startDate);
         
-        database.Insert("INSERT INTO meetings( m_id, confirmed, time, date, location, recur, recur_end, type, description, dateToday )" +
-                         "VALUES( '" + getMeetingID() + "', '" + confirmed + "', '" + freeTime.firstEntry().getKey() + "', '" + freeTime.get(freeTime.firstKey()) + "', '" + this.location + "',  '" + this.recurring + "', '" + this.endDate + "',  '" +
+        database.Insert("INSERT INTO meetings( m_id, confirmed, time, date, location, recur, type, description, dateToday )" +
+                         "VALUES( '" + getMeetingID() + "', '" + confirmed + "', '" + freeTime.firstEntry().getKey() + "', '" + freeTime.get(freeTime.firstKey()) + "', '" + this.location + "',  '" + this.recurring + "',  '" +
                                                     type + "', '" + this.description + "', '" + dateSent() + "');");
     }
     
@@ -224,8 +224,8 @@ public class MeetingChecker {
     
     public void insertPersonalQuery(){
         
-        database.Insert("INSERT INTO meetings( m_id, confirmed, time, date, location, recur, recur_end, type, description, dateToday )" +
-                         "VALUES( '" + getMeetingID() + "','" + "1" + "', '" + this.time + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "', '" + this.endDate + "',  '" +
+        database.Insert("INSERT INTO meetings( m_id, confirmed, time, date, location, recur,  type, description, dateToday )" +
+                         "VALUES( '" + getMeetingID() + "','" + "1" + "', '" + this.time + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "',  '" +
                                                     "personal"+ "', '" + this.description + "', '" + dateSent() + "');");
     }
     
