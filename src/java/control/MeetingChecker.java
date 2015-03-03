@@ -181,7 +181,6 @@ public class MeetingChecker {
     public int getMeetingID(){
         
         String num[] = database.SelectRow("SELECT * FROM meetings ORDER BY m_id DESC LIMIT 1;");
-        System.out.println(num[0]);
         String count = num[0];
         
         int realNum = Integer.parseInt(count);
@@ -196,7 +195,16 @@ public class MeetingChecker {
     public void insertMeetQuery( String type, String confirmed, ArrayList<String> list)
     {
         TreeMap<String,String> freeTime = findmeetings.getFreeTime(list, startDate);
-        System.out.println("");
+        
+        System.out.println(getMeetingID());
+        System.out.println(confirmed);
+        System.out.println(freeTime.firstEntry().getKey());
+        System.out.println(freeTime.get(freeTime.firstKey()));
+        System.out.println(this.location);
+        System.out.println(this.recurring);
+        System.out.println(type);
+        System.out.println(this.description);
+        System.out.println(dateSent());
         database.Insert("INSERT INTO meetings( m_id, confirmed, time, date, location, recur, type, description, dateToday )" +
                          "VALUES( '" + getMeetingID() + "', '" + confirmed + "', '" + freeTime.firstEntry().getKey() + "', '" + freeTime.get(freeTime.firstKey()) + "', '" + this.location + "',  '" + this.recurring + "',  '" +
                                                     type + "', '" + this.description + "', '" + dateSent() + "');");
