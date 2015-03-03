@@ -89,7 +89,7 @@ public class MeetingChecker {
         this.location=location;
         this.description=description;
         this.group ="";
-        array = new String[6];
+        array = new String[4];
     }
     
     public MeetingChecker(){
@@ -108,7 +108,7 @@ public class MeetingChecker {
         this.location="";
         this.description="";
         this.group ="";
-        array = new String[6];
+        array = new String[4];
         list = new ArrayList<>();
     }
     
@@ -143,14 +143,6 @@ public class MeetingChecker {
     
     public String getStartDate( ){
         return this.startDate;
-    }
-    
-    public void setEndDate( String enteredEndDate){
-        this.endDate = enteredEndDate;
-    }
-    
-    public String getEndDate( ){
-        return this.endDate;
     }
     
     public void setTime( String enterdtime ){
@@ -298,63 +290,32 @@ public class MeetingChecker {
 
              }
 
-            if(getEndDate().equals("")){
-               valid = false;
-               correctEndDate = false;
-               //place empty string in the array
-               array[2] ="*End Date Required.";
-            //If the date is not null
-            }else{
-               //set the correctDate to true
-               correctEndDate = true;
-
-               //Add error to the array
-                array[2] ="";
-
-             }
-
-            //If the date is null
-            if(getTime().equals("")){
-               valid = false;
-               correctStartTime = false;
-               //place empty string in the array
-               array[3] ="*Start Time Required. ";
-            //If the date is not null
-            }else{
-               //set the correctDate to true
-               correctStartTime = true;
-
-               //Add error to the array
-               array[3] ="";
-
-             }
-
             if(getLocation().equals("")){
                valid = false;
                correctLocation = false;
                //place empty string in the array
-               array[4] ="*Location Required.";
+               array[2] ="*Location Required.";
             //If the date is not null
             }else{
                //set the correctDate to true
                correctLocation = true;
 
                //Add error to the array
-                array[4] ="";
+                array[2] ="";
             }
 
             if(getDescription().equals("")){
                valid = false;
                correctDescription = false;
                //place empty string in the array
-               array[5] ="*Description Required.";
+               array[3] ="*Description Required.";
             //If the date is not null
             }else{
                //set the correctDate to true
                correctDescription = true;
 
                //Add error to the array
-                array[5] ="";
+                array[3] ="";
 
              }
 
@@ -365,35 +326,19 @@ public class MeetingChecker {
         //Boolean value which is returned
         boolean valid = true;
         
-            array[0] = "";
             //If the date is null
             if(getStartDate().equals("")){
                valid = false;
                correctStartDate = false;
                //place empty string in the array
-               array[1] ="*Start Date Required.";
+               array[0] ="*Start Date Required.";
             //If the date is not null
             }else{
                //set the correctDate to true
                correctStartDate = true;
 
                //Add error to the array
-               array[1] ="";
-
-             }
-
-            if(getEndDate().equals("")){
-               valid = false;
-               correctEndDate = false;
-               //place empty string in the array
-               array[2] ="*End Date Required.";
-            //If the date is not null
-            }else{
-               //set the correctDate to true
-               correctEndDate = true;
-
-               //Add error to the array
-                array[2] ="";
+               array[0] ="";
 
              }
 
@@ -402,14 +347,14 @@ public class MeetingChecker {
                valid = false;
                correctStartTime = false;
                //place empty string in the array
-               array[3] ="*Start Time Required. ";
+               array[1] ="*Start Time Required. ";
             //If the date is not null
             }else{
                //set the correctDate to true
                correctStartTime = true;
 
                //Add error to the array
-               array[3] ="";
+               array[1] ="";
 
              }
 
@@ -417,28 +362,28 @@ public class MeetingChecker {
                valid = false;
                correctLocation = false;
                //place empty string in the array
-               array[4] ="*Location Required.";
+               array[2] ="*Location Required.";
             //If the date is not null
             }else{
                //set the correctDate to true
                correctLocation = true;
 
                //Add error to the array
-                array[4] ="";
+                array[2] ="";
             }
 
             if(getDescription().equals("")){
                valid = false;
                correctDescription = false;
                //place empty string in the array
-               array[5] ="*Description Required.";
+               array[3] ="*Description Required.";
             //If the date is not null
             }else{
                //set the correctDate to true
                correctDescription = true;
 
                //Add error to the array
-                array[5] ="";
+                array[3] ="";
 
              }
 
