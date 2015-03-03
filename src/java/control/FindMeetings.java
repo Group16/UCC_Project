@@ -37,25 +37,29 @@ public class FindMeetings
             
             for ( int i=0 ; i < bytes.length ; i++ )
             {
-                
+                int j = i+9;
                 String bTime = "";
-                if ( i < 10 )
+                
+                if ( j < 10 )
                 {
                     bTime = "0";
                 }
-                bTime = bTime + i + ":00:00";
+                bTime = bTime + j + ":00:00";
                 
                 for ( String meetingTime : meetings )
                 {
+                    System.out.println(meetingTime);
                     if ( meetingTime.equals( bTime ) )
                     {
                         bytes[i] = 1;
                     }
                 }
             }
-            
-            System.out.print(p_id + " : " + bytes + " !! ");
-            
+             System.out.print(p_id + " : ");
+            for(byte diffword : bytes){
+                System.out.print( diffword);
+            }
+            System.out.println("!!!!!!");
             MeetingMap meetingMap = new MeetingMap( p_id, bytes );
             meetingMaps.add(meetingMap);
         }
