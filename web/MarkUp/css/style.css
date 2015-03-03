@@ -105,6 +105,15 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > a{
   border-color: transparent;
 }
 
+ul, menu, dir {
+display: block;
+list-style-type: disc;
+-webkit-margin-before: 0;
+-webkit-margin-after: 0;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+-webkit-padding-start: 0px;
+}
 .container .landing {
     padding: 0px;
     background: url("../images/WGB.jpg")  fixed;
@@ -261,7 +270,7 @@ input[type='checkbox'] {
     border: 5px solid #009900;
     border: 3px solid #fff;
     font-family: inherit;
-    font-size:2em;
+    font-size:1.5em;
     color: white;
     display:block; 
     background: url("../images/greenswirl.jpg");
@@ -369,25 +378,49 @@ footer{
     }
     
      
-body > div.navbar.navbar-inverse.navbar-fixed-top > div.navbar-collapse.navHeaderCollapse.collapse{
-    /* menu elements in nav bar*/
- 
-    margin-right: 40px;
-    padding: 0px;
-    width:100%;
-    float: none;
-    padding-top: 5px;
-        
-}
+        body > div.navbar.navbar-inverse.navbar-fixed-top > div.navbar-collapse.navHeaderCollapse.collapse{
+            /* menu elements in nav bar*/
 
-body > div.navbar.navbar-inverse.navbar-fixed-top > div.navbar-collapse.navHeaderCollapse.collapse.in > ul{
+            margin-right: 40px;
+            padding: 0px;
+            width:100%;
+            float: none;
+            padding-top: 5px;
+
+        }
+
+        body > div.navbar.navbar-inverse.navbar-fixed-top > div.navbar-collapse.navHeaderCollapse.collapse.in > ul{
+
+             width:100%;
+              margin-left: 0px;
+        }
+        ul{
+            background-color:  #09F;
+        }
+
+            .navbar-nav {
+        margin: 0px;
+        }
+        
+        body > div.navbar.navbar-inverse.navbar-fixed-top > a{
+            color: #fff;
+            font-size: 0%;
+              -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+        }
+        
+        .landing a
+        {	
+       
+        font-size:1.5em;
+      
+       
+        background-position: center;
+        cursor: pointer;
+        width: 50%;		
     
-     width:100%;
-      margin-left: 0px;
-}
-ul{
-    background-color: #009900;
-}
+        }
 }
 
 
