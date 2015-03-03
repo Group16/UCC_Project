@@ -459,4 +459,22 @@ public class GUI {
         //returns html form
         return result;
     }
+    
+    public String tutorialButton() {
+        
+        String result = " <div class='btn-group dropdown'>\n" +
+"                        <button type='button' data-toggle='dropdown' class='btn btn-primary dropdown-toggle'>Arrange A Tutorial ? <span class='caret'></span></button>\n" +
+"                        <ul class='dropdown-menu'>\n" +
+"                            <% \n" +
+"                            \n" +
+"                                if (session.getAttribute('p_type').equals('lecturer')) {\n" +
+"                                    out.println(ui.generateTutorialGUI());\n" +
+"                                    }\n" +
+"                                }\n" +
+"                            %>\n" +
+"                        </ul>\n" +
+"                    </div>";
+        
+        return result;
+    }
 }
