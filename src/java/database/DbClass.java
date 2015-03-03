@@ -24,12 +24,13 @@ public class DbClass
     private boolean setup=false;
     public boolean queryCorrect = false;
     
-    public String setup( String dbserver, String DSN, String username, String password )
+    public String setup()
     {
-        this.dbserver=dbserver;
-        this.DSN=DSN;
-        this.username=username;
-        this.password=password;
+        this.dbserver = "cs1.ucc.ie";
+        this.DSN = "2016_mm37";
+        this.username = "mm37";
+        this.password = "uohongah";
+        
         String URL = "jdbc:mysql://"+dbserver+"/" + DSN;
         
         try 

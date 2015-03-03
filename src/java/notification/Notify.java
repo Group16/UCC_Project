@@ -27,7 +27,7 @@ public class Notify {
         meeting = new control.MeetingChecker();
         this.content="";
         this.date="";
-        database.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
+        database.setup();
     }
     
     public void insertNotQuery( String typeOfNotification ){

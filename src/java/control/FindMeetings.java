@@ -16,7 +16,7 @@ public class FindMeetings
     
     public FindMeetings( )
     {
-        db.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
+        db.setup();
     }
     
     public ArrayList<String> getMeetingsSlot(String p_id, String date){

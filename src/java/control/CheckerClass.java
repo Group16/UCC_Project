@@ -63,7 +63,7 @@ public class CheckerClass {
      */
     public CheckerClass(){
         database = new DbClass();
-        database.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
+        database.setup();
         this.date = "";
         this.ID ="";
         this.intID = 0;

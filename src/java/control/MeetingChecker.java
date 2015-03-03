@@ -5,7 +5,6 @@
 package control;
 
 import database.DbClass;
-import control.FindMeetings;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -70,8 +69,8 @@ public class MeetingChecker {
     public MeetingChecker(String meetingID, String time, String startDate, String location, String recurring, String endDate, String type, String description){
         database = new DbClass();
         database2 = new DbClass();
-        database.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
-        database2.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
+        database.setup();
+        database2.setup();
         
         try{
             this.meetingID = Integer.parseInt(meetingID);
@@ -95,8 +94,8 @@ public class MeetingChecker {
     public MeetingChecker(){
         database = new DbClass();
         database2 = new DbClass();
-        database.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
-        database2.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
+        database.setup();
+        database2.setup();
         this.meetingID=0;
         this.sender ="";
         this.recipient="";

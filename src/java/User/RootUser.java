@@ -17,7 +17,7 @@ public class RootUser extends Admin
      {
          super(fName,lName,ID,password,email,userType,dateToday);
           database = new DbClass();
-          database.setup("cs1.ucc.ie","2016_vnl1", "vnl1","ahraiziu");
+          database.setup();
           //database.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
      }            
       public void createAdmin(int id, String fName, String lName,int password, String email, String date)
