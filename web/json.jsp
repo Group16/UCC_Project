@@ -21,13 +21,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-                 JSONArray objArray = new JSONArray();
-                 Statement statementObject;
-                 Connection connectionObject;
-                 connectionObject = DriverManager.getConnection("jdbc:mysql://"+"cs1.ucc.ie"+"/" + "2016_mm37", "mm37", "uohongah");
-                 database.DbClass db = new database.DbClass();
+                JSONArray objArray = new JSONArray();
+                Connection connectionObject = DriverManager.getConnection("jdbc:mysql://"+"cs1.ucc.ie"+"/" + "2016_mm37", "mm37", "uohongah");
+                database.DbClass db = new database.DbClass();
                 
-                 Date date = new Date();
+                Date date = new Date();
                 String past;
                 String future;
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -44,7 +42,7 @@
                 future = dateFormat.format(cal.getTime());
                 
                 try {
-                        statementObject = connectionObject.createStatement();
+                        Statement statementObject = connectionObject.createStatement();
                         ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings AS m JOIN people_in_meetings pm WHERE pm.p_id = '" + session.getAttribute("id") + "' AND m.date BETWEEN '" + past + "' AND '" + future + "'");
                         
                         while(statementResult.next())
@@ -59,52 +57,52 @@
                             String type  = statementResult.getString(8);
                             String description  = statementResult.getString(9);
                             
-                            if ( recurring.equals("weekly") || recurring.equals("daily") || recurring.equals("fortnight") )
-                            {
-                                Date recurDate = dateFormat.parse(startDate);
-
-                                String newDate;
-
-                                Calendar recurCal = Calendar.getInstance();
-                                recurCal.setTime(recurDate);
-
-                                int days = recurCal.get(Calendar.DAY_OF_YEAR);
-
-                                for ( int i=0 ; i < 12 ; i++ )
-                                {
-                                    if ( recurring.equals("weekly") )
-                                    {
-                                        recurCal.add(Calendar.DAY_OF_YEAR, 7);
-                                    }
-                                    else if ( recurring.equals("daily") )
-                                    {
-                                        recurCal.add(Calendar.DAY_OF_YEAR, 1);
-                                    }
-                                    else if ( recurring.equals("fortnight") )
-                                    {
-                                        recurCal.add(Calendar.DAY_OF_YEAR, 14);
-                                    }
-                                    
-                                    newDate = dateFormat.format(recurCal.getTime());
-
-                                    JSONObject obj = new JSONObject();
-                                    obj.put("m_id", m_id);                        
-                                    obj.put("start", newDate + "T" + time );
-                                    obj.put("location", location);
-                                    obj.put("recur",recurring);
-                                    obj.put("recur_end", endDate);
-                                    obj.put("type", type);
-                                    obj.put("title", description);
-                                    if(confirmed.equals("0"))
-                                    {
-                                        obj.put("color", "#000");
-                                    }
-                                    objArray.add(obj);
-
-                                }
-                            }
-                            else
-                            {
+//                            if ( recurring.equals("weekly") || recurring.equals("daily") || recurring.equals("fortnight") )
+//                            {
+//                                Date recurDate = dateFormat.parse(startDate);
+//
+//                                String newDate;
+//
+//                                Calendar recurCal = Calendar.getInstance();
+//                                recurCal.setTime(recurDate);
+//
+//                                int days = recurCal.get(Calendar.DAY_OF_YEAR);
+//
+//                                for ( int i=0 ; i < 12 ; i++ )
+//                                {
+//                                    if ( recurring.equals("weekly") )
+//                                    {
+//                                        recurCal.add(Calendar.DAY_OF_YEAR, 7);
+//                                    }
+//                                    else if ( recurring.equals("daily") )
+//                                    {
+//                                        recurCal.add(Calendar.DAY_OF_YEAR, 1);
+//                                    }
+//                                    else if ( recurring.equals("fortnight") )
+//                                    {
+//                                        recurCal.add(Calendar.DAY_OF_YEAR, 14);
+//                                    }
+//                                    
+//                                    newDate = dateFormat.format(recurCal.getTime());
+//
+//                                    JSONObject obj = new JSONObject();
+//                                    obj.put("m_id", m_id);                        
+//                                    obj.put("start", newDate + "T" + time );
+//                                    obj.put("location", location);
+//                                    obj.put("recur",recurring);
+//                                    obj.put("recur_end", endDate);
+//                                    obj.put("type", type);
+//                                    obj.put("title", description);
+//                                    if(confirmed.equals("0"))
+//                                    {
+//                                        obj.put("color", "#000");
+//                                    }
+//                                    objArray.add(obj);
+//
+//                                }
+//                            }
+//                            else
+//                            {
                                 JSONObject obj = new JSONObject();
                                 obj.put("m_id", m_id);                        
                                 obj.put("start", startDate + "T" + time );
@@ -115,7 +113,7 @@
                                 obj.put("title", description);
 
                                 objArray.add(obj);
-                            }
+//                            }
                         }
                            out.print(objArray);
                            objArray.clear();
