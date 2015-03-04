@@ -12,8 +12,6 @@ public class FindMeetings
 {
     private final DbClass db = new DbClass();
     
-    private final ArrayList<MeetingMap> meetingMaps = new ArrayList<>();
-    
     private static final int HOURS_IN_DAY = 10; //There are 10 hours in working day.
     private static final int HOUR_TO_START = 8; //Day starts at 8 am
     
@@ -47,11 +45,17 @@ public class FindMeetings
         catch ( Exception e ) {}
         
         Calendar cal = Calendar.getInstance();
-        cal.setTime(meetingDate);
+        
+        //Set the date, then set the time to 9pm to grantee it searches a full day.
+        cal.setTime( meetingDate );
+        cal.set( Calendar.HOUR_OF_DAY, 21 );
+        cal.set( Calendar.MINUTE, 00 );
         
         int failsafe = 0;
         do
         {   
+            final ArrayList<MeetingMap> meetingMaps = new ArrayList<>();
+            
             //While the day is Sunday or Saterday, add a day untill its not.
             while ( cal.get( Calendar.DAY_OF_WEEK ) == 1 || cal.get( Calendar.DAY_OF_WEEK ) == 7 )
             {
@@ -67,7 +71,7 @@ public class FindMeetings
                 
                 meetings.addAll(lectures);
                 
-                for ( int i=0 ; i < bytes.length ; i++ )
+                for ( int i=0 ; i < HOURS_IN_DAY ; i++ )
                 {
                     final String bTime = intToTimeString( i );
 
@@ -85,9 +89,9 @@ public class FindMeetings
             }
 
             byte[] startBytes = new byte[HOURS_IN_DAY];
-            int lastFreeSlot = -1;
+            Integer lastFreeSlot = null;
             
-            for ( int i=0 ; i < startBytes.length ; i++ )
+            for ( int i=0 ; i < HOURS_IN_DAY ; i++ )
             {
                 for ( MeetingMap meetingMap : meetingMaps )
                 {
@@ -99,19 +103,25 @@ public class FindMeetings
 
                 if ( startBytes[i] == 0 )
                 {
-                    lastFreeSlot = i;
-                }
-                else if ( lastFreeSlot != -1 )
-                {
-                    mTime = intToTimeString( lastFreeSlot );
-                    
+                    mTime = intToTimeString( i );
                     isDone = true;
                 }
+                
+//                if ( startBytes[i] == 0 )
+//                {
+//                    lastFreeSlot = i;
+//                }
+//                
+//                if ( ( startBytes[i] == 1 && lastFreeSlot != null ) || i == HOURS_IN_DAY )
+//                {
+//                    mTime = intToTimeString( lastFreeSlot );
+//                    isDone = true;
+//                }
             }
             
             if ( ! isDone )
             {
-                meetingMaps.clear();
+//                meetingMaps.clear();
                 cal.add( Calendar.DAY_OF_YEAR, 1 );
             }
             
