@@ -439,6 +439,11 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div.navbar-collapse.navHeade
     color: #fff;
 }
 
+.dropdown-menu input {
+  
+    color: #204d74;
+}
+
 .ui-datepicker {
     background: #fff; /* Old browsers */
     background: #fff -moz-linear-gradient(top, #fcfcfc 0%, #fff 100%); /* FF3.6+ */

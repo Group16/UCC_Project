@@ -16,7 +16,7 @@
         <title>UCC Connect | Home</title>
 
         <!-- Bootstrap -->
-        <!-- Imported through CSS -->>
+        <!-- Imported through CSS -->
         <link href="MarkUp/css/style.css" rel="stylesheet">
 
 
