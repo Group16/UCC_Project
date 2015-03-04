@@ -104,7 +104,6 @@
                     </div>
 
                     <%
-
                             if (session.getAttribute("p_type").equals("lecturer")) {
                                 out.println(ui.generateTutorialGUI());
                             }

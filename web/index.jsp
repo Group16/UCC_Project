@@ -77,8 +77,8 @@
         <div class="bannertext">
             <div class="container">			
                 <h1>Not convinced yet ?  check out some of our features to see what we can do for <strong>you!</strong></h1>	
-                  <hr id="jump"> <a href="#jump" class="godown"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
-              
+                <hr id="jump"> <a href="#jump" class="godown"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
+
 
             </div><!--container-->
         </div><!--bannertext-->
@@ -221,33 +221,35 @@
                                     out.print(ui.generateRegGUI(checker));
                                     //if the form is valid
                                 } else {
-                                db.setup();
+                                    db.setup();
 
-                                String[] courseModules = request.getParameterValues("module");
+                                    String[] courseModules = request.getParameterValues("module");
 
-                                if ( courseModules != null ) 
-                                {
-                                    for (int i = 0; i < courseModules.length; i++) 
-                                    {
-                                        db.Insert( "INSERT INTO people_in_modules (p_id, mod_id) VALUES ('" + session.getAttribute("id") + "','" + courseModules[i] + "');" );
-                                    }
 
-                                    response.sendRedirect("scheduler.jsp");
-                                } 
-                                else 
-                                {
-                                    out.println("Please Check Some Boxes");
-                                }
-                                    
+
                                     out.print("You have been registered");
                                     //Insert the form into the database
                                     checker.get_SHA_256_SecurePassword(pwd);
                                     checker.insertQuery();
                                     String firstName = request.getParameter("firstName");
                                     String lastName = request.getParameter("lastName");
+                                    String id = request.getParameter("ID");
+                                    String p_type = "student";
                                     session.setAttribute("firstName", firstName);
                                     session.setAttribute("lastName", lastName);
+                                    session.setAttribute("ID", id);
+                                    session.setAttribute("p_type", p_type);
                                     response.sendRedirect("scheduler.jsp");
+
+                                    if (courseModules != null) {
+                                        for (int i = 0; i < courseModules.length; i++) {
+                                            db.Insert("INSERT INTO people_in_modules (p_id, mod_id) VALUES ('" + session.getAttribute("id") + "','" + courseModules[i] + "');");
+                                        }
+
+                                        response.sendRedirect("scheduler.jsp");
+                                    } else {
+                                        out.println("Please Check Some Boxes");
+                                    }
                                 }
                             } else {
                                 //print the standard form
@@ -272,15 +274,15 @@
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script  type="text/javascript" src="MarkUp/js/bootstrap.min.js"></script>
         <script type="text/javascript">
-            $('select.div-toggler').change(function () {
+            $('select.div-toggler').change(function() {
                 var target = $(this).data('target');
                 $(target).children().addClass('hide');
                 var show = $("option:selected", this).data('show');
                 $(show).removeClass('hide');
             });
 
-            $(document).ready(function () {
-                $("#forgotbutton").click(function () {
+            $(document).ready(function() {
+                $("#forgotbutton").click(function() {
                     $("#forgot").toggle();
                 });
             });
