@@ -1,12 +1,20 @@
 package control;
 
 import database.DbClass;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.Set;
 import java.util.TreeMap;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
 public class FindMeetings 
 {
@@ -20,15 +28,37 @@ public class FindMeetings
         db.setup();
     }
     
-    public ArrayList<String> getMeetingsSlot(String p_id, String date){
+    public ArrayList<String> downloadJSON( String date )
+    {
+        URLConnection connection;
+        ArrayList<String> times = new ArrayList<>();
         
-        return db.outputAllRows("SELECT * FROM meetings AS m JOIN people_in_meetings AS pm ON m.m_id = pm.m_id WHERE pm.p_id = '" + p_id + "' AND m.date = '" + date + "'", 3);
-    }
-    
-    public ArrayList<String> getTutorialSlot( String p_id, String date ){
+        try
+        {
+            String url = "http://localhost:8080/UCC_Scheduler_Program/json.jsp";
+            connection = new URL( url ).openConnection();
+            Scanner scanner = new Scanner( connection.getInputStream() );
+            scanner.useDelimiter( "\\Z" );
+            String stringContent = scanner.next();
+            
+            JSONArray ja = (JSONArray) JSONValue.parse( stringContent );
+            
+            for ( int i=0 ; i < ja.size() ; i++ )
+            {
+                JSONObject jo = (JSONObject) ja.get(i);
+                
+                if ( ((String) jo.get("rawDate")).equals(date) )
+                {
+                    times.add( (String) jo.get("rawTime") );
+                }
+            }
+        }
+        catch( Exception ex )
+        {
+            ex.printStackTrace();
+        }
         
-        return db.outputAllRows("SELECT * FROM meetings AS m JOIN  people_in_modules AS pm JOIN modules_in_meetings AS mm "
-                              + "ON pm.mod_id = mm.mod_id AND m.m_id = mm.m_id WHERE pm.p_id = '" + p_id + "'", 3);
+        return times;
     }
     
     public TreeMap<String,String> getFreeTime( ArrayList<String> p_ids, String date )
@@ -66,10 +96,7 @@ public class FindMeetings
             {   
                 byte[] bytes = new byte[HOURS_IN_DAY];
 
-                ArrayList<String> meetings = getMeetingsSlot(p_id, dateFormat.format(cal.getTime()));
-                ArrayList<String> lectures = getTutorialSlot(p_id, dateFormat.format(cal.getTime()));
-                
-                meetings.addAll(lectures);
+                ArrayList<String> meetings = downloadJSON( dateFormat.format(cal.getTime()));
                 
                 for ( int i=0 ; i < HOURS_IN_DAY ; i++ )
                 {
