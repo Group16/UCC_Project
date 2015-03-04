@@ -30,7 +30,7 @@
                         db.Insert( "INSERT INTO people_in_modules (p_id, mod_id) VALUES ('" + session.getAttribute("id") + "','" + courseModules[i] + "');" );
                     }
 
-                    response.sendRedirect("welcome.jsp");
+                    response.sendRedirect("scheduler.jsp");
                 } 
                 else 
                 {
