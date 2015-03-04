@@ -12,16 +12,6 @@
 
 <!DOCTYPE html>
 <html>
-    <!-- Modal more registration details window -->	
-    <div class="modal" id="registerdetail" role="dialog">
-        <div class = "modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <p>Register</p>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-
-                <div class="modal-body">
                     <jsp:useBean id="checker" class="control.CheckerClass" scope="session" />
                     <jsp:setProperty name="checker" property="*"/>
                     <%
