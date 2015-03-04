@@ -220,10 +220,17 @@ public class MeetingChecker {
                                                         type + "', '" + this.description + "', '" + dateSent() + "');");
     }
     
-    public void insertNotQuery( String typeOfNotification){
+    public void insertNotQuery( String typeOfNotification ){
         database.Insert( "INSERT INTO notifications( m_id, is_seen, type, content, date, p_id )" +
                          "VALUES( '" + getMeetingID() + "', '" + "0" + "', '" + typeOfNotification + "',  '" + this.description+ "', '" + this.startDate + "',  '" +
                                                     recipient + "');");
+    }
+    
+    public void insertNotGroupQuery( String typeOfNotification, ArrayList<String> listOfPeople){
+       
+        database.Insert( "INSERT INTO notifications( m_id, is_seen, type, content, date, p_id )" +
+                         "VALUES( '" + getMeetingID() + "', '" + "0" + "', '" + typeOfNotification + "',  '" + this.description+ "', '" + this.startDate + "',  '" +
+                                                    listOfPeople + "');");
     }
     
     public void insertOtherPIMQuery(String is_manager, ArrayList<String> recipients){
