@@ -101,7 +101,7 @@ public class DbClass
         return rowcount;
     }
     
-    public  ArrayList<String> outputAllRows(String query)
+    public  ArrayList<String> outputAllRows(String query, int num)
     {
         ArrayList<String> list = new ArrayList<>();
         
@@ -112,13 +112,15 @@ public class DbClass
 
            while( statementResult.next() )
            {
-               list.add(statementResult.getString(3));
+               list.add(statementResult.getString(num));
            }
         } 
         catch (SQLException exceptionObject) {}
      
         return list;
  }
+    
+    
     
     
     public boolean issetup()

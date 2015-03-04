@@ -22,13 +22,13 @@ public class FindMeetings
     
     public ArrayList<String> getMeetingsSlot(String p_id, String date){
         
-        return db.outputAllRows("SELECT * FROM meetings AS m JOIN people_in_meetings AS pm ON m.m_id = pm.m_id WHERE pm.p_id = '" + p_id + "' AND m.date = '" + date + "'");
+        return db.outputAllRows("SELECT * FROM meetings AS m JOIN people_in_meetings AS pm ON m.m_id = pm.m_id WHERE pm.p_id = '" + p_id + "' AND m.date = '" + date + "'", 3);
     }
     
     public ArrayList<String> getTutorialSlot( String p_id, String date ){
         
         return db.outputAllRows("SELECT * FROM meetings AS m JOIN  people_in_modules AS pm JOIN modules_in_meetings AS mm "
-                              + "ON pm.mod_id = mm.mod_id AND m.m_id = mm.m_id WHERE pm.p_id = '" + p_id + "'");
+                              + "ON pm.mod_id = mm.mod_id AND m.m_id = mm.m_id WHERE pm.p_id = '" + p_id + "'", 3);
     }
     
     public TreeMap<String,String> getFreeTime( ArrayList<String> p_ids, String date )
