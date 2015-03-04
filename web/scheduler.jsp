@@ -77,6 +77,7 @@
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center pull-left">
                     
                     <img id="avatar" src="MarkUp/images/avatar.gif" />
+                    <br/>
                     <%
                         if (session.getAttribute("lastName") == null) 
                         {
@@ -90,6 +91,8 @@
                             lastName = session.getAttribute("lastName").toString();
                             out.println(firstName + " " + lastName );
                     %>
+                    <br/><br/>
+                    <a href="notification.jsp" ><button type="button" class="btn btn-primary btn-wide">Notifications</button></a>
                     <br/><br/>
                     <a href="addmodules.jsp" ><button type="button" class="btn btn-primary btn-wide">Set Your Modules</button></a>
                     <hr/> 
