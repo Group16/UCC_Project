@@ -27,7 +27,7 @@ public class GUI {
      * @return returns html form
      */
     public String generateRegGUI(CheckerClass checker) {
-        result = "<form name='form' action='registration.jsp' method='POST'>";
+        result = "<form name='form'id='forms' action='registration.jsp' method='POST'>";
 
         //Date: If the date is empty or the date is incorrect format
         if (checker.getDate().equals("") || checker.correctDate == false) {

@@ -12,7 +12,7 @@
 
 <!DOCTYPE html>
 <html>
-   
+<link href="MarkUp/css/style.css" rel="stylesheet">  
                     <jsp:useBean id="checker" class="control.CheckerClass" scope="session" />
                     <jsp:setProperty name="checker" property="*"/>
                     <%
