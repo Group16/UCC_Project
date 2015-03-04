@@ -50,9 +50,9 @@
                  }
                  else
                  {
-                     out.println("Personal event set");
                      meeting.insertPersonalPIMQuery((String)session.getAttribute("id") );
                      meeting.insertPersonalQuery();
+                     response.sendRedirect("scheduler.jsp");
                   }
              }
              else
