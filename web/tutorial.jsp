@@ -38,20 +38,26 @@
   
         <%
          UI.GUI gui = new UI.GUI();
-         notification.Notify not = new notification.Notify();
+         database.DbClass db = new database.DbClass();
+         
          if( session.getAttribute( "firstName" ) == null ) {
                 response.sendRedirect( "login.jsp" );
          }
          else
          {
             if(request.getParameter( "submit" ) != null){
-                 if( !meeting.validate() ){  
+                 if( !meeting.validateTutorial() ){  
                       out.println(gui.generateTutorialGUI(meeting));
                  }
                  else
                  {
-                     String [] people = request.getParameter("recipient").split(","); 
+                     String group = request.getParameter("recipient"); 
+                     
+                     ArrayList<String> people = db.outputAllRows("SELECT p_id FROM people_meetings WHERE mod_id = '" + group + "'", 1);
+                     
                      ArrayList<String> list = new ArrayList();
+                     
+                     
                      for(String person : people)
                      {
                          list.add(person.trim());

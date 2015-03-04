@@ -351,7 +351,7 @@ public class GUI {
 
         result = "<form name='form' action='tutorial.jsp' method='POST'>";
 
-        if (meeting.correctGroup == false) {
+        if (meeting.correctRecipient == false) {
             result += "Group to set tutorial with<input type='text' name='recipient' placeholder='Enter a users ID' />";
         } else {
             result += "Person you wish to meet <input type='text' name='recipient' value='" + meeting.getRecipient() + "' />";
