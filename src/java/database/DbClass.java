@@ -22,11 +22,11 @@ public class DbClass
 //    private static final String USERNAME = "root";
 //    private static final String PASSWORD = "root";
     
-   private static final String HOST  = "cs1.ucc.ie";
+    private static final String HOST  = "cs1.ucc.ie";
     private static final String DATABASE  = "2016_mm37";
    private static final String USERNAME = "mm37";
    private static final String PASSWORD = "uohongah";
-    
+   
     private boolean setup = false;
     public boolean queryCorrect = false;
     
