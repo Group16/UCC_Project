@@ -45,6 +45,12 @@ public class FindMeetings
         int failsafe = 0;
         do
         {   
+            //While the day is Sunday or Saterday, add a day untill its not.
+            while ( cal.get( Calendar.DAY_OF_WEEK ) == 1 || cal.get( Calendar.DAY_OF_WEEK ) == 7 )
+            {
+                cal.add(Calendar.DAY_OF_YEAR, 1);
+            }
+            
             for ( String p_id : p_ids )
             {   
                 byte[] bytes = new byte[hours];
