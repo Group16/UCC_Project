@@ -74,7 +74,7 @@ public class CheckerClass {
         this.password1 = "";
         this.password2="";
         this.generatedPassword="";
-        array = new String[7];
+        array = new String[8];
     } 
     /**
      * A method which sets the date
@@ -235,6 +235,20 @@ public class CheckerClass {
         //Boolean value which is returned
         boolean valid = true;
        
+        database.checkQuery("select * FROM people where p_id='" + ID + "'");
+                
+        if(database.queryCorrect==true) 
+        { 
+             array[7]="*User ID already in use";
+             valid=false;
+             correctID = false;
+        } 
+        else 
+        {
+             correctID = true;
+             array[7]="*User ID already in use";
+        }
+        
         //If the id field is empty
         if(ID == null){
             //set the validation to false
