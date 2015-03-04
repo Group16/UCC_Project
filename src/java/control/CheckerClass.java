@@ -246,7 +246,7 @@ public class CheckerClass {
         else 
         {
              correctID = true;
-             array[7]="*User ID already in use";
+             array[7]="";
         }
         
         //If the id field is empty
