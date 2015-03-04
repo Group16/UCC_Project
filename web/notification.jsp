@@ -20,9 +20,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+            <link href="MarkUp/css/style.css" rel="stylesheet">
     </head>
     <body>
-        <h1>Notification</h1>
+      
         
         
         <%
@@ -51,12 +52,15 @@
                     try {// Make connection to database
                         statementObject = connectionObject.createStatement();
                         ResultSet statementResult = statementObject.executeQuery("SELECT meetings.m_id, time, meetings.date, location, meetings.type, description FROM meetings JOIN notifications ON meetings.m_id = notifications.m_id WHERE p_id ='" + session.getAttribute("id") + "'");
-                        %><form id="forms" action="notification.jsp" method="POST"><%
-                         %><table style="border: 1px solid red; border-collapse: collapse;" ><%
+                        %><form action="notification.jsp" id="forms" method="POST">
+                            
+                            
+                            <%
+                         %><table style="border: 1px solid #09F; border-collapse: collapse; width: 100%;  ><%
                      
                         while(statementResult.next()){
                           
-                            %><tr style="border: 1px solid red; margin-top:20px;"><%
+                            %><tr style=" border: 1px solid #09F; margin-top:20px; text-align: "><%
                             %><td><%
                             output = statementResult.getString(2) + ", ";
                             output += statementResult.getString(3) + ", ";

@@ -81,40 +81,11 @@ public class GUI {
             result += "<label>Re-Enter Password<input type='password' name='password2' id='password2' value='" + checker.getPassword2() + "'/></label>";
         }
 
-        result += "<select class='div-toggler' data-target='.streams'>";
-        result += "<option value=''>Choose Your Computer Science Stream</option>";
-        result += "<option value='compSciValue' data-show='.compSci'>BSc in Computer Science</option>";
-        result += "<option value='webSciValue' data-show='.webSys'>BSc in Computer Science (Web Systems Engineering)</option>";
-        result += "</select>";
-        result += "<div class='streams'>";
-        result += "<div class='compSci hide'>";
-        result += " <label>CS3300 Work Placement<input type='checkbox' name='module' value='CS3300' /></label></br>";
-        result += " <label>CS3301 Work Placement<input type='checkbox' name='module' value='CS3301' /></label></br>";
-        result += "<label>CS3306 Workplace Technology and Skills<input type='checkbox' name='module' value='CS3306' /></label></br>";
-        result += " <label>CS3311 Middleware<input type='checkbox' name='module' value='CS3311' /></label><br>";
-        result += " <label>CS3500 Software Engineering<input type='checkbox' name='module' value='CS3500' /></label></br>";
-        result += " <label>CS3505 Web Systems Team Project<input type='checkbox' name='module' value='CS3505' /></label></br>";
-        result += " <label>CS3506 Networks and Data Communications<input type='checkbox' name='module' value='CS3506' /></label></br>";
-        result += " <label>CS3508 Algorithms and Non-linear Data Structures<input type='checkbox' name='module' value='CS3508' /></label></br>";
-        result += " <label>CS3509 Theory of Computation<input type='checkbox' name='module' value='CS3509' /></label></br>";
-        result += " <label>CS3514 C-Programming for Microcontrollers<input type='checkbox' name='module' value='CS3514' /></label></br>";
-        result += " </div>";
-        result += " <div class='webSys hide'>";
-        result += " <label>CS3300 Work Placement<input type='checkbox' name='module' value='CS3300' /></label></br>";
-        result += " <label>CS3301 Work Placement<input type='checkbox' name='module' value='CS3301' /></label></br>";
-        result += " <label>CS3306 Workplace Technology and Skills<input type='checkbox' name='module' value='CS3306' /></label></br>";
-        result += " <label>CS3311 Middleware<input type='checkbox' name='module' value='CS3311' /></label></br>";
-        result += "<label>CS3500 Software Engineering<input type='checkbox' name='module' value='CS3500' /></label></br>";
-        result += "<label>CS3505 Web Systems Team Project<input type='checkbox' name='module' value='CS3505' /></label></br>";
-        result += " <label>CS3510 Advanced Server-Side Programming<input type='checkbox' name='module' value='CS3510' /></label></br>";
-        result += " <label>CS3511 Web Security<input type='checkbox' name='module' value='CS3511' /></label></br>";
-        result += " <label>CS3512 Advanced XML Technologies<input type='checkbox' name='module' value='CS3512' /></label></br>";
-        result += " <label>CS3513 Client-side Programming<input type='checkbox' name='module' value='CS3513' /></label></br>";
-        result += " </div>";
-        result += " </div>";
-        result += " <div class='action_btns'>";
 
-        result += " </div>";
+               result += " <input type=\"submit\" name='submit' />";
+
+
+
 
         result += "<input type='submit' name='submit' />";
 
@@ -153,40 +124,7 @@ public class GUI {
         result += "<div class='action_btns'>";
         result += "<a href='#login' data-toggle='modal' data-dismiss='modal'>Already have an account?</a>";
         result += "</div>";
-        result += "<select class='div-toggler' data-target='.streams'>";
-        result += "<option value=''>Choose Your Computer Science Stream</option>";
-        result += "<option value='compSciValue' data-show='.compSci'>BSc in Computer Science</option>";
-        result += "<option value='webSciValue' data-show='.webSys'>BSc in Computer Science (Web Systems Engineering)</option>";
-        result += "</select>";
-        result += "<div class='streams'>";
-        result += "<div class='compSci hide'>";
-        result += " <label>CS3300 Work Placement<input type='checkbox' name='module' value='CS3300' /></label></br>";
-        result += " <label>CS3301 Work Placement<input type='checkbox' name='module' value='CS3301' /></label></br>";
-        result += "<label>CS3306 Workplace Technology and Skills<input type='checkbox' name='module' value='CS3306' /></label></br>";
-        result += " <label>CS3311 Middleware<input type='checkbox' name='module' value='CS3311' /></label><br>";
-        result += " <label>CS3500 Software Engineering<input type='checkbox' name='module' value='CS3500' /></label></br>";
-        result += " <label>CS3505 Web Systems Team Project<input type='checkbox' name='module' value='CS3505' /></label></br>";
-        result += " <label>CS3506 Networks and Data Communications<input type='checkbox' name='module' value='CS3506' /></label></br>";
-        result += " <label>CS3508 Algorithms and Non-linear Data Structures<input type='checkbox' name='module' value='CS3508' /></label></br>";
-        result += " <label>CS3509 Theory of Computation<input type='checkbox' name='module' value='CS3509' /></label></br>";
-        result += " <label>CS3514 C-Programming for Microcontrollers<input type='checkbox' name='module' value='CS3514' /></label></br>";
-        result += " </div>";
-        result += " <div class='webSys hide'>";
-        result += " <label>CS3300 Work Placement<input type='checkbox' name='module' value='CS3300' /></label></br>";
-        result += " <label>CS3301 Work Placement<input type='checkbox' name='module' value='CS3301' /></label></br>";
-        result += " <label>CS3306 Workplace Technology and Skills<input type='checkbox' name='module' value='CS3306' /></label></br>";
-        result += " <label>CS3311 Middleware<input type='checkbox' name='module' value='CS3311' /></label></br>";
-        result += "<label>CS3500 Software Engineering<input type='checkbox' name='module' value='CS3500' /></label></br>";
-        result += "<label>CS3505 Web Systems Team Project<input type='checkbox' name='module' value='CS3505' /></label></br>";
-        result += " <label>CS3510 Advanced Server-Side Programming<input type='checkbox' name='module' value='CS3510' /></label></br>";
-        result += " <label>CS3511 Web Security<input type='checkbox' name='module' value='CS3511' /></label></br>";
-        result += " <label>CS3512 Advanced XML Technologies<input type='checkbox' name='module' value='CS3512' /></label></br>";
-        result += " <label>CS3513 Client-side Programming<input type='checkbox' name='module' value='CS3513' /></label></br>";
-        result += " </div>";
-        result += " </div>";
-        result += " <div class='action_btns'>";
-        result += "<input type='submit' name='submit' value 'Submit'/>";
-        result += " </div>";
+        result += " <input type=\"submit\" name='submit' />";
         result += " </form>";
         //returns html form
         return result;
@@ -199,12 +137,9 @@ public class GUI {
      */
     public String generateReg2GUI() {
 
-        result = "<form name='form' id='regForm' action='addmodules.jsp' method='POST'>";
-//        result += "<select class='div-toggler' data-target='.streams'>";
-//        result += "<option value=''>Choose Your Computer Science Stream</option>";
-//        result += "<option value='CK401' >CK401 Computer Science</option>";
-//        result += "</select>";
-//        result += "</br>";
+        result = "<form name='form' id='forms' action='addmodules.jsp' method='POST'>";
+        result += "<h1> Please Choose Your Modules</h1>";
+
         result += "<select class='div-toggler' data-target='.streams'>";
         result += "<option value=''>Choose Your Computer Science Stream</option>";
         result += "<option value='compSciValue' data-show='.compSci'>BSc in Computer Science</option>";
@@ -277,8 +212,8 @@ public class GUI {
 
     public String generateMeetingGUI(MeetingChecker meeting) {
 
-        result = "<form name='form' action='meeting.jsp' method='POST'>";
-
+        result = "<form name='form'id='forms' action='meeting.jsp' method='POST'>";
+        result += "<h1>Arrange A Meeting</h1><hr>";
         if (meeting.correctRecipient == false) {
             result += "ID of person(s) you wish to meetwith <input type='text' name='recipient' placeholder='Enter a users ID' />";
         } else {
@@ -306,10 +241,10 @@ public class GUI {
                 + "</select>";
 
         if (meeting.correctDescription == false) {
-            result += "Description: <textarea name='description' cols='-40' rows='20' placeholder='Insert meeting description here' ></textarea>";
+            result += "Description:  <br><textarea name='description' cols='40' rows='10' placeholder='Insert meeting description here' ></textarea>";
 
         } else {
-            result += "Description: <textarea name='description' cols='-40' rows='20' >" + meeting.getDescription() + "</textarea>";
+            result += "Description: <br><textarea name='description' cols='40' rows='10' >" + meeting.getDescription() + "</textarea><br><hr>";
         }
 
         result += "<input type='submit' name='submit' />";
@@ -329,7 +264,8 @@ public class GUI {
 
     public String generateMeetingGUI() {
 
-        result = "<form name='form' action='meeting.jsp' method='POST'>";
+        result = "<form name='form'id='forms' action='meeting.jsp' method='POST'>";
+        result += "<h1>Arrange A Meeting</h1><hr>";
         result += "<label>Persons ID Number<input type='text' name='recipient' placeholder='Enter a users ID' /></label>";
         result += "<label>Start Date<input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' /></label>";
         result += "<label>Location <input type='text' name='location' placeholder='WGB G.01' />";
@@ -340,7 +276,7 @@ public class GUI {
         result += "  <option value='fortnight'>Fortnightly</option>";
         result += "  <option value='monthly'>Monthly</option>";
         result += "</select>";
-        result += "Description: <textarea name='description' cols='-40' rows='20' placeholder='Insert meeting description here' ></textarea>";
+        result += "Description: <br><textarea name='description' cols='40' rows='10' placeholder='Insert meeting description here' ></textarea><br><hr>";
         result += "<input type='submit' name='submit' />";
 
         //returns html form
@@ -349,8 +285,8 @@ public class GUI {
 
     public String generateTutorialGUI(MeetingChecker meeting) {
 
-        result = "<form name='form' action='tutorial.jsp' method='POST'>";
-
+        result = "<form name='form' id='forms' action='tutorial.jsp' method='POST'>";
+        result += "<h1>Arrange A Meeting</h1><hr>";
         if (meeting.correctRecipient == false) {
             result += "Group to set tutorial with<input type='text' name='recipient' placeholder='Enter a users ID' />";
         } else {
@@ -378,10 +314,10 @@ public class GUI {
                 + "</select>";
 
         if (meeting.correctDescription == false) {
-            result += "Description: <textarea name='description' cols='-40' rows='20' placeholder='Insert meeting description here' ></textarea>";
+            result += "Description: <textarea name='description' cols='-40' rows='20' placeholder='Insert meeting description here' ></textarea><br><hr>";
 
         } else {
-            result += "Description: <textarea name='description' cols='-40' rows='20' >" + meeting.getDescription() + "</textarea>";
+            result += "Description: <br><textarea name='description' cols='-40' rows='20' >" + meeting.getDescription() + "</textarea><br><hr>";
         }
 
         result += "<input type='submit' name='submit' />";
@@ -400,10 +336,8 @@ public class GUI {
     }
 
     public String generateTutorialGUI() {
-        result = "<div class='btn-group dropdown keep-open'>";
-        result += "<button id='buttonDrop' type='button' data-toggle='dropdown' class='btn btn-primary dropdown-toggle'>Arrange A Meeting ? <span class='caret'></span></button>";
-        result += "<ul class='dropdown-menu'>";
-        result += "<form name='form' action='tutorial.jsp' method='POST'>";
+
+        result += "<form name='forms' id='forms' action='tutorial.jsp' method='POST'>";
         result += "Group to set tutorial with<input type='text' name='recipient' placeholder='Enter a users ID' />";
         result += "Start Date <input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' />";
         result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
@@ -414,11 +348,11 @@ public class GUI {
         result += "  <option value='monthly'>Monthly</option>";
         result += "  <option value='semester'>Semester</option>";
         result += "</select>";
-        result += "Description: <textarea name='description' cols='-40' rows='20' placeholder='Insert meeting description here' ></textarea>";
+        result += "Description: <br><textarea name='description' cols='-40' rows='20' placeholder='Insert meeting description here' ></textarea><br><hr>";
         result += "<li role='presentation' class='divider'></li>";
         result += "<input type='submit' name='submit' />";
         result += "</ul>";
-        result += "</div>";
+        result += "</form>";
 
 
         //returns html form
@@ -426,8 +360,8 @@ public class GUI {
     }
 
     public String generatePersonalGUI(MeetingChecker meeting) {
-        result = "<form name='form' action='personal.jsp' method='POST'>";
-
+        result = "<form id='forms' id='forms' name='forms' action='personal.jsp' method='POST'>";
+        result += "<h1>Arrange A Personal Event</h1><hr>";
         if (meeting.correctDescription == false) {
             result += "Personal Event: <input type='text' name='description' placeholder='Doctor Appointment' />";
         } else {
@@ -473,8 +407,8 @@ public class GUI {
     }
 
     public String generatePersonalGUI() {
-        result = "<form name='form' action='personal.jsp' method='POST'>";
-
+        result = "<form name='forms' id='forms' action='personal.jsp' method='POST'>";
+        result += "<h1>Create A Personal Event</h1><hr>";
         result += "Personal Event: <input type='text' name='description' placeholder='Doctor Appointment' />";
         result += "Start Date <input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' />";
         result += "Start Time <input type='text' class='timepicker' name='time' placeholder='12:00:00' />";
@@ -485,7 +419,7 @@ public class GUI {
         result += "  <option value='fortnight'>Fortnightly</option>";
         result += "  <option value='monthly'>Monthly</option>";
         result += "</select>";
-        result += "<input type='submit' name='submit' />";
+        result += "<br><hr><input type='submit' name='submit' />";
 
         //returns html form
         return result;

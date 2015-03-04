@@ -12,6 +12,7 @@
 
 <!DOCTYPE html>
 <html>
+   
                     <jsp:useBean id="checker" class="control.CheckerClass" scope="session" />
                     <jsp:setProperty name="checker" property="*"/>
                     <%

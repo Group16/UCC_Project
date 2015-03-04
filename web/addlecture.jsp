@@ -11,9 +11,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+                    <link href="MarkUp/css/style.css" rel="stylesheet">
     </head>
     <body>
-        <h1>Add a Lecture</h1>
+      
         
         <jsp:useBean id="meeting" class="control.MeetingChecker" scope="session" />
         <jsp:setProperty name="meeting" property="*"/>
@@ -34,7 +35,8 @@
             }
             else
             {
-                out.print("<form action='addlecture.jsp'>"
+                out.print("<form action='addlecture.jsp' id='forms'>"
+                        + "<h1>Add a Lecture</h1>"
                         + "Title: <input type='text' name='description' />"
                         + "Location: <input type='text' name='location' />"
                         + "Start Date:<input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' />"
