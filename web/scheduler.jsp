@@ -36,11 +36,8 @@
         <title>UCC Connect | Schedules</title>
 
         <!-- Bootstrap -->
-        <!-- Imported through CSS -->>
+        <!-- Imported through CSS -->
         <link href="MarkUp/css/style.css" rel="stylesheet">
-
-
-
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,6 +45,7 @@
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+        
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">	
@@ -68,7 +66,7 @@
                     <li><a href="#">UCC</a></li>
                     <li><a href="#">Features</a></li>
                     <li><a href="http://localhost:8080/UCC_Scheduler_Program/logout.jsp">Logout</a></li>
-                    <li><a href="https://mohittare.wordpress.com/2013/07/28/using-fullcalendarwithjava/">Help</a></li>															
+                    <li><a href="#">Help</a></li>															
                 </ul>							
             </div>	
         </div> <!-- div .navbar navbar-inverse navbar-fixed-top-->
@@ -78,7 +76,7 @@
             <div class="row">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center pull-left">
                     <img id="avatar" src="MarkUp/images/avatar.gif" />
-                    
+                    <hr> 
                     <%
                         UI.GUI ui = new UI.GUI();
                         if (session.getAttribute("lastName") == null) {
@@ -88,15 +86,22 @@
                             String lastName;
                             firstName = session.getAttribute("firstName").toString();
                             lastName = session.getAttribute("lastName").toString();
-                            out.println(firstName + " " + lastName);
+                            out.println(firstName + " " + lastName + "<br>");
                     %>
+                   
                     <div class="btn-group dropdown">
                         <button id="buttonDrop" type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Arrange A Meeting ? <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <% out.println(ui.generateMeetingGUI());%>
                         </ul>
+                    </div><br><hr>
+                        
+                    <div class="btn-group dropdown">
+                        <button id="buttonDrop" type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Arrange Personal Event ? <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <% out.println(ui.generatePersonalGUI());%>
+                        </ul>
                     </div>
-
 
                     <%
 
