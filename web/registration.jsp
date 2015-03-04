@@ -38,27 +38,7 @@
                                 out.print(ui.generateRegGUI(checker));
                                 //if the form is valid
                             } else {
-                                
-                                DbClass db = new DbClass();
-                                db.setup();
-
-                                String[] courseModules = request.getParameterValues("module");
-
-                                if ( courseModules != null ) 
-                                {
-                                    for (int i = 0; i < courseModules.length; i++) 
-                                    {
-                                        db.Insert( "INSERT INTO people_in_modules (p_id, mod_id) VALUES ('" + session.getAttribute("id") + "','" + courseModules[i] + "');" );
-                                    }
-
-                                    response.sendRedirect("scheduler.jsp");
-                                } 
-                                else 
-                                {
-                                    out.println("Please Check Some Boxes");
-                                }
-                                
-                                
+                                                                
                                 out.print("You have been registered");
                                 //Insert the form into the database
                                 checker.get_SHA_256_SecurePassword(pwd);
