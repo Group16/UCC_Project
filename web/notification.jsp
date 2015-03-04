@@ -4,6 +4,7 @@
     Author     : mm37
 --%>
 
+<%@page import="database.DbClass"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.SQLException"%>
@@ -36,7 +37,7 @@
             }
             else
             {
-                connectionObject = DriverManager.getConnection("jdbc:mysql://"+"cs1.ucc.ie"+"/" + "2016_mm37", "mm37", "uohongah");
+                connectionObject = DriverManager.getConnection("jdbc:mysql://" + DbClass.getHost() + "/" + DbClass.getDatabase(), DbClass.getUser(), DbClass.getPassword());
                 database.DbClass db = new database.DbClass();
                 db.setup();
                 db.checkQuery("select * from notifications where p_id='" + session.getAttribute("id") + "'");
