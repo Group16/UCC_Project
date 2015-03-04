@@ -10,13 +10,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+            <link href="MarkUp/css/style.css" rel="stylesheet">
         
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
     </head>
     <body>
-        <h1>Hello World!</h1>
+       
         <jsp:useBean id="meeting" class="control.MeetingChecker" scope="session" />
         <jsp:setProperty name="meeting" property="*"/>
         
