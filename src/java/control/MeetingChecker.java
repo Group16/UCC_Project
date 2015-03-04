@@ -17,15 +17,15 @@ import java.util.TreeMap;
  */
 public class MeetingChecker {
     //Refrences class
-    DbClass database;
+    private DbClass database;
+ 
+    private DbClass database2;
     
-    DbClass database2;
-    
-    FindMeetings findmeetings = new FindMeetings();
+    private final FindMeetings findmeetings;
     
     private int meetingID;
    
-    ArrayList<String> list;
+    private ArrayList<String> list;
     
     private String sender;
     
@@ -68,10 +68,10 @@ public class MeetingChecker {
     
     public MeetingChecker(String meetingID, String time, String startDate, String location, String recurring, String endDate, String type, String description)
     {
-        database = new DbClass();
-        database2 = new DbClass();
-        database.setup();
-        database2.setup();
+        this.database = new DbClass();
+        this.database2 = new DbClass();
+        this.database.setup();
+        this.database2.setup();
         
         try{
             this.meetingID = Integer.parseInt(meetingID);
@@ -89,14 +89,17 @@ public class MeetingChecker {
         this.location=location;
         this.description=description;
         this.group ="";
-        array = new String[4];
+        this.array = new String[4];
+        this.list = new ArrayList<>();
+        this.findmeetings = new FindMeetings();
     }
     
-    public MeetingChecker(){
-        database = new DbClass();
-        database2 = new DbClass();
-        database.setup();
-        database2.setup();
+    public MeetingChecker()
+    {
+        this.database = new DbClass();
+        this.database2 = new DbClass();
+        this.database.setup();
+        this.database2.setup();
         this.meetingID=0;
         this.sender ="";
         this.recipient="";
@@ -108,8 +111,9 @@ public class MeetingChecker {
         this.location="";
         this.description="";
         this.group ="";
-        array = new String[4];
-        list = new ArrayList<>();
+        this.array = new String[4];
+        this.list = new ArrayList<>();
+        this.findmeetings = new FindMeetings();
     }
     
     public void setSender( String enteredSender){
