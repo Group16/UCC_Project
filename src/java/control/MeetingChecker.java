@@ -200,15 +200,12 @@ public class MeetingChecker {
     {
         TreeMap<String,String> freeTime = findmeetings.getFreeTime(list, startDate);
         
-        System.out.println(getMeetingID());
-        System.out.println(confirmed);
-        System.out.println(freeTime.firstEntry().getKey());
-        System.out.println(freeTime.get(freeTime.firstKey()));
-        System.out.println(this.location);
-        System.out.println(this.recurring);
-        System.out.println(type);
-        System.out.println(this.description);
-        System.out.println(dateSent());
+        if( freeTime == null )
+        {
+            System.out.print("THE FIND MEETINGS TREE WAS NULL");
+            return;
+        }
+        
         database.Insert("INSERT INTO meetings( m_id, confirmed, time, date, location, recur, type, description, dateToday )" +
                          "VALUES( '" + getMeetingID() + "', '" + confirmed + "', '" + freeTime.firstEntry().getKey() + "', '" + freeTime.get(freeTime.firstKey()) + "', '" + this.location + "',  '" + this.recurring + "',  '" +
                                                     type + "', '" + this.description + "', '" + dateSent() + "');");
