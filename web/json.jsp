@@ -56,7 +56,7 @@
                             String type  = statementResult.getString(7);
                             String description  = statementResult.getString(8);
                             
-                            if ( recurring.equals("weekly") || recurring.equals("daily") || recurring.equals("fortnight") )
+                            if ( recurring.equals("weekly") || recurring.equals("daily") || recurring.equals("fortnight") || recurring.equals("monthly") )
                             {
                                 Date recurDate = dateFormat.parse(startDate);
 
@@ -87,7 +87,7 @@
                                     // This needs to be after the object is created for reasons.
                                     if ( recurring.equals("weekly") )
                                     {
-                                        recurCal.add(Calendar.DAY_OF_YEAR, 7);
+                                        recurCal.add(Calendar.WEEK_OF_YEAR, 1);
                                     }
                                     else if ( recurring.equals("daily") )
                                     {
@@ -95,7 +95,11 @@
                                     }
                                     else if ( recurring.equals("fortnight") )
                                     {
-                                        recurCal.add(Calendar.DAY_OF_YEAR, 14);
+                                        recurCal.add(Calendar.WEEK_OF_YEAR, 2);
+                                    }
+                                    else if ( recurring.equals("monthly") )
+                                    {
+                                        recurCal.add(Calendar.MONTH, 1);
                                     }
                                 }
                             }
