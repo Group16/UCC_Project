@@ -10,65 +10,65 @@ package stuff;
  * @author daniel
  */
 public class JSONMeeting
-        {
-            private String m_id;
-            private String confirmed;
-            private String time;
-            private String startDate;
-            private String location;
-            private String recurring;
-            private String type;
-            private String description;
+{
+    private String m_id;
+    private String confirmed;
+    private String time;
+    private String startDate;
+    private String location;
+    private String recurring;
+    private String type;
+    private String description;
 
-            public JSONMeeting( String m_id, String confirmed, String time, String startDate, String location, String recurring, String type, String description )
-            {
-                this.m_id = m_id;
-                this.confirmed = confirmed;
-                this.time = time;
-                this.startDate = startDate;
-                this.location = location;
-                this.recurring = recurring;
-                this.type = type;
-                this.description = description;
-            }
-            
-            public String getM_id()
-            {
-                return m_id;
-            }
+    public JSONMeeting( String m_id, String confirmed, String time, String startDate, String location, String recurring, String type, String description )
+    {
+        this.m_id = m_id;
+        this.confirmed = confirmed;
+        this.time = time;
+        this.startDate = startDate;
+        this.location = location;
+        this.recurring = recurring;
+        this.type = type;
+        this.description = description;
+    }
 
-            public String getConfirmed()
-            {
-                return confirmed;
-            }
+    public String getM_id()
+    {
+        return m_id;
+    }
 
-            public String getTime()
-            {
-                return time;
-            }
+    public String getConfirmed()
+    {
+        return confirmed;
+    }
 
-            public String getStartDate()
-            {
-                return startDate;
-            }
+    public String getTime()
+    {
+        return time;
+    }
 
-            public String getLocation()
-            {
-                return location;
-            }
+    public String getStartDate()
+    {
+        return startDate;
+    }
 
-            public String getRecurring()
-            {
-                return recurring;
-            }
+    public String getLocation()
+    {
+        return location;
+    }
 
-            public String getType()
-            {
-                return type;
-            }
+    public String getRecurring()
+    {
+        return recurring;
+    }
 
-            public String getDescription()
-            {
-                return description;
-            }
-        }
+    public String getType()
+    {
+        return type;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
+}
