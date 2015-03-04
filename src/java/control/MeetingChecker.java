@@ -268,7 +268,7 @@ public class MeetingChecker {
                 
                 }   
                 database.checkQuery("select * from people where p_id='" + this.recipient + "'");
-                database2.checkQuery("select * FROM people where p_id='" + this.recipient+ "'");
+                database2.checkQuery("select * FROM modules where mod_id='" + this.recipient+ "'");
                 
                 if(database.queryCorrect==true) 
                 { 
