@@ -8,10 +8,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.TreeMap;
+import json.MakeJSONArray;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -21,35 +20,30 @@ public class FindMeetings
     private final DbClass db = new DbClass();
     
     private static final int HOURS_IN_DAY = 10; //There are 10 hours in working day.
-    private static final int HOUR_TO_START = 8; //Day starts at 8 am
+    private static final int HOUR_TO_START = 8; //Day starts at 8 am HI
     
     public FindMeetings( )
     {
         db.setup();
     }
     
-    public ArrayList<String> downloadJSON( String date )
+    public ArrayList<String> downloadJSON( String p_id, String date )
     {
         URLConnection connection;
         ArrayList<String> times = new ArrayList<>();
+        date = date.replace('/', '-');
         
         try
-        {
-            String url = "http://localhost:8080/UCC_Scheduler_Program/json.jsp";
-            connection = new URL( url ).openConnection();
-            Scanner scanner = new Scanner( connection.getInputStream() );
-            scanner.useDelimiter( "\\Z" );
-            String stringContent = scanner.next();
-            
-            JSONArray ja = (JSONArray) JSONValue.parse( stringContent );
+        {   
+            JSONArray ja = new MakeJSONArray().make(p_id);
             
             for ( int i=0 ; i < ja.size() ; i++ )
             {
                 JSONObject jo = (JSONObject) ja.get(i);
                 
-                if ( ((String) jo.get("rawDate")).equals(date) )
+                if ( jo.get("rawDate").toString().equals( date ) )
                 {
-                    times.add( (String) jo.get("rawTime") );
+                    times.add( jo.get("rawTime").toString() );
                 }
             }
         }
@@ -96,7 +90,7 @@ public class FindMeetings
             {   
                 byte[] bytes = new byte[HOURS_IN_DAY];
 
-                ArrayList<String> meetings = downloadJSON( dateFormat.format(cal.getTime()));
+                ArrayList<String> meetings = downloadJSON( p_id, dateFormat.format(cal.getTime()));
                 
                 for ( int i=0 ; i < HOURS_IN_DAY ; i++ )
                 {
@@ -116,7 +110,7 @@ public class FindMeetings
             }
 
             byte[] startBytes = new byte[HOURS_IN_DAY];
-            Integer lastFreeSlot = null;
+//            Integer lastFreeSlot = null;
             
             for ( int i=0 ; i < HOURS_IN_DAY ; i++ )
             {
