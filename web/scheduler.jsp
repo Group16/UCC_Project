@@ -77,9 +77,8 @@
         <div class="container" id="scheduler_container">
             <div class="row">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center pull-left">
-
-
-
+                    <img id="avatar" src="MarkUp/images/avatar.gif" />
+                    
                     <%
                         UI.GUI ui = new UI.GUI();
                         if (session.getAttribute("lastName") == null) {
@@ -89,26 +88,26 @@
                             String lastName;
                             firstName = session.getAttribute("firstName").toString();
                             lastName = session.getAttribute("lastName").toString();
-                            out.println("</br> Welcome " + firstName + " " + lastName);
+                            out.println(firstName + " " + lastName);
                     %>
                     <div class="btn-group dropdown">
-                        <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Arrange A Meeting ? <span class="caret"></span></button>
+                        <button id="buttonDrop" type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Arrange A Meeting ? <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <% out.println(ui.generateMeetingGUI());%>
                         </ul>
                     </div>
 
-                   
-                            <% 
-                            
-                                if (session.getAttribute("p_type").equals("lecturer")) {
-                                    out.println(ui.tutorialButton());
-                                    }
-                                }
-                            %>
-                  
 
-                    
+                    <%
+
+                            if (session.getAttribute("p_type").equals("lecturer")) {
+                               out.println(ui.generateTutorialGUI());
+                            }
+                        }
+                    %>
+
+
+
 
                     <form name='form' action='welcome.jsp' method='POST'>
 
@@ -180,7 +179,7 @@
         <script src="MarkUp/js/fullcalendar.min.js"></script>
 
         <script src="MarkUp/js/bootstrap.min.js"></script>
- 
+
         <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
         <script type="text/javascript">
 
@@ -204,6 +203,11 @@
             $(function( ) {
                 $(".timepicker").timepicker({timeFormat: "H:i:s"});
             });
+
+
+            $('#buttonDrop').on('hide.bs.dropdown', function() {
+                return false;
+            })
         </script>
 
 

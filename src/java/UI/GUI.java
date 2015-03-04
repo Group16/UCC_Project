@@ -349,9 +349,10 @@ public class GUI {
     }
     
     public String generateTutorialGUI() {
-
-        result = "<form name='form' action='tutorial.jsp' method='POST'>";
-
+        result = "<div class='btn-group dropdown'>";
+        result += "<button id='buttonDrop' type='button' data-toggle='dropdown' class='btn btn-primary dropdown-toggle'>Arrange A Meeting ? <span class='caret'></span></button>";
+        result += "<ul class='dropdown-menu'>";
+        result += "<form name='form' action='tutorial.jsp' method='POST'>";
         result += "Group to set tutorial with<input type='text' name='recipient' placeholder='Enter a users ID' />";
         result += "Start Date <input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' />";
         result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
@@ -363,7 +364,10 @@ public class GUI {
         result += "  <option value='semester'>Semester</option>";
         result += "</select>";
         result += "Description: <textarea name='description' cols='-40' rows='20' placeholder='Insert meeting description here' ></textarea>";
+        result += "<li role='presentation' class='divider'></li>";
         result += "<input type='submit' name='submit' />";
+        result += "</ul>";
+        result +="</div>";
         
         
         //returns html form
@@ -444,7 +448,7 @@ public class GUI {
 "                            <% \n" +
 "                            \n" +
 "                                if (session.getAttribute('p_type').equals('lecturer')) {\n" +
-"                                    out.println(ui.generateTutorialGUI());\n" +
+"                                   \n" +
 "                                    }\n" +
 "                                }\n" +
 "                            %>\n" +

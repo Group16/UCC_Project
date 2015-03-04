@@ -435,7 +435,8 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div.navbar-collapse.navHeade
 
 .dropdown-menu {
     width: 200px !important;
-    background-color: #A9BCF5; 
+    background-color: #09F; 
+    color: #fff;
 }
 
 .ui-datepicker {
@@ -474,4 +475,9 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div.navbar-collapse.navHeade
 .ui-datepicker-title {
     text-align: center;
     font-weight:bold;
+}
+
+#avatar{
+    width: 150px;
+    height: auto;
 }
