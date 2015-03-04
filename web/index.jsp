@@ -237,7 +237,7 @@
                                     String p_type = "student";
                                     session.setAttribute("firstName", firstName);
                                     session.setAttribute("lastName", lastName);
-                                    session.setAttribute("ID", id);
+                                    session.setAttribute("id", id);
                                     session.setAttribute("p_type", p_type);
                                     response.sendRedirect("scheduler.jsp");
 
