@@ -41,7 +41,7 @@
                      session.setAttribute("lastName",lastName);
                      session.setAttribute("id", id);
                      session.setAttribute("p_type", p_type);
-                     response.sendRedirect( "welcome.jsp" );
+                     response.sendRedirect( "scheduler.jsp" );
                 } 
                 else 
                 {

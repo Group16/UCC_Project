@@ -27,9 +27,10 @@ public class FindMeetings
         return db.outputAllRows("SELECT * FROM meetings AS m JOIN people_in_meetings AS pm ON m.m_id = pm.m_id WHERE pm.p_id = '" + p_id + "' AND m.date = '" + date + "'");
     }
     
-     public ArrayList<String> getTutorialSlot(String p_id, String date){
+    public ArrayList<String> getTutorialSlot( String p_id, String date ){
         
-        return db.outputAllRows("SELECT * FROM meetings AS m JOIN people_in_meetings AS pm ON m.m_id = pm.m_id WHERE pm.p_id = '" + p_id + "' AND m.date = '" + date + "'");
+        return db.outputAllRows("SELECT * FROM meetings AS m JOIN  people_in_modules AS pm JOIN modules_in_meetings AS mm "
+                              + "ON pm.mod_id = mm.mod_id AND m.m_id = mm.m_id WHERE pm.p_id = '" + p_id + "'");
     }
     
     public TreeMap<String,String> getFreeTime( ArrayList<String> p_ids, String date )
@@ -62,7 +63,10 @@ public class FindMeetings
                 byte[] bytes = new byte[HOURS_IN_DAY];
 
                 ArrayList<String> meetings = getMeetingsSlot(p_id, dateFormat.format(cal.getTime()));
-
+                ArrayList<String> lectures = getTutorialSlot(p_id, dateFormat.format(cal.getTime()));
+                
+                meetings.addAll(lectures);
+                
                 for ( int i=0 ; i < bytes.length ; i++ )
                 {
                     final String bTime = intToTimeString( i );

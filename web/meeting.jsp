@@ -59,12 +59,11 @@
                      }
                      list.add( session.getAttribute("id").toString() );
                      
-                     out.println("Your meeting has been set");
-                     out.print(list);
-                     
                      meeting.insertNotQuery("meeting");
                      meeting.insertOtherPIMQuery( "0", list);
                      meeting.insertMeetQuery("meeting", "0", list);
+                     
+                     response.sendRedirect("scheduler.jsp");
                  }
              }
              else

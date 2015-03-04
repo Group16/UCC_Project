@@ -12,12 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>You have been logged out</h1>
-        
         <%
                 session.invalidate();
+                response.sendRedirect( "index.jsp" );
         %>
-        <a href="http://localhost:8080/UCC_Scheduler_Program/login.jsp">Log back in</a>
-        
     </body>
 </html>
