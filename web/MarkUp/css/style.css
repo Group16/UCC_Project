@@ -440,7 +440,7 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div.navbar-collapse.navHeade
 }
 
 .dropdown-menu input {
-  
+
     color: #204d74;
 }
 
@@ -485,4 +485,12 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div.navbar-collapse.navHeade
 #avatar{
     width: 150px;
     height: auto;
+}
+
+
+#regForm{
+    margin-top: 100px;
+    width: 50%; 
+    background: url("../images/swirl.jpg");
+    background-size: 100% 100%;
 }
