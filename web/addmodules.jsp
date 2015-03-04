@@ -12,9 +12,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link href="MarkUp/css/style.css" rel="stylesheet">
     </head>
     <body>
-        <h1>Add Modules</h1>
+        <div id="moduleDiv">
+      
         <%        
             if( request.getParameter( "submit" ) != null )
             {
@@ -43,5 +45,26 @@
                 out.print( ui.generateReg2GUI() );
             }
         %>
+        </div>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>       
+        <script>window.jQuery || document.write('<script src="MarkUp/js/jquery.min.js"><\/script>')</script>
+
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script  type="text/javascript" src="MarkUp/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            $('select.div-toggler').change(function () {
+                var target = $(this).data('target');
+                $(target).children().addClass('hide');
+                var show = $("option:selected", this).data('show');
+                $(show).removeClass('hide');
+            });
+
+            $(document).ready(function () {
+                $("#forgotbutton").click(function () {
+                    $("#forgot").toggle();
+                });
+            });
+        </script>
+
     </body>
 </html>

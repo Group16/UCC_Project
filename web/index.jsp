@@ -221,6 +221,24 @@
                                     out.print(ui.generateRegGUI(checker));
                                     //if the form is valid
                                 } else {
+                                db.setup();
+
+                                String[] courseModules = request.getParameterValues("module");
+
+                                if ( courseModules != null ) 
+                                {
+                                    for (int i = 0; i < courseModules.length; i++) 
+                                    {
+                                        db.Insert( "INSERT INTO people_in_modules (p_id, mod_id) VALUES ('" + session.getAttribute("id") + "','" + courseModules[i] + "');" );
+                                    }
+
+                                    response.sendRedirect("scheduler.jsp");
+                                } 
+                                else 
+                                {
+                                    out.println("Please Check Some Boxes");
+                                }
+                                    
                                     out.print("You have been registered");
                                     //Insert the form into the database
                                     checker.get_SHA_256_SecurePassword(pwd);
@@ -239,26 +257,7 @@
                     </div>
                 </div>
             </div>	 
-        </div>			
-
-        <!-- Modal more registration details window -->	
-        <div class="modal" id="registerdetail" role="dialog">
-            <div class = "modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <p>Register</p>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-
-                    <div class="modal-body">
-                        
-                        <%
-                            out.println(ui.generateReg2GUI());
-                        %>
-                    </div>
-                </div>
-            </div>	 
-        </div>
+        </div>	
 
 
         <footer>
