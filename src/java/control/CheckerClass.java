@@ -240,8 +240,8 @@ public class CheckerClass {
         if(database.queryCorrect==true) 
         { 
              array[7]="*User ID already in use";
-             valid=false;
-             correctID = false;
+             
+             
         } 
         else 
         {
