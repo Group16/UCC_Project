@@ -101,19 +101,29 @@ public class MakeJSONArray
                         obj.put("recur",m.getRecurring());
                         obj.put("type", m.getType());
                         obj.put("title", m.getDescription());
+                        
+                        if(m.getType().equals("meeting"))
+                        {
+                            obj.put("color", "#F95A5C");
+                        }
+                        if(m.getType().equals("personal"))
+                        {
+                            obj.put("color", "#FD1CA8");
+                        }
                         if(m.getConfirmed().equals("0"))
                         {
-                            obj.put("color", "pink");
+                            obj.put("color", "#FFC1D4");
                         }
                         if(m.getType().equals("lecture"))
                         {
-                            obj.put("color", "purple");
+                            obj.put("color", "#FAA0A1");
                         }
 
                         if(m.getType().equals("tutorial"))
                         {
-                            obj.put("color", "lime");
+                            obj.put("color", "#FD1367");
                         }
+                        
                         objArray.add(obj);
 
                         // This needs to be after the object is created for reasons.
@@ -147,14 +157,27 @@ public class MakeJSONArray
                     obj.put("type", m.getType());
                     obj.put("title", m.getDescription());
 
-                    if(m.getType().equals("lecture"))
-                    {
-                        obj.put("color", "purple");
-                    }
-                    if(m.getType().equals("tutorial"))
-                    {
-                        obj.put("color", "lime");
-                    }
+                        if(m.getType().equals("meeting"))
+                        {
+                            obj.put("color", "#F95A5C");
+                        }
+                        if(m.getType().equals("personal"))
+                        {
+                            obj.put("color", "#FD1CA8");
+                        }
+                        if(m.getConfirmed().equals("0"))
+                        {
+                            obj.put("color", "#FFC1D4");
+                        }
+                        if(m.getType().equals("lecture"))
+                        {
+                            obj.put("color", "#FAA0A1");
+                        }
+
+                        if(m.getType().equals("tutorial"))
+                        {
+                            obj.put("color", "#FD1367");
+                        }
 
                     objArray.add(obj);
                 }
