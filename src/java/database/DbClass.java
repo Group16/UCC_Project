@@ -246,4 +246,24 @@ public class DbClass
         } catch (IOException ieo) {}
     } // End writeLog
 
+    public static String getHost()
+    {
+        return HOST;
+    }
+    
+    public static String getDatabase()
+    {
+        return DATABASE;
+    }
+    
+    public static String getUser()
+    {
+        return USERNAME;
+    }
+    
+    public static String getPassword()
+    {
+        return PASSWORD;
+    }
+    
 } //End dblib

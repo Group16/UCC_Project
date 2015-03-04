@@ -4,6 +4,7 @@
     Author     : mm37
 --%>
 
+<%@page import="database.DbClass"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
@@ -22,7 +23,7 @@
 
 <%
                 JSONArray objArray = new JSONArray();
-                Connection connectionObject = DriverManager.getConnection("jdbc:mysql://"+"cs1.ucc.ie"+"/" + "2016_mm37", "mm37", "uohongah");
+                Connection connectionObject = DriverManager.getConnection("jdbc:mysql://"+DbClass.getHost()+"/" + DbClass.getDatabase(), DbClass.getUser(), DbClass.getPassword());
                 database.DbClass db = new database.DbClass();
                 
                 Date date = new Date();
