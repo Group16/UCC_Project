@@ -262,7 +262,7 @@ public class MeetingChecker {
                 //Set validation to false
                 valid = false;
                 correctRecipient = false;
-                
+                array[0] = "*User does not exist";
                 }   
                 database.checkQuery("select * from people where p_id='" + this.recipient + "'");
                 database2.checkQuery("select * FROM modules where mod_id='" + this.recipient+ "'");
@@ -275,20 +275,7 @@ public class MeetingChecker {
                 else 
                 {
                      valid=false;
-                     array[0]="*Recipient does not exist.";
-                     
-                     if(database2.queryCorrect==true) 
-                     { 
-                        array[0]="";
-                        correctGroup = true;
-                     } 
-                     else 
-                     {
-                         valid=false;
-                         array[0]="*Recipient(s) does not exist.";
-                     }
-                }
-                
+                }  
             
             //If the date is null
             if(getStartDate().equals("")){
@@ -368,6 +355,78 @@ public class MeetingChecker {
             }else{
                //set the correctDate to true
                correctStartTime = true;
+
+               //Add error to the array
+               array[1] ="";
+
+             }
+
+            if(getLocation().equals("")){
+               valid = false;
+               correctLocation = false;
+               //place empty string in the array
+               array[2] ="*Location Required.";
+            //If the date is not null
+            }else{
+               //set the correctDate to true
+               correctLocation = true;
+
+               //Add error to the array
+                array[2] ="";
+            }
+
+            if(getDescription().equals("")){
+               valid = false;
+               correctDescription = false;
+               //place empty string in the array
+               array[3] ="*Description Required.";
+            //If the date is not null
+            }else{
+               //set the correctDate to true
+               correctDescription = true;
+
+               //Add error to the array
+                array[3] ="";
+
+             }
+
+             return valid;
+    }
+    public boolean validateTutorial(){
+        //Boolean value which is returned
+        boolean valid = true;
+        
+            //If the email field is empty
+            if( getRecipient().equals("") ){
+
+                //Set validation to false
+                valid = false;
+                correctRecipient = false;
+                array[0]="*Group does not exist";
+                }   
+                database.checkQuery("select * FROM modules where mod_id='" + this.recipient+ "'");
+                
+                if(database.queryCorrect==true) 
+                { 
+                     array[0]="";
+                     correctRecipient = true;
+                } 
+                else 
+                {
+                     valid=false;
+                }
+                
+            
+            //If the date is null
+            if(getStartDate().equals("")){
+               valid = false;
+               correctStartDate = false;
+               //place empty string in the array
+               array[1] ="*Start Date Required.";
+            //If the date is not null
+            }else{
+               //set the correctDate to true
+               correctStartDate = true;
 
                //Add error to the array
                array[1] ="";
