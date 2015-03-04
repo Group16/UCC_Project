@@ -20,7 +20,7 @@ public class FindMeetings
     private final DbClass db = new DbClass();
     
     private static final int HOURS_IN_DAY = 10; //There are 10 hours in working day.
-    private static final int HOUR_TO_START = 8; //Day starts at 8 am
+    private static final int HOUR_TO_START = 8; //Day starts at 8 am HI
     
     public FindMeetings( )
     {
