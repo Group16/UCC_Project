@@ -51,7 +51,7 @@
                     try {// Make connection to database
                         statementObject = connectionObject.createStatement();
                         ResultSet statementResult = statementObject.executeQuery("SELECT meetings.m_id, time, meetings.date, location, meetings.type, description FROM meetings JOIN notifications ON meetings.m_id = notifications.m_id WHERE p_id ='" + session.getAttribute("id") + "'");
-                        %><form action="notification.jsp" method="POST"><%
+                        %><form id="forms" action="notification.jsp" method="POST"><%
                          %><table style="border: 1px solid red; border-collapse: collapse;" ><%
                      
                         while(statementResult.next()){
