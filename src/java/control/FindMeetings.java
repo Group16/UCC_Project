@@ -121,7 +121,6 @@ public class FindMeetings
             
             if ( ! isDone )
             {
-//                meetingMaps.clear();
                 cal.add( Calendar.DAY_OF_YEAR, 1 );
             }
             

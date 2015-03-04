@@ -16,6 +16,7 @@
         <h1>Add a Lecture</h1>
         
         <jsp:useBean id="meeting" class="control.MeetingChecker" scope="session" />
+        <jsp:setProperty name="meeting" property="*"/>
         <%
             if ( request.getParameter( "submit" ) != null )
             {
