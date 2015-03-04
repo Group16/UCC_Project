@@ -228,9 +228,11 @@ public class MeetingChecker {
     
     public void insertNotGroupQuery( String typeOfNotification, ArrayList<String> listOfPeople){
        
-        database.Insert( "INSERT INTO notifications( m_id, is_seen, type, content, date, p_id )" +
+        for(String person : listOfPeople){
+            database.Insert( "INSERT INTO notifications( m_id, is_seen, type, content, date, p_id )" +
                          "VALUES( '" + getMeetingID() + "', '" + "0" + "', '" + typeOfNotification + "',  '" + this.description+ "', '" + this.startDate + "',  '" +
-                                                    listOfPeople + "');");
+                                                    person + "');");
+        }
     }
     
     public void insertOtherPIMQuery(String is_manager, ArrayList<String> recipients){
