@@ -140,7 +140,7 @@ public class GUI {
      */
     public String generateRegGUI() {
 
-        result = "<form name='form' action='registration.jsp' method='POST'>"; // start of form 
+        result = "<form name='form' id='forms' action='registration.jsp' method='POST'>"; // start of form 
         result += "<input type='hidden' name='date' value='1993/12/15' />"; // hidden date field
         result += "<label>First Name*<input type='text' name='firstName' id='firstname' placeholder='John' required /></label>"; // first name 
         result += "<label>Last Name*<input type='text' name='lastName' id='secondname' placeholder='Doe' required /></label>";   //last name 
@@ -277,7 +277,7 @@ public class GUI {
 
     public String generateMeetingGUI(MeetingChecker meeting) {
 
-        result = "<form name='form' action='meeting.jsp' method='POST'>";
+        result = "<form name='form'id='forms' action='meeting.jsp' method='POST'>";
 
         if (meeting.correctRecipient == false) {
             result += "ID of person(s) you wish to meetwith <input type='text' name='recipient' placeholder='Enter a users ID' />";
@@ -306,10 +306,10 @@ public class GUI {
                 + "</select>";
 
         if (meeting.correctDescription == false) {
-            result += "Description: <textarea name='description' cols='-40' rows='20' placeholder='Insert meeting description here' ></textarea>";
+            result += "Description: <textarea name='description' cols='40' rows='10' placeholder='Insert meeting description here' ></textarea>";
 
         } else {
-            result += "Description: <textarea name='description' cols='-40' rows='20' >" + meeting.getDescription() + "</textarea>";
+            result += "Description: <textarea name='description' cols='40' rows='10' >" + meeting.getDescription() + "</textarea>";
         }
 
         result += "<input type='submit' name='submit' />";
@@ -329,7 +329,7 @@ public class GUI {
 
     public String generateMeetingGUI() {
 
-        result = "<form name='form' action='meeting.jsp' method='POST'>";
+        result = "<form name='form'id='forms' action='meeting.jsp' method='POST'>";
         result += "<label>Persons ID Number<input type='text' name='recipient' placeholder='Enter a users ID' /></label>";
         result += "<label>Start Date<input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' /></label>";
         result += "<label>Location <input type='text' name='location' placeholder='WGB G.01' />";
@@ -340,7 +340,7 @@ public class GUI {
         result += "  <option value='fortnight'>Fortnightly</option>";
         result += "  <option value='monthly'>Monthly</option>";
         result += "</select>";
-        result += "Description: <textarea name='description' cols='-40' rows='20' placeholder='Insert meeting description here' ></textarea>";
+        result += "Description: <textarea name='description' cols='40' rows='10' placeholder='Insert meeting description here' ></textarea>";
         result += "<input type='submit' name='submit' />";
 
         //returns html form
@@ -349,7 +349,7 @@ public class GUI {
 
     public String generateTutorialGUI(MeetingChecker meeting) {
 
-        result = "<form name='form' action='tutorial.jsp' method='POST'>";
+        result = "<form name='form' id='forms' action='tutorial.jsp' method='POST'>";
 
         if (meeting.correctRecipient == false) {
             result += "Group to set tutorial with<input type='text' name='recipient' placeholder='Enter a users ID' />";
@@ -400,10 +400,8 @@ public class GUI {
     }
 
     public String generateTutorialGUI() {
-        result = "<div class='btn-group dropdown keep-open'>";
-        result += "<button id='buttonDrop' type='button' data-toggle='dropdown' class='btn btn-primary dropdown-toggle'>Arrange A Meeting ? <span class='caret'></span></button>";
-        result += "<ul class='dropdown-menu'>";
-        result += "<form name='form' action='tutorial.jsp' method='POST'>";
+
+        result += "<form name='forms' id='forms' action='tutorial.jsp' method='POST'>";
         result += "Group to set tutorial with<input type='text' name='recipient' placeholder='Enter a users ID' />";
         result += "Start Date <input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' />";
         result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
@@ -418,7 +416,7 @@ public class GUI {
         result += "<li role='presentation' class='divider'></li>";
         result += "<input type='submit' name='submit' />";
         result += "</ul>";
-        result += "</div>";
+        result += "</form>";
 
 
         //returns html form
@@ -426,7 +424,7 @@ public class GUI {
     }
 
     public String generatePersonalGUI(MeetingChecker meeting) {
-        result = "<form name='form' action='personal.jsp' method='POST'>";
+        result = "<form id='forms' id='forms' name='forms' action='personal.jsp' method='POST'>";
 
         if (meeting.correctDescription == false) {
             result += "Personal Event: <input type='text' name='description' placeholder='Doctor Appointment' />";
@@ -473,8 +471,8 @@ public class GUI {
     }
 
     public String generatePersonalGUI() {
-        result = "<form name='form' action='personal.jsp' method='POST'>";
-
+        result = "<form name='forms' id='forms' action='personal.jsp' method='POST'>";
+        result += "<h1>Create A Personal Event</h1>";
         result += "Personal Event: <input type='text' name='description' placeholder='Doctor Appointment' />";
         result += "Start Date <input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' />";
         result += "Start Time <input type='text' class='timepicker' name='time' placeholder='12:00:00' />";
