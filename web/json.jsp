@@ -83,6 +83,8 @@
                                     JSONObject obj = new JSONObject();
                                     obj.put("m_id", m.getM_id());                        
                                     obj.put("start", newDate + "T" + m.getTime() );
+                                    obj.put("rawDate", newDate);
+                                    obj.put("rawTime", m.getTime());
                                     obj.put("location", m.getLocation());
                                     obj.put("recur",m.getRecurring());
                                     obj.put("type", m.getType());
@@ -126,6 +128,8 @@
                                 JSONObject obj = new JSONObject();
                                 obj.put("m_id", m.getM_id());                        
                                 obj.put("start", m.getStartDate() + "T" + m.getTime() );
+                                obj.put("rawDate", m.getStartDate());
+                                obj.put("rawTime", m.getTime());
                                 obj.put("location", m.getLocation());
                                 obj.put("recur",m.getRecurring());
                                 obj.put("type", m.getType());
