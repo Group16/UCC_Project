@@ -65,8 +65,6 @@
                                 Calendar recurCal = Calendar.getInstance();
                                 recurCal.setTime(recurDate);
 
-                                int days = recurCal.get(Calendar.DAY_OF_YEAR);
-
                                 for ( int i=0 ; i < 12 ; i++ )
                                 {   
                                     newDate = dateFormat.format(recurCal.getTime());
@@ -114,13 +112,9 @@
                                 obj.put("title", description);
 
                                 objArray.add(obj);
-                         }
+                            }
                         }
-                           out.print(objArray);
-                           
-                        
+                        out.print(objArray);
                 }
-                catch(Exception E) {
-                    
-                }  
+                catch(Exception E) {}  
         %>
