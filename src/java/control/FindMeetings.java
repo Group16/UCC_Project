@@ -10,9 +10,12 @@ import java.util.TreeMap;
 
 public class FindMeetings 
 {
-    DbClass db = new DbClass();
+    private final DbClass db = new DbClass();
     
-    ArrayList<MeetingMap> meetingMaps = new ArrayList<>();
+    private final ArrayList<MeetingMap> meetingMaps = new ArrayList<>();
+    
+    private static final int HOURS_IN_DAY = 10; //There are 10 hours in working day.
+    private static final int HOUR_TO_START = 8; //Day starts at 8 am
     
     public FindMeetings( )
     {
@@ -25,9 +28,7 @@ public class FindMeetings
     }
     
     public TreeMap<String,String> getFreeTime( ArrayList<String> p_ids, String date )
-    {
-        final int hours = 10;
-        
+    {   
         String mTime = "";
         boolean isDone = false;
         
@@ -53,20 +54,13 @@ public class FindMeetings
             
             for ( String p_id : p_ids )
             {   
-                byte[] bytes = new byte[hours];
+                byte[] bytes = new byte[HOURS_IN_DAY];
 
                 ArrayList<String> meetings = getMeetingsSlot(p_id, dateFormat.format(cal.getTime()));
 
                 for ( int i=0 ; i < bytes.length ; i++ )
                 {
-                    int j = i+8;
-                    String bTime = "";
-
-                    if ( j < 10 )
-                    {
-                        bTime = "0";
-                    }
-                    bTime = bTime + j + ":00:00";
+                    final String bTime = intToTimeString( i );
 
                     for ( String meetingTime : meetings )
                     {
@@ -81,7 +75,7 @@ public class FindMeetings
                 meetingMaps.add(meetingMap);
             }
 
-            byte[] startBytes = new byte[hours];
+            byte[] startBytes = new byte[HOURS_IN_DAY];
             int lastFreeSlot = -1;
             
             for ( int i=0 ; i < startBytes.length ; i++ )
@@ -100,13 +94,7 @@ public class FindMeetings
                 }
                 else if ( lastFreeSlot != -1 )
                 {
-                    int k = lastFreeSlot+8;
-                    mTime = "";
-                    if ( k < 10 )
-                    {
-                        mTime = "0";
-                    }
-                    mTime = mTime + k + ":00:00";
+                    mTime = intToTimeString( lastFreeSlot );
                     
                     isDone = true;
                 }
@@ -115,7 +103,7 @@ public class FindMeetings
             if ( ! isDone )
             {
                 meetingMaps.clear();
-                cal.add(Calendar.DAY_OF_YEAR, 1);
+                cal.add( Calendar.DAY_OF_YEAR, 1 );
             }
             
             // Kill the loop after x days.
@@ -131,6 +119,17 @@ public class FindMeetings
         returnMap.put(mTime, dateFormat.format(cal.getTime()));
 
         return returnMap;
+    }
+    
+    private String intToTimeString( int rawInt )
+    {
+        int intTime = rawInt + HOUR_TO_START;
+        String time = "";
+        if ( intTime < 10 )
+        {
+            time = "0";
+        }
+        return time + intTime + ":00:00";
     }
     
     private class MeetingMap

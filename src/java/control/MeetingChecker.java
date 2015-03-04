@@ -66,7 +66,8 @@ public class MeetingChecker {
     public boolean correctGroup;
     
     
-    public MeetingChecker(String meetingID, String time, String startDate, String location, String recurring, String endDate, String type, String description){
+    public MeetingChecker(String meetingID, String time, String startDate, String location, String recurring, String endDate, String type, String description)
+    {
         database = new DbClass();
         database2 = new DbClass();
         database.setup();

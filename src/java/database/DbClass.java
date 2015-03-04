@@ -17,21 +17,17 @@ public class DbClass
     private Statement statementObject;
     private Connection connectionObject;
    
-    private String dbserver;
-    private String DSN;
-    private String username;
-    private String password;
-    private boolean setup=false;
+    private static final String HOST  = "cs1.ucc.ie";
+    private static final String DATABASE  = "2016_mm37";
+    private static final String USERNAME = "mm37";
+    private static final String PASSWORD = "uohongah";
+    
+    private boolean setup = false;
     public boolean queryCorrect = false;
     
     public String setup()
     {
-        this.dbserver = "cs1.ucc.ie";
-        this.DSN = "2016_mm37";
-        this.username = "mm37";
-        this.password = "uohongah";
-        
-        String URL = "jdbc:mysql://"+dbserver+"/" + DSN;
+        String URL = "jdbc:mysql://" + HOST + "/" + DATABASE;
         
         try 
         {// Initialiase drivers
@@ -46,10 +42,8 @@ public class DbClass
         try 
         {
             // Establish connection to database
-            connectionObject = DriverManager.getConnection(URL, username, password);
+            connectionObject = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             setup=true;
-            
-           
         } 
         catch (SQLException exceptionObject) 
         {
