@@ -235,7 +235,7 @@ select{
 }
 .streams label{
 
-    background-color:#A9D0F5;
+    background-color: #bce8f1;
     padding-bottom: 6px;
 
 }
@@ -491,11 +491,11 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div.navbar-collapse.navHeade
 #forms{
     margin-top: 100px;
     width: 50%; 
-    background-color: #09F;
-    color: #fff;
-   }
+    background-color: #A9D0F5;
+    color: #585858;
+}
    
-   #forms input{
-       
-        color: #2E2E2E;
-   }
+#forms input{
+
+     color: #2E2E2E;
+}
