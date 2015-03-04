@@ -75,100 +75,43 @@
         <div class="container" id="scheduler_container">
             <div class="row">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center pull-left">
-                    <img id="avatar" src="MarkUp/images/avatar.gif" /><br>
-
+                    
+                    <img id="avatar" src="MarkUp/images/avatar.gif" />
                     <%
-                        UI.GUI ui = new UI.GUI();
-                        if (session.getAttribute("lastName") == null) {
+                        if (session.getAttribute("lastName") == null) 
+                        {
                             response.sendRedirect("index.jsp");
-                        } else {
+                        } 
+                        else 
+                        {
                             String firstName;
                             String lastName;
                             firstName = session.getAttribute("firstName").toString();
                             lastName = session.getAttribute("lastName").toString();
-                            out.println(firstName + " " + lastName + "<br>");
+                            out.println(firstName + " " + lastName );
                     %>
-                    <hr> 
-                    <div class="btn-group dropdown keep-open">
-                        <button id="buttonDrop" type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Arrange A Meeting ? <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <% out.println(ui.generateMeetingGUI());%>
-                        </ul>
-                    </div><br><hr>
-
-                    <div class="btn-group dropdown keep-open">
-                        <button id="buttonDrop" type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Arrange Personal Event ? <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <% out.println(ui.generatePersonalGUI());%>
-                        </ul>
-                    </div>
-
+                    <br/><br/>
+                    <a href="addmodules.jsp" ><button type="button" class="btn btn-primary btn-wide">Set Your Modules</button></a>
+                    <hr/> 
+                    <a href="meeting.jsp" ><button type="button" class="btn btn-primary btn-wide">Arrange a Meeting</button></a>
+                    <br/><br/>
+                    <a href="personal.jsp" ><button type="button" class="btn btn-primary btn-wide">Arrange Personal Event</button></a>
                     <%
-                            if (session.getAttribute("p_type").equals("lecturer")) {
-                                out.println(ui.generateTutorialGUI());
+                            if (session.getAttribute("p_type").equals("lecturer")) 
+                            {   
+                                out.print( "<hr/>" );
+                                out.print( "<a href=\"addlecture.jsp\" ><button type=\"button\" class=\"btn btn-primary btn-wide\">Arrange Tutorial</button></a>" );
                             }
                         }
                     %>
-
-
-
-
-                    <form name='form' action='welcome.jsp' method='POST'>
-
+                
                 </div>
-
                 <div class="col-lg-10 col-md-10 col-sm-10 text pull-right">
                     <div id="calendar"></div>
                 </div>
-
             </div><!--row-->
-
         </div>
 
-        <div class="modal " id="createEventModal" role="dialog" aria-hidden="true">
-            <div class = "modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header"> 
-                        <p>Create Your Event !</p>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-
-                    </div>
-                    <div class="modal-body">
-                        <form id="createAppointmentForm" class="form-horizontal">
-                            <div class="control-group">
-                                <label class="control-label" for="eventTitle"></label>
-                                <div>
-                                    Event Title<input type='text' name='eventTitle' id='eventTitle' placeholder='&nbsp;e.g. DataBase Tutorial' />
-                                </div>
-
-                                <label >Location:</label>
-                                <div class="controls">
-                                    <input type="text" name="patientName" id="patientName"  placeholder='&nbsp;e.g. WGB 1.07' />
-                                    <input type="hidden" id="apptStartTime"/>
-                                    <input type="hidden" id="apptEndTime"/>
-                                    <input type="hidden" id="apptAllDay" />
-                                </div>
-                            </div>
-                            <div class="control-group">
-
-
-                                <label for="from">From</label>
-                                <div class="controls controls-row" id="from" >
-                                </div>  
-
-                                <label  for="to">To</label>
-                                <div class="controls controls-row" id="to">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                        <button type="submit" class="btn btn-primary" id="submitButton">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
         <footer>
             UCC CONNECT - A Software Engineering Project &copy; Group 16
         </footer>
