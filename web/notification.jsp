@@ -37,7 +37,7 @@
             {
                 connectionObject = DriverManager.getConnection("jdbc:mysql://"+"cs1.ucc.ie"+"/" + "2016_mm37", "mm37", "uohongah");
                 database.DbClass db = new database.DbClass();
-                db.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
+                db.setup();
                 db.checkQuery("select * from notifications where p_id='" + session.getAttribute("id") + "'");
                 db.getLength("select * from notifications where p_id='" + session.getAttribute("id") + "'");
                 

@@ -4,6 +4,7 @@
     Author     : mm37
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -49,9 +50,16 @@
                  }
                  else
                  {
+                     String [] people = request.getParameter("recipient").split(","); 
+                     ArrayList<String> list = new ArrayList();
+                     for(String person : people)
+                     {
+                         list.add(person.trim());
+                     }
+                     list.add( session.getAttribute("id").toString() );
                      out.println("Your tutorial has been set");
                      meeting.insertNotQuery("tutorial");
-                     meeting.insertMeetQuery("tutorial", "1");
+                     meeting.insertMeetQuery("tutorial", "1", list);
                  }
              }
              else

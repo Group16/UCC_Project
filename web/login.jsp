@@ -25,7 +25,7 @@
             String studentID = request.getParameter("studentID"); 
             String pwd=request.getParameter("pword"); 
             database.DbClass db = new database.DbClass();
-            db.setup("cs1.ucc.ie","2016_mm37", "mm37","uohongah");
+            db.setup();
             
             if(request.getParameter("submit")!=null){
                 db.checkQuery("select * from people where p_id='" + studentID + "' and password = '" + checker.get_SHA_256_SecurePassword(pwd) + "'");
