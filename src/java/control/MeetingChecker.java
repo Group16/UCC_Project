@@ -182,7 +182,7 @@ public class MeetingChecker {
         return this.recurring;
     }
     
-    public int getMeetingID(){
+    public int makeMeetingID(){
         
         String num[] = database.SelectRow("SELECT * FROM meetings ORDER BY m_id DESC LIMIT 1;");
         String count = num[0];
@@ -195,6 +195,10 @@ public class MeetingChecker {
         return this.meetingID;
     }
     
+    public int getMeetingID()
+    {
+        return this.meetingID;
+    }
     
     public void insertMeetQuery( String type, String confirmed, ArrayList<String> list)
     {
@@ -207,7 +211,7 @@ public class MeetingChecker {
         }
         
         database.Insert("INSERT INTO meetings( m_id, confirmed, time, date, location, recur, type, description, dateToday )" +
-                         "VALUES( '" + getMeetingID() + "', '" + confirmed + "', '" + freeTime.firstEntry().getKey() + "', '" + freeTime.get(freeTime.firstKey()) + "', '" + this.location + "',  '" + this.recurring + "',  '" +
+                         "VALUES( '" + makeMeetingID() + "', '" + confirmed + "', '" + freeTime.firstEntry().getKey() + "', '" + freeTime.get(freeTime.firstKey()) + "', '" + this.location + "',  '" + this.recurring + "',  '" +
                                                     type + "', '" + this.description + "', '" + dateSent() + "');");
     }
     
@@ -216,41 +220,41 @@ public class MeetingChecker {
             String type = "lecture";
         
             database.Insert("INSERT INTO meetings( m_id, confirmed, time, date, location, recur, type, description, dateToday )" +
-                             "VALUES( '" + getMeetingID() + "', '1', '"+time+"', '"+date+"', '" + this.location + "',  'weekly',  '" +
+                             "VALUES( '" + makeMeetingID() + "', '1', '"+time+"', '"+date+"', '" + this.location + "',  'weekly',  '" +
                                                         type + "', '" + this.description + "', '" + dateSent() + "');");
     }
     
     public void insertNotQuery( String typeOfNotification ){
-        database.Insert( "INSERT INTO notifications( m_id, is_seen, type, content, date, p_id )" +
-                         "VALUES( '" + getMeetingID() + "', '" + "0" + "', '" + typeOfNotification + "',  '" + this.description+ "', '" + this.startDate + "',  '" +
+        database.Insert("INSERT INTO notifications( m_id, is_seen, type, content, date, p_id )" +
+                         "VALUES( '" + makeMeetingID() + "', '" + "0" + "', '" + typeOfNotification + "',  '" + this.description+ "', '" + this.startDate + "',  '" +
                                                     recipient + "');");
     }
     
     public void insertNotGroupQuery( String typeOfNotification, ArrayList<String> listOfPeople){
        
         for(String person : listOfPeople){
-            database.Insert( "INSERT INTO notifications( m_id, is_seen, type, content, date, p_id )" +
-                         "VALUES( '" + getMeetingID() + "', '" + "0" + "', '" + typeOfNotification + "',  '" + this.description+ "', '" + this.startDate + "',  '" +
+            database.Insert("INSERT INTO notifications( m_id, is_seen, type, content, date, p_id )" +
+                         "VALUES( '" + makeMeetingID() + "', '" + "0" + "', '" + typeOfNotification + "',  '" + this.description+ "', '" + this.startDate + "',  '" +
                                                     person + "');");
         }
     }
     
     public void insertOtherPIMQuery(String is_manager, ArrayList<String> recipients){
         for(String recip : recipients ){
-            database.Insert( "INSERT INTO people_in_meetings( p_id,  m_id, is_manager )" +
-                         "VALUES( '" + recip + "', '" + getMeetingID()  + "', '" + is_manager + "' );");
+            database.Insert("INSERT INTO people_in_meetings( p_id,  m_id, is_manager )" +
+                         "VALUES( '" + recip + "', '" + makeMeetingID()  + "', '" + is_manager + "' );");
         }
     }
     
     public void insertPersonalPIMQuery(String user){
-        database.Insert( "INSERT INTO people_in_meetings( p_id,  m_id, is_manager )" +
-                         "VALUES( '" + user + "', '" + getMeetingID()  + "', '" + "1" + "' );");
+        database.Insert("INSERT INTO people_in_meetings( p_id,  m_id, is_manager )" +
+                         "VALUES( '" + user + "', '" + makeMeetingID()  + "', '" + "1" + "' );");
     }
     
     public void insertPersonalQuery(){
         
         database.Insert("INSERT INTO meetings( m_id, confirmed, time, date, location, recur,  type, description, dateToday )" +
-                         "VALUES( '" + getMeetingID() + "','" + "1" + "', '" + this.time + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "',  '" +
+                         "VALUES( '" + makeMeetingID() + "','" + "1" + "', '" + this.time + "', '" + this.startDate + "', '" + this.location + "',  '" + this.recurring + "',  '" +
                                                     "personal"+ "', '" + this.description + "', '" + dateSent() + "');");
     }
     

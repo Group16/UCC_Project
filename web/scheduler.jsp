@@ -89,21 +89,18 @@
                             String lastName;
                             firstName = session.getAttribute("firstName").toString();
                             lastName = session.getAttribute("lastName").toString();
-                            out.println(firstName + " " + lastName );
+                            out.println("<p class='hiuser'>Hi " + firstName + "</p>" );
                     %>
-                    <br/><br/>
                     <a href="notification.jsp" ><button type="button" class="btn btn-primary btn-wide">Notifications</button></a>
-                    <br/><br/>
                     <a href="addmodules.jsp" ><button type="button" class="btn btn-primary btn-wide">Set Your Modules</button></a>
                     <hr/> 
                     <a href="meeting.jsp" ><button type="button" class="btn btn-primary btn-wide">Arrange a Meeting</button></a>
-                    <br/><br/>
-                    <a href="personal.jsp" ><button type="button" class="btn btn-primary btn-wide">Arrange Personal Event</button></a>
+                    <a href="personal.jsp" ><button type="button" class="btn btn-primary btn-wide">Set Personal Event</button></a>
                     <%
                             if (session.getAttribute("p_type").equals("lecturer")) 
                             {   
                                 out.print( "<hr/>" );
-                                out.print( "<a href=\"addlecture.jsp\" ><button type=\"button\" class=\"btn btn-primary btn-wide\">Arrange Tutorial</button></a>" );
+                                out.print( "<a href=\"addlecture.jsp\" ><button type=\"button\" class=\"btn btn-primary btn-wide\">Arrange a Lecture</button></a>" );
                             }
                         }
                     %>

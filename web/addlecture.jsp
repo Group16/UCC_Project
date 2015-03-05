@@ -10,12 +10,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Add a Lecture</title>
                     <link href="MarkUp/css/style.css" rel="stylesheet">
     </head>
     <body>
-      
-        
+        <div class="subpage">
+            <h1>Add a Lecture</h1>
         <jsp:useBean id="meeting" class="control.MeetingChecker" scope="session" />
         <jsp:setProperty name="meeting" property="*"/>
         <%
@@ -36,15 +36,16 @@
             else
             {
                 out.print("<form action='addlecture.jsp' id='forms'>"
-                        + "<h1>Add a Lecture</h1>"
                         + "Title: <input type='text' name='description' />"
                         + "Location: <input type='text' name='location' />"
                         + "Start Date:<input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' />"
                         + "Time: <input type='text' name='time' />"
                         + "Module: <input type='text' name='module' />"
-                        + "<input type='submit' name='submit' />"
+                        + "<input class='btn btn-success' type='submit' name='submit' />"
                         + "</form>");
             }
         %>
+        <p><a href="scheduler.jsp" ><button class='btn btn-danger' >Back</button></a></p>
+        </div>
     </body>
 </html>
