@@ -1,19 +1,16 @@
 package control;
 
 import database.DbClass;
-import java.net.URL;
 import java.net.URLConnection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Scanner;
 import java.util.TreeMap;
 import json.MakeJSONArray;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 
 public class FindMeetings 
 {

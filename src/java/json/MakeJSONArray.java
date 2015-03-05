@@ -102,27 +102,7 @@ public class MakeJSONArray
                         obj.put("type", m.getType());
                         obj.put("title", m.getDescription());
                         
-                        if(m.getType().equals("meeting"))
-                        {
-                            obj.put("color", "#F95A5C");
-                        }
-                        if(m.getType().equals("personal"))
-                        {
-                            obj.put("color", "#FD1CA8");
-                        }
-                        if(m.getConfirmed().equals("0"))
-                        {
-                            obj.put("color", "#FFC1D4");
-                        }
-                        if(m.getType().equals("lecture"))
-                        {
-                            obj.put("color", "#FAA0A1");
-                        }
-
-                        if(m.getType().equals("tutorial"))
-                        {
-                            obj.put("color", "#FD1367");
-                        }
+                        obj = formatObject( obj, m );
                         
                         objArray.add(obj);
 
@@ -157,27 +137,7 @@ public class MakeJSONArray
                     obj.put("type", m.getType());
                     obj.put("title", m.getDescription());
 
-                        if(m.getType().equals("meeting"))
-                        {
-                            obj.put("color", "#F95A5C");
-                        }
-                        if(m.getType().equals("personal"))
-                        {
-                            obj.put("color", "#FD1CA8");
-                        }
-                        if(m.getConfirmed().equals("0"))
-                        {
-                            obj.put("color", "#FFC1D4");
-                        }
-                        if(m.getType().equals("lecture"))
-                        {
-                            obj.put("color", "#FAA0A1");
-                        }
-
-                        if(m.getType().equals("tutorial"))
-                        {
-                            obj.put("color", "#FD1367");
-                        }
+                    obj = formatObject( obj, m );
 
                     objArray.add(obj);
                 }
@@ -186,5 +146,31 @@ public class MakeJSONArray
         catch ( Exception e ) {}
         
         return objArray;
+    }
+    
+    private JSONObject formatObject( JSONObject obj, JSONMeeting m )
+    {
+        if(m.getType().equals("meeting"))
+        {
+            obj.put("color", "#F95A5C");
+        }
+        if(m.getType().equals("personal"))
+        {
+            obj.put("color", "#FD1CA8");
+        }
+        if(m.getConfirmed().equals("0"))
+        {
+            obj.put("color", "#FFC1D4");
+        }
+        if(m.getType().equals("lecture"))
+        {
+            obj.put("color", "#FAA0A1");
+        }
+        if(m.getType().equals("tutorial"))
+        {
+            obj.put("color", "#FD1367");
+        }
+        
+        return obj;
     }
 }

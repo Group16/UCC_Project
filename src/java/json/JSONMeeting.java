@@ -11,14 +11,14 @@ package json;
  */
 public class JSONMeeting
 {
-    private String m_id;
-    private String confirmed;
-    private String time;
-    private String startDate;
-    private String location;
-    private String recurring;
-    private String type;
-    private String description;
+    private final String m_id;
+    private final String confirmed;
+    private final String time;
+    private final String startDate;
+    private final String location;
+    private final String recurring;
+    private final String type;
+    private final String description;
 
     public JSONMeeting( String m_id, String confirmed, String time, String startDate, String location, String recurring, String type, String description )
     {
