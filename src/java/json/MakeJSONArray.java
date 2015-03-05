@@ -88,7 +88,7 @@ public class MakeJSONArray
                     Calendar recurCal = Calendar.getInstance();
                     recurCal.setTime(recurDate);
 
-                    for ( int i=0 ; i < 12 ; i++ )
+                    for ( int i=0 ; i < 50 ; i++ )
                     {   
                         newDate = dateFormat.format(recurCal.getTime());
 

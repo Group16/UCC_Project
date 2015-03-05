@@ -387,6 +387,7 @@ public class GUI {
 
         result += "Recurring <select name='recurring'>";
         result += "  <option value='none'>None</option>";
+        result += "  <option value='daily'>Daily</option>";
         result += "  <option value='weekly'>Weekly</option>";
         result += "  <option value='fortnight'>Fortnightly</option>";
         result += "  <option value='monthly'>Monthly</option>";
@@ -415,6 +416,7 @@ public class GUI {
         result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
         result += "Recurring <select name='recurring'>";
         result += "  <option value='none'>None</option>";
+        result += "  <option value='daily'>Daily</option>";
         result += "  <option value='weekly'>Weekly</option>";
         result += "  <option value='fortnight'>Fortnightly</option>";
         result += "  <option value='monthly'>Monthly</option>";
