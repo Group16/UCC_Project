@@ -438,7 +438,7 @@ public class GUI {
         result += "</div>";
         
         result += "<div class=\"form-group\">";
-        result += " <label for=\"location\">Time</label>";
+        result += " <label for=\"location\">Location</label>";
         result += " <input id='location' type='text' name='location' placeholder='WGB G.01' />";
         result += "</div>";
         
