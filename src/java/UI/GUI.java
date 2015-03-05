@@ -241,10 +241,10 @@ public class GUI {
                 + "</select>";
 
         if (meeting.correctDescription == false) {
-            result += "Description:  <br><textarea name='description' cols='40' rows='10' placeholder='Insert meeting description here' ></textarea>";
+                    result += "<label>Title:<input type='text' name='description' placeholder='Insert meeting description here...' /></label>";
 
         } else {
-            result += "Description: <br><textarea name='description' cols='40' rows='10' >" + meeting.getDescription() + "</textarea><br><hr>";
+            result += "<label>Title:<input type='text' name='description' placeholder='" + meeting.getDescription() + "' /></label>";
         }
 
         result += "<input type='submit' name='submit' />";
@@ -266,9 +266,10 @@ public class GUI {
 
         result = "<form name='form'id='forms' action='meeting.jsp' method='POST'>";
         result += "<h1>Arrange A Meeting</h1><hr>";
+        result += "<label>Title:<input type='text' name='description' placeholder='Insert meeting description here...' /></label>";
         result += "<label>Persons ID Number<input type='text' name='recipient' placeholder='Enter a users ID' /></label>";
         result += "<label>Start Date<input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' /></label>";
-        result += "<label>Location <input type='text' name='location' placeholder='WGB G.01' />";
+        result += "<label>Location <input type='text' name='location' placeholder='WGB G.01' /></label>";
         result += "Recurring <select name='recurring'>";
         result += "  <option value='none'>None</option>";
         result += "  <option value='daily'>Daily</option>";
@@ -276,8 +277,7 @@ public class GUI {
         result += "  <option value='fortnight'>Fortnightly</option>";
         result += "  <option value='monthly'>Monthly</option>";
         result += "</select>";
-        result += "Description: <br><textarea name='description' cols='40' rows='10' placeholder='Insert meeting description here' ></textarea><br><hr>";
-        result += "<input type='submit' name='submit' />";
+        result += "<br><input type='submit' name='submit' />";
 
         //returns html form
         return result;
@@ -314,10 +314,10 @@ public class GUI {
                 + "</select>";
 
         if (meeting.correctDescription == false) {
-            result += "Description: <textarea name='description' cols='-40' rows='20' placeholder='Insert meeting description here' ></textarea><br><hr>";
+            result += "<label>Title:<input type='text' name='description' placeholder='Insert meeting description here...' /></label>";
 
         } else {
-            result += "Description: <br><textarea name='description' cols='-40' rows='20' >" + meeting.getDescription() + "</textarea><br><hr>";
+            result += "<label>Title:<input type='text' name='description' placeholder='" + meeting.getDescription() + "' /></label>";
         }
 
         result += "<input type='submit' name='submit' />";
@@ -348,7 +348,7 @@ public class GUI {
         result += "  <option value='monthly'>Monthly</option>";
         result += "  <option value='semester'>Semester</option>";
         result += "</select>";
-        result += "Description: <br><textarea name='description' cols='-40' rows='20' placeholder='Insert meeting description here' ></textarea><br><hr>";
+        result += "<label>Title:<input type='text' name='description' placeholder='Insert meeting description here...' /></label>";
         result += "<li role='presentation' class='divider'></li>";
         result += "<input type='submit' name='submit' />";
         result += "</ul>";
