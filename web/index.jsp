@@ -211,7 +211,6 @@
                     <div class="modal-body">
                         <!--  Reg-->
                         <%
-                            EmailSender.Email email = new EmailSender.Email();
                             //Calling the User Interface
                             //If the user has clicked the submit button
                             if (request.getParameter("submit") != null) {

@@ -1,4 +1,4 @@
-package ui;
+package UI;
 
 import control.CheckerClass;
 import control.MeetingChecker;
