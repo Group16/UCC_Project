@@ -152,23 +152,25 @@ public class MakeJSONArray
     {
         if(m.getType().equals("meeting"))
         {
-            obj.put("color", "#F95A5C");
-        }
-        if(m.getType().equals("personal"))
-        {
-            obj.put("color", "#FD1CA8");
+            obj.put("color", "#66C3CB");
         }
         if(m.getConfirmed().equals("0"))
         {
-            obj.put("color", "#FFC1D4");
+            obj.put("color", "#C5D3D5");
         }
+        
+        if(m.getType().equals("personal"))
+        {
+            obj.put("color", "#D4DA69");
+        }
+        
         if(m.getType().equals("lecture"))
         {
-            obj.put("color", "#FAA0A1");
+            obj.put("color", "#FCB831");
         }
         if(m.getType().equals("tutorial"))
         {
-            obj.put("color", "#FD1367");
+            obj.put("color", "#F58B31");
         }
         
         return obj;
