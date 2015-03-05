@@ -1,16 +1,15 @@
 package UI;
-
 import control.CheckerClass;
 import control.MeetingChecker;
 
 /**
- * A class used to output html and check input of form
+ * A class used to output html and check input of forms
  *
  * @author Michael Mullarkey(112457292)
  */
 public class GUI {
 
-    //A string varaible which ouputs html
+    // string varaible which ouputs html
     private String result;
 
     /**
@@ -80,23 +79,15 @@ public class GUI {
         } else {
             result += "<label>Re-Enter Password<input type='password' name='password2' id='password2' value='" + checker.getPassword2() + "'/></label>";
         }
-
-
-               result += " <input type=\"submit\" name='submit' />";
-
-
-
-
         result += "<input type='submit' name='submit' />";
-
         result += "</form>";
+        
         //Sets the errors array to new array
         String[] list = checker.getErrors();
         //a enhanced for loop to loop through everything in list
         for (String y : list) {
             //print out erros
             result += "<p>" + y + "</p>";
-
         }
         //reurns html form
         return result;
@@ -124,7 +115,7 @@ public class GUI {
         result += "<div class='action_btns'>";
         result += "<a href='#login' data-toggle='modal' data-dismiss='modal'>Already have an account?</a>";
         result += "</div>";
-        result += " <input type=\"submit\" name='submit' />";
+        result += " <input type='submit' name='submit' />";
         result += " </form>";
         //returns html form
         return result;
@@ -207,7 +198,14 @@ public class GUI {
 
         return result;
     }
-
+    
+    /**
+     * To check and valadate form entries for meetings
+     * <p>
+     * To test if form input is valid, if not return the form with the correct input entered held in the form.
+     * @param meeting
+     * @return html form 
+     */
     public String generateMeetingGUI(MeetingChecker meeting) {
 
         result = "<form name='form'id='forms' action='meeting.jsp' method='POST'>";
@@ -230,12 +228,12 @@ public class GUI {
             result += "Location <input type='text' name='location' value='" + meeting.getLocation() + "' />";
         }
 
-        result += "Recurring<select name=\"recurring\">\n"
-                + "  <option value=\"none\">None</option>\n"
-                + "  <option value=\"daily\">Daily</option>\n"
-                + "  <option value=\"weekly\">Weekly</option>\n"
-                + "  <option value=\"fortnight\">Fortnightly</option>\n"
-                + "  <option value=\"monthly\">Monthly</option>\n"
+        result += "Recurring<select name='recurring'>\n"
+                + "  <option value='none'>None</option>\n"
+                + "  <option value='daily'>Daily</option>\n"
+                + "  <option value='weekly'>Weekly</option>\n"
+                + "  <option value='fortnight'>Fortnightly</option>\n"
+                + "  <option value='monthly'>Monthly</option>\n"
                 + "</select>";
 
         if (meeting.correctDescription == false) {
@@ -246,7 +244,6 @@ public class GUI {
         }
 
         result += "<input type='submit' name='submit' />";
-
         result += "</form>";
 
         String[] list = meeting.getErrors();
@@ -254,36 +251,37 @@ public class GUI {
         for (String y : list) {
             //print out erros
             result += "<p>" + y + "</p>";
-
         }
         //returns html form
         return result;
     }
-
+    
+    /**
+     * HTML form for creating a meeting 
+     * <p>
+     * Form for the creation of meeting, and to set and gain time and date information 
+     * for use on the calender.
+     * @return html form
+     */
     public String generateMeetingGUI() {
 
-        result = "<form name='form'id='forms' action='meeting.jsp' method='POST'>";
-        
-        result += "<div class=\"form-group\">";
-        result += " <label for=\"description\">Title</label>";
+        result = "<form name='form'id='forms' action='meeting.jsp' method='POST'>";        
+        result += "<div class='form-group'>";
+        result += " <label for='description'>Title</label>";
         result += " <input id='description' type='text' name='description' placeholder='Insert meeting description here...' />";
-        result += "</div>";
-        
-        result += "<div class=\"form-group\">";
-        result += " <label for=\"recipient\">Person(s) ID Number</label>";
+        result += "</div>";        
+        result += "<div class='form-group'>";
+        result += " <label for='recipient'>Person(s) ID Number</label>";
         result += " <input id='recipient' type='text' name='recipient' placeholder='Enter a users ID' />";
-        result += "</div>";
-        
-        result += "<div class=\"form-group\">";
-        result += " <label for=\"startDate\">Start Date</label>";
+        result += "</div>";        
+        result += "<div class='form-group'>";
+        result += " <label for='startDate'>Start Date</label>";
         result += " <input id='startDate' class='datepicker' type='text' name='startDate' placeholder='2015/02/08' />";
-        result += "</div>";
-        
-        result += "<div class=\"form-group\">";
-        result += " <label for=\"location\">Location</label>";
+        result += "</div>";        
+        result += "<div class='form-group'>";
+        result += " <label for='location'>Location</label>";
         result += " <input id='location' type='text' name='location' placeholder='WGB G.01' />";
-        result += "</div>";
-        
+        result += "</div>";        
         result += "Recurring <select name='recurring'>";
         result += "  <option value='none'>None</option>";
         result += "  <option value='daily'>Daily</option>";
@@ -297,6 +295,13 @@ public class GUI {
         return result;
     }
 
+    /**
+     * To check and valadate form entries for tutorials
+     * <p>
+     * To test if form input is valid, if not return the form with the correct input entered held in the form.
+     * @param meeting
+     * @return html form 
+     */
     public String generateTutorialGUI(MeetingChecker meeting) {
 
         result = "<form name='form' id='forms' action='tutorial.jsp' method='POST'>";
@@ -319,11 +324,11 @@ public class GUI {
             result += "Location <input type='text' name='location' value='" + meeting.getLocation() + "' />";
         }
 
-        result += "Recurring<select name=\"recurring\">\n"
-                + "  <option value=\"none\">None</option>\n"
-                + "  <option value=\"weekly\">Weekly</option>\n"
-                + "  <option value=\"fortnight\">Fortnightly</option>\n"
-                + "  <option value=\"monthly\">Monthly</option>\n"
+        result += "Recurring<select name='recurring'>\n"
+                + "  <option value='none'>None</option>\n"
+                + "  <option value='weekly'>Weekly</option>\n"
+                + "  <option value='fortnight'>Fortnightly</option>\n"
+                + "  <option value='monthly'>Monthly</option>\n"
                 + "</select>";
 
         if (meeting.correctDescription == false) {
@@ -334,7 +339,6 @@ public class GUI {
         }
 
         result += "<input type='submit' name='submit' />";
-
         result += "</form>";
 
         String[] list = meeting.getErrors();
@@ -342,12 +346,18 @@ public class GUI {
         for (String y : list) {
             //print out erros
             result += "<p>" + y + "</p>";
-
         }
         //returns html form
         return result;
     }
 
+     /**
+     * HTML form for creating a tutorial 
+     * <p>
+     * Form for the creation of tutorial, and to set and gain time and date information 
+     * for use on the calender, also sets recuring events.
+     * @return html form
+     */
     public String generateTutorialGUI() {
 
         result += "<form name='forms' id='forms' action='tutorial.jsp' method='POST'>";
@@ -366,12 +376,18 @@ public class GUI {
         result += "<input type='submit' name='submit' />";
         result += "</ul>";
         result += "</form>";
-
-
         //returns html form
         return result;
     }
-
+    
+    /**
+     * A form to check and valadate personal events
+     * <p>
+     * To test if form input is valid, if not return the form with the correct input entered held in the form.
+     * 
+     * @param meeting
+     * @return 
+     */
     public String generatePersonalGUI(MeetingChecker meeting) {
         result = "<form id='forms' id='forms' name='forms' action='personal.jsp' method='POST'>";
         result += "<h1>Arrange A Personal Event</h1><hr>";
@@ -413,35 +429,34 @@ public class GUI {
         for (String y : list) {
             //print out erros
             result += "<p>" + y + "</p>";
-
         }
         //returns html form
         return result;
     }
-
+    
+    /**
+     * Form to create personal events
+     * 
+     * @return html form 
+     */
     public String generatePersonalGUI() {
-        result = "<form name='forms' id='forms' action='personal.jsp' method='POST'>";
-        
-        result += "<div class=\"form-group\">";
-        result += " <label for=\"description\">Personal Event</label>";
+        result = "<form name='forms' id='forms' action='personal.jsp' method='POST'>";        
+        result += "<div class='form-group'>";
+        result += " <label for='description'>Personal Event</label>";
         result += " <input id='description' type='text' name='description' placeholder='Doctor Appointment' />";
-        result += "</div>";
-        
-        result += "<div class=\"form-group\">";
-        result += " <label for=\"startDate\">Date</label>";
+        result += "</div>";        
+        result += "<div class='form-group'>";
+        result += " <label for='startDate'>Date</label>";
         result += " <input id='startDate' type='text' class='datepicker' name='startDate' placeholder='2015/02/08' />";
-        result += "</div>";
-        
-        result += "<div class=\"form-group\">";
-        result += " <label for=\"time\">Time</label>";
+        result += "</div>";        
+        result += "<div class='form-group'>";
+        result += " <label for='time'>Time</label>";
         result += " <input id='time' type='text' name='time' placeholder='12:00:00' />";
-        result += "</div>";
-        
-        result += "<div class=\"form-group\">";
-        result += " <label for=\"location\">Location</label>";
+        result += "</div>";        
+        result += "<div class='form-group'>";
+        result += " <label for='location'>Location</label>";
         result += " <input id='location' type='text' name='location' placeholder='WGB G.01' />";
-        result += "</div>";
-        
+        result += "</div>";        
         result += "Recurring <select name='recurring'>";
         result += "  <option value='none'>None</option>";
         result += "  <option value='daily'>Daily</option>";
@@ -456,21 +471,4 @@ public class GUI {
         return result;
     }
 
-    public String tutorialButton() {
-
-        String result = " <div class='btn-group dropdown'>\n"
-                + "                        <button type='button' data-toggle='dropdown' class='btn btn-primary dropdown-toggle'>Arrange A Tutorial ? <span class='caret'></span></button>\n"
-                + "                        <ul class='dropdown-menu'>\n"
-                + "                            <% \n"
-                + "                            \n"
-                + "                                if (session.getAttribute('p_type').equals('lecturer')) {\n"
-                + "                                   \n"
-                + "                                    }\n"
-                + "                                }\n"
-                + "                            %>\n"
-                + "                        </ul>\n"
-                + "                    </div>";
-
-        return result;
-    }
 }
