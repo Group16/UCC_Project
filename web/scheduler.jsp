@@ -1,13 +1,12 @@
 <%-- 
     Document   : scheduler
     Created on : 27-Feb-2015, 11:08:14
-    Author     : murphy
+    Author     : Group 16
 --%>
 
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
-<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.json.simple.JSONArray"%>
 <%@page import="org.json.simple.JSONValue"%>
@@ -15,13 +14,10 @@
 <%@page import="control.MeetingChecker"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="org.json.simple.JSONObject"%>";
 
+<%@page import="org.json.simple.JSONObject"%>";
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,8 +44,7 @@
 
     </head>
     <body>
-        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">	
-
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
             <a href="#" class="navbar-brand">UCC CONNECT<img src="MarkUp/images/logoUC.ico" height="29px" /></a>
             <div class="navbar-header">
@@ -75,21 +70,18 @@
         <div class="container" id="scheduler_container">
             <div class="row">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center pull-left">
-                    
+
                     <img id="avatar" src="MarkUp/images/avatar.gif" />
                     <br/>
                     <%
-                        if (session.getAttribute("lastName") == null) 
-                        {
+                        if (session.getAttribute("lastName") == null) {
                             response.sendRedirect("index.jsp");
-                        } 
-                        else 
-                        {
+                        } else {
                             String firstName;
                             String lastName;
                             firstName = session.getAttribute("firstName").toString();
                             lastName = session.getAttribute("lastName").toString();
-                            out.println("<p class='hiuser'>Hi " + firstName + "</p>" );
+                            out.println("<p class='hiuser'>Hi " + firstName + "</p>");
                     %>
                     <a href="notification.jsp" ><button type="button" class="btn btn-primary btn-wide">Notifications</button></a>
                     <a href="addmodules.jsp" ><button type="button" class="btn btn-primary btn-wide">Set Your Modules</button></a>
@@ -97,14 +89,12 @@
                     <a href="meeting.jsp" ><button type="button" class="btn btn-primary btn-wide">Arrange a Meeting</button></a>
                     <a href="personal.jsp" ><button type="button" class="btn btn-primary btn-wide">Set Personal Event</button></a>
                     <%
-                            if (session.getAttribute("p_type").equals("lecturer")) 
-                            {   
-                                out.print( "<hr/>" );
-                                out.print( "<a href=\"addlecture.jsp\" ><button type=\"button\" class=\"btn btn-primary btn-wide\">Arrange a Lecture</button></a>" );
+                            if (session.getAttribute("p_type").equals("lecturer")) {
+                                out.print("<hr/>");
+                                out.print("<a href='addlecture.jsp' ><button type='button' class='btn btn-primary btn-wide'>Arrange a Lecture</button></a>");
                             }
                         }
                     %>
-                
                 </div>
                 <div class="col-lg-10 col-md-10 col-sm-10 text pull-right">
                     <div id="calendar"></div>
@@ -124,12 +114,9 @@
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="MarkUp/js/moment.min.js"></script> 
         <script src="MarkUp/js/fullcalendar.min.js"></script>
-
         <script src="MarkUp/js/bootstrap.min.js"></script>
-
         <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
         <script type="text/javascript">
-
 
             $('#calendar').fullCalendar({
                 header: {
@@ -142,32 +129,16 @@
             });
 
 
-            $(function( ) {
+            $(function ( ) {
                 $(".datepicker").datepicker({dateFormat: "yy/mm/dd"});
             });
 
 
-            $(function( ) {
+            $(function ( ) {
                 $(".timepicker").timepicker({timeFormat: "H:i:s"});
             });
 
-
-            $('.dropdown.keep-open').on({
-                "shown.bs.dropdown": function() {
-                    this.closable = false;
-                },
-                "click": function() {
-                    this.closable = true;
-                },
-                "hide.bs.dropdown": function() {
-                    return this.closable;
-                }
-            });
-
-
-      
         </script>
-
 
     </body>
 </html>
