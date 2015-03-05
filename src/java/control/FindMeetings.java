@@ -1,7 +1,6 @@
 package control;
 
 import database.DbClass;
-import java.net.URLConnection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,8 +25,7 @@ public class FindMeetings
     
     public ArrayList<String> downloadJSON( String p_id, String date )
     {
-        URLConnection connection;
-        ArrayList<String> times = new ArrayList<>();
+        final ArrayList<String> times = new ArrayList<>();
         date = date.replace('/', '-');
         
         try
@@ -57,7 +55,7 @@ public class FindMeetings
         String mTime = "";
         boolean isDone = false;
         
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date meetingDate = new Date();
         try
         {
