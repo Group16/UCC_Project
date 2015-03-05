@@ -61,7 +61,7 @@
                      }
                      list.add( session.getAttribute("id").toString() );
                      
-                     meeting.insertNotQuery("meeting");
+                     meeting.insertNotGroupQuery("meeting", list);
                      meeting.insertOtherPIMQuery( "0", list);
                      meeting.insertMeetQuery("meeting", "0", list);
                      
