@@ -1,3 +1,4 @@
+<!-- Index.jsp Group 16  -->
 <%@ page import ="java.sql.*" %>
 <%@ page import ="javax.sql.*" %>
 <jsp:useBean id="checker" class="control.CheckerClass" scope="session" />
@@ -28,9 +29,8 @@
         <![endif]-->
     </head>
     <body>
-        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">	
-
-
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            
             <a href="#" class="navbar-brand">UCC CONNECT<img src="MarkUp/images/logoUC.ico" height="29px" /></a>	
             <div class="navbar-header">
                 <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse" >
@@ -49,23 +49,19 @@
                     <li><a href="#">Help</a></li>															
                 </ul>							
             </div>	
-        </div> <!-- div .navbar navbar-inverse navbar-fixed-top-->
+        </div> <!-- End div .navbar navbar-inverse navbar-fixed-top-->
 
         <!-- container class for landing page and icons -->	
         <div class="container">				
             <div class="landing">
                 <p>A simple & elegant way to <b>connect your world</b></p>
-
                 <a href="#register" data-toggle="modal">Get Started</a>
-
                 <img src="MarkUp/images/cpus.png" alt="Icon depicting multiple devices">
             </div>				
-        </div>
-
+        </div> <!-- END container  -->
 
         <div class="studentlinks">
             <div class="container">
-
                 <div class="logoshold text-center">
                     <a href="http://cs4.ucc.ie/moodle/"><img src="MarkUp/images/moodle-logo.png" width="150" height="auto" alt="Moodle" ></a>
                     <a href="http://www.collegeroad.ie/"><img src="MarkUp/images/SU_logo.png" width="170" height="auto" alt="Student Union" ></a>
@@ -78,8 +74,6 @@
             <div class="container">			
                 <h1>Not convinced yet ?  check out some of our features to see what we can do for <strong>you!</strong></h1>	
                 <hr id="jump"> <a href="#jump" class="godown"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
-
-
             </div><!--container-->
         </div><!--bannertext-->
 
@@ -89,7 +83,6 @@
                 <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12 text-center pull-right">
                     <img src="MarkUp/images/newworldmap.jpg"  alt="Icon depicting world map with connection icons"class="img-responsive fadeUp_animate fadeInUp">
                 </div>
-
                 <div class="col-lg-6 col-md-6 col-sm-7 text pull-left">
                     <h2>Create schedules and connections with your colleagues</h2>
                     <p class="text-muted">UCC Connect helps you take back control.</p>
@@ -129,7 +122,6 @@
                 <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12 text-center pull-right">
                     <img src="MarkUp/images/clound.jpg"  alt="Icon depicting security" class="lazy-load img-responsive fadeUp_animate fadeInUp">
                 </div>
-
                 <div class="col-lg-6 col-md-6 col-sm-7 text pull-left">
                     <h2>Safe & Secure</h2>
                     <p class="text-muted">The correct care given to your personal information.</p>
@@ -142,9 +134,7 @@
                         <button type="button" class="btn btn-success">Learn More</button>
                     </div><!--buttons-->
                 </div><!--Left-->
-
             </div><!--row-->
-
         </div>
 
         <!-- Modal login window -->	
@@ -158,7 +148,6 @@
                     <div class="modal-body">
                         <!--  login-->
                         <%
-
                             //Calling the User Interface.
                             UI.GUI ui = new UI.GUI();
                             out.println(ui.generateLogGUI());
@@ -171,7 +160,6 @@
                                 db.checkQuery("select * from people where p_id='" + studentID + "' and password = '" + checker.get_SHA_256_SecurePassword(pwd) + "'");
                                 if (db.queryCorrect == true) {
                                     String[] data = db.SelectRow("select * from people where p_id='" + studentID + "' and password = '" + checker.get_SHA_256_SecurePassword(pwd) + "'");
-
                                     String firstName = data[2];
                                     String lastName = data[3];
                                     String id = data[0];
@@ -208,8 +196,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
 
-                    <div class="modal-body">
-                        <!--  Reg-->
+                    <div class="modal-body">                       
                         <%
                             //Calling the User Interface
                             //If the user has clicked the submit button
@@ -221,11 +208,7 @@
                                     //if the form is valid
                                 } else {
                                     db.setup();
-
                                     String[] courseModules = request.getParameterValues("module");
-
-
-
                                     out.print("You have been registered");
                                     //Insert the form into the database
                                     checker.get_SHA_256_SecurePassword(pwd);
@@ -258,9 +241,7 @@
                     </div>
                 </div>
             </div>	 
-        </div>	
-
-
+        </div>
         <footer>
             UCC CONNECT - A Software Engineering Project &copy; Group 16
         </footer>
@@ -273,19 +254,18 @@
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script  type="text/javascript" src="MarkUp/js/bootstrap.min.js"></script>
         <script type="text/javascript">
-            $('select.div-toggler').change(function() {
+            $('select.div-toggler').change(function () {
                 var target = $(this).data('target');
                 $(target).children().addClass('hide');
                 var show = $("option:selected", this).data('show');
                 $(show).removeClass('hide');
             });
 
-            $(document).ready(function() {
-                $("#forgotbutton").click(function() {
+            $(document).ready(function () {
+                $("#forgotbutton").click(function () {
                     $("#forgot").toggle();
                 });
             });
         </script>
-
     </body>
 </html>
