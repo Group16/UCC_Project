@@ -270,17 +270,17 @@ public class GUI {
         result += "</div>";
         
         result += "<div class=\"form-group\">";
-        result += " <label for=\"recipient\">Persons ID Number</label>";
+        result += " <label for=\"recipient\">Person(s) ID Number</label>";
         result += " <input id='recipient' type='text' name='recipient' placeholder='Enter a users ID' />";
         result += "</div>";
         
         result += "<div class=\"form-group\">";
-        result += " <label for=\"startDate\">Persons ID Number</label>";
+        result += " <label for=\"startDate\">Start Date</label>";
         result += " <input id='startDate' class='datepicker' type='text' name='startDate' placeholder='2015/02/08' />";
         result += "</div>";
         
         result += "<div class=\"form-group\">";
-        result += " <label for=\"location\">Persons ID Number</label>";
+        result += " <label for=\"location\">Location</label>";
         result += " <input id='location' type='text' name='location' placeholder='WGB G.01' />";
         result += "</div>";
         
