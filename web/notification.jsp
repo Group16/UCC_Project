@@ -19,13 +19,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-            <link href="MarkUp/css/style.css" rel="stylesheet">
+        <title>Notifications</title>
+        <link href="MarkUp/css/style.css" rel="stylesheet">
     </head>
     <body>
-      
-        
-        
+        <div class='subpage'>
         <%
             Statement statementObject;
             Connection connectionObject;
@@ -44,41 +42,29 @@
                 db.getLength("select * from notifications where p_id='" + session.getAttribute("id") + "'");
                 
                 int count = db.getLength("select * from notifications where p_id='" + session.getAttribute("id") + "'");
-                out.println("<h1>You have " + count + " notifications</h1>");
+                
+                out.println("<h1>You Have " + count + " Notifications</h1>");
                 
                 if(db.queryCorrect==true)     
                 { 
                     String output="";
                     try {// Make connection to database
                         statementObject = connectionObject.createStatement();
-                        ResultSet statementResult = statementObject.executeQuery("SELECT meetings.m_id, time, meetings.date, location, meetings.type, description FROM meetings JOIN notifications ON meetings.m_id = notifications.m_id WHERE p_id ='" + session.getAttribute("id") + "'");
-                        %><form action="notification.jsp" id="forms" method="POST">
-                            
-                            
-                            <%
-                         %><table style="border: 1px solid #09F; border-collapse: collapse; width: 100%;  ><%
-                     
-                        while(statementResult.next()){
-                          
-                            %><tr style=" border: 1px solid #09F; margin-top:20px; text-align: "><%
-                            %><td><%
-                            output = statementResult.getString(2) + ", ";
-                            output += statementResult.getString(3) + ", ";
-                            output += statementResult.getString(4) + ", ";
-                            output += statementResult.getString(5) + ", ";
-                            output += statementResult.getString(6) + " ";
-                            
-                            
-                            out.println(output);
-                            %><input type='checkbox' name='CheckAllow' value="<%=statementResult.getString(1)%>" /></td></tr><%
-                            
-                        }
+                        ResultSet statementResult = statementObject.executeQuery("SELECT * FROM meetings JOIN notifications  ON meetings.m_id = notifications.m_id WHERE p_id ='" + session.getAttribute("id") + "'");
                         
-                        %></table></ol><%
-                          %><input type='submit' name='submit' value="Accept" /></form><%
-                    } catch (SQLException exceptionObject) {
-
-                    }
+                        out.print("<form action=\"notification.jsp\" id=\"forms\" method=\"POST\">");
+                        
+                        while(statementResult.next())
+                        {
+                            output = "<div class=\"notif-row\"><strong>" + statementResult.getString(8) + "</strong> at ";
+                            output += statementResult.getString(3) + " on ";
+                            output += statementResult.getString(4) + "";
+                            out.println(output);
+                            out.print("<input type='checkbox' name='CheckAllow' value=\"" + statementResult.getString(1) + "\" /></div>");
+                        }
+                        out.print("<input class='btn btn-success' type='submit' name='submit' value=\"Accept\" /></form>");
+                          
+                    } catch (SQLException exceptionObject) {}
                 }
                 
                     if(request.getParameterValues("CheckAllow" )!=null){
@@ -91,5 +77,7 @@
                     }
         }
      %>
+     <p><a href="scheduler.jsp" ><button class='btn btn-danger' >Back</button></a></p>
+     </div>
     </body>
 </html>

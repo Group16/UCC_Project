@@ -11,12 +11,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Set Your Modules</title>
         <link href="MarkUp/css/style.css" rel="stylesheet">
     </head>
     <body>
-        <div id="moduleDiv">
-      
+        <div class='subpage'>
+            <h1>Set Your Modules</h1>
         <%        
             if( request.getParameter( "submit" ) != null )
             {
@@ -45,8 +45,8 @@
                 out.print( ui.generateReg2GUI() );
             }
         %>
-        </div>
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>       
+        <p><a href="scheduler.jsp" ><button class='btn btn-danger' >Back</button></a></p>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>       
         <script>window.jQuery || document.write('<script src="MarkUp/js/jquery.min.js"><\/script>')</script>
 
         <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -65,6 +65,6 @@
                 });
             });
         </script>
-
+    </div>
     </body>
 </html>

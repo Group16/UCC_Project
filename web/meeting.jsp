@@ -10,12 +10,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Arrange a Meeting</title>
             <link href="MarkUp/css/style.css" rel="stylesheet">
                 <link href="MarkUp/css/style.css" rel="stylesheet">
     </head>
-
-        
+    <body>
+        <div class="subpage" >
+            <h1>Arrange a Meeting</h1>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
@@ -72,9 +73,9 @@
                 out.println(gui.generateMeetingGUI()); 
              }
          }
-       %>
-            
+       %> 
         </form>
-        
+        <p><a href="scheduler.jsp" ><button class='btn btn-danger' >Back</button></a></p>
+        </div>
     </body>
 </html>

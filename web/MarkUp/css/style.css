@@ -212,7 +212,6 @@ form    {
     position:relative;
     font-size: 14px;
     line-height: 20px;
-    font-weight: bold;
     text-decoration: none;
     padding:10px;
 }
@@ -235,9 +234,9 @@ select{
 }
 .streams label{
 
-    background-color: #bce8f1;
-    padding-bottom: 6px;
-
+    background-color: #E3E3E3;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 input[type='checkbox'] {
@@ -487,15 +486,44 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div.navbar-collapse.navHeade
     height: auto;
 }
 
-
-#forms{
-    margin-top: 100px;
-    width: 50%; 
-    background-color: #A9D0F5;
-    color: #585858;
+.subpage {
+	width: 40%;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: Arial;
+	border: 20px;
+        text-align: center;
 }
-   
-#forms input{
 
-     color: #2E2E2E;
+.subpage button {
+    width: 70%
+}
+
+.subpage form {
+    text-align: left;
+}
+
+.subpage .btn {
+    margin-top: 10px;
+}
+
+.subpage .form-group {
+    margin-bottom: 5px;
+}
+
+.col-lg-2 .btn {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.container .hiuser {
+    padding-bottom: 20px;
+}
+
+.notif-row {
+    display: block;
+    background-color: #E3E3E3;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
 }

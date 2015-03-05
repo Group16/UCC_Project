@@ -138,8 +138,6 @@ public class GUI {
     public String generateReg2GUI() {
 
         result = "<form name='form' id='forms' action='addmodules.jsp' method='POST'>";
-        result += "<h1> Please Choose Your Modules</h1>";
-
         result += "<select class='div-toggler' data-target='.streams'>";
         result += "<option value=''>Choose Your Computer Science Stream</option>";
         result += "<option value='compSciValue' data-show='.compSci'>BSc in Computer Science</option>";
@@ -265,11 +263,27 @@ public class GUI {
     public String generateMeetingGUI() {
 
         result = "<form name='form'id='forms' action='meeting.jsp' method='POST'>";
-        result += "<h1>Arrange A Meeting</h1><hr>";
-        result += "<label>Title:<input type='text' name='description' placeholder='Insert meeting description here...' /></label>";
-        result += "<label>Persons ID Number<input type='text' name='recipient' placeholder='Enter a users ID' /></label>";
-        result += "<label>Start Date<input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' /></label>";
-        result += "<label>Location <input type='text' name='location' placeholder='WGB G.01' /></label>";
+        
+        result += "<div class=\"form-group\">";
+        result += " <label for=\"description\">Title</label>";
+        result += " <input id='description' type='text' name='description' placeholder='Insert meeting description here...' />";
+        result += "</div>";
+        
+        result += "<div class=\"form-group\">";
+        result += " <label for=\"recipient\">Persons ID Number</label>";
+        result += " <input id='recipient' type='text' name='recipient' placeholder='Enter a users ID' />";
+        result += "</div>";
+        
+        result += "<div class=\"form-group\">";
+        result += " <label for=\"startDate\">Persons ID Number</label>";
+        result += " <input id='startDate' class='datepicker' type='text' name='startDate' placeholder='2015/02/08' />";
+        result += "</div>";
+        
+        result += "<div class=\"form-group\">";
+        result += " <label for=\"location\">Persons ID Number</label>";
+        result += " <input id='location' type='text' name='location' placeholder='WGB G.01' />";
+        result += "</div>";
+        
         result += "Recurring <select name='recurring'>";
         result += "  <option value='none'>None</option>";
         result += "  <option value='daily'>Daily</option>";
@@ -277,7 +291,7 @@ public class GUI {
         result += "  <option value='fortnight'>Fortnightly</option>";
         result += "  <option value='monthly'>Monthly</option>";
         result += "</select>";
-        result += "<br><input type='submit' name='submit' />";
+        result += "<input class='btn btn-success' type='submit' name='submit' />";
 
         //returns html form
         return result;
@@ -409,11 +423,27 @@ public class GUI {
 
     public String generatePersonalGUI() {
         result = "<form name='forms' id='forms' action='personal.jsp' method='POST'>";
-        result += "<h1>Create A Personal Event</h1><hr>";
-        result += "Personal Event: <input type='text' name='description' placeholder='Doctor Appointment' />";
-        result += "Start Date <input type='text' class='datepicker' name='startDate' placeholder='2015/02/08' />";
-        result += "Start Time <input type='text' class='timepicker' name='time' placeholder='12:00:00' />";
-        result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
+        
+        result += "<div class=\"form-group\">";
+        result += " <label for=\"description\">Personal Event</label>";
+        result += " <input id='description' type='text' name='description' placeholder='Doctor Appointment' />";
+        result += "</div>";
+        
+        result += "<div class=\"form-group\">";
+        result += " <label for=\"startDate\">Date</label>";
+        result += " <input id='startDate' type='text' class='datepicker' name='startDate' placeholder='2015/02/08' />";
+        result += "</div>";
+        
+        result += "<div class=\"form-group\">";
+        result += " <label for=\"time\">Time</label>";
+        result += " <input id='time' type='text' name='time' placeholder='12:00:00' />";
+        result += "</div>";
+        
+        result += "<div class=\"form-group\">";
+        result += " <label for=\"location\">Time</label>";
+        result += " <input id='location' type='text' name='location' placeholder='WGB G.01' />";
+        result += "</div>";
+        
         result += "Recurring <select name='recurring'>";
         result += "  <option value='none'>None</option>";
         result += "  <option value='daily'>Daily</option>";
@@ -421,7 +451,8 @@ public class GUI {
         result += "  <option value='fortnight'>Fortnightly</option>";
         result += "  <option value='monthly'>Monthly</option>";
         result += "</select>";
-        result += "<br><hr><input type='submit' name='submit' />";
+        result += "<input type='submit' class='btn btn-success' name='submit' />";
+        result += "</form>";
 
         //returns html form
         return result;

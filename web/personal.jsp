@@ -17,7 +17,8 @@
         <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
     </head>
     <body>
-       
+        <div class='subpage'>
+            <h1>Set a Personal Event</h1>
         <jsp:useBean id="meeting" class="control.MeetingChecker" scope="session" />
         <jsp:setProperty name="meeting" property="*"/>
         
@@ -61,5 +62,7 @@
              }
          }
        %>
+       <p><a href="scheduler.jsp" ><button class='btn btn-danger' >Back</button></a></p>
+        </div>
     </body>
 </html>
