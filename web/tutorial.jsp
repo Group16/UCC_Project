@@ -64,9 +64,8 @@
                          list.add(person.trim());
                      }
                      list.add( session.getAttribute("id").toString() );
-                     
-                     out.println("Your tutorial has been set");
-                     meeting.insertNotQuery("tutorial");
+                    
+                     meeting.insertNotGroupQuery("tutorial", list);
                      meeting.insertMeetQuery("tutorial", "1", list);
                      response.sendRedirect("scheduler.jsp");
                  }

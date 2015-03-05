@@ -30,7 +30,7 @@
                 
                 meeting.insertLectureQuery(date, time);
                 db.Insert( "INSERT INTO modules_in_meetings (m_id, mod_id) VALUES ('" + meeting.getMeetingID() + "','" + module + "');" );
-                
+                response.sendRedirect("scheduler.jsp");
                 out.print("Added the lecture '"+ meeting.getDescription() + "' for the module '" + module + "'");
             }
             else

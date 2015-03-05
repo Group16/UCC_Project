@@ -310,7 +310,6 @@ public class GUI {
                 + "  <option value=\"weekly\">Weekly</option>\n"
                 + "  <option value=\"fortnight\">Fortnightly</option>\n"
                 + "  <option value=\"monthly\">Monthly</option>\n"
-                + "  <option value=\"semester\">Semester</option>\n"
                 + "</select>";
 
         if (meeting.correctDescription == false) {
@@ -343,10 +342,10 @@ public class GUI {
         result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
         result += "Recurring <select name='recurring'>";
         result += "  <option value='none'>None</option>";
+        result += "  <option value='daily'>Daily</option>";
         result += "  <option value='weekly'>Weekly</option>";
         result += "  <option value='fortnight'>Fortnightly</option>";
         result += "  <option value='monthly'>Monthly</option>";
-        result += "  <option value='semester'>Semester</option>";
         result += "</select>";
         result += "Description: <br><textarea name='description' cols='-40' rows='20' placeholder='Insert meeting description here' ></textarea><br><hr>";
         result += "<li role='presentation' class='divider'></li>";
@@ -368,7 +367,7 @@ public class GUI {
             result += "Personal Event: <input type='text' name='description' value='" + meeting.getDescription() + "' />";
         }
         if (meeting.correctStartDate == false) {
-            result += "Start date<input type='text' class='datepicker' class='datepicker' name='startDate' placeholder='2014/02/09' />";
+            result += "Start date<input type='text' class='datepicker'  name='startDate' placeholder='2014/02/09' />";
         } else {
             result += "Start date<input type='text' class='datepicker' name='startDate' value='" + meeting.getStartDate() + "' />";
         }
@@ -387,10 +386,10 @@ public class GUI {
 
         result += "Recurring <select name='recurring'>";
         result += "  <option value='none'>None</option>";
+        result += "  <option value='daily'>Daily</option>";
         result += "  <option value='weekly'>Weekly</option>";
         result += "  <option value='fortnight'>Fortnightly</option>";
         result += "  <option value='monthly'>Monthly</option>";
-        result += "  <option value='semester'>Semester</option>";
         result += "</select>";
 
         result += "<input type='submit' name='submit' />";
@@ -415,6 +414,7 @@ public class GUI {
         result += "Location <input type='text' name='location' placeholder='WGB G.01' />";
         result += "Recurring <select name='recurring'>";
         result += "  <option value='none'>None</option>";
+        result += "  <option value='daily'>Daily</option>";
         result += "  <option value='weekly'>Weekly</option>";
         result += "  <option value='fortnight'>Fortnightly</option>";
         result += "  <option value='monthly'>Monthly</option>";
