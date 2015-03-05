@@ -100,7 +100,7 @@
                             if (session.getAttribute("p_type").equals("lecturer")) 
                             {   
                                 out.print( "<hr/>" );
-                                out.print( "<a href=\"addlecture.jsp\" ><button type=\"button\" class=\"btn btn-primary btn-wide\">Arrange Tutorial</button></a>" );
+                                out.print( "<a href=\"addlecture.jsp\" ><button type=\"button\" class=\"btn btn-primary btn-wide\">Arrange a Lecture</button></a>" );
                             }
                         }
                     %>
