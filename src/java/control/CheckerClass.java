@@ -24,20 +24,20 @@ public class CheckerClass {
     private int intID;
     //A string variable for holding the email
     private String email;
-    //A string variable for holding the problem description
+    //A string variable for holding the description
     private String problem;
-    
+    //A string variable for holding the first name 
     private String firstName;
-    
+    //A string variable for holding the last name
     private String lastName;
-    
-    private String password1;
-    
+    //A string variable for holding the password
+    private String password1;   
+    //A string variable for holding re-enter password
     private String password2;
     
     //A string array for holding errors
     private String[] array;
-    
+    //A string variable for holding the hashed password
     private String generatedPassword;
     
     //A boolean to check if the date is in correct format
@@ -46,15 +46,15 @@ public class CheckerClass {
     public boolean correctID;
     //A boolean to check if the email is in correct format
     public boolean correctEmail;
-    ////A boolean to check if the problem description is in correct format
+    //A boolean to check if the problem description is in correct format
     public boolean correctProblem;
-    
+    //A boolean to check if the first name is in correct format
     public boolean correctFirstName;
-    
+    //A boolean to check if the last name is in correct format
     public boolean correctLastName;
-    
+    //A boolean to check if the first password is in correct format
     public boolean correctPassword1;
-    
+    //A boolean to check if the re-enter password is in correct format
     public boolean correctPassword2;
     
   
@@ -132,46 +132,58 @@ public class CheckerClass {
     public String getProblem(){
         return this.problem;
     }
-    
+    /**
+     * A method which sets the first name
+     * @param enterdFirstName the name entered by the user
+     */
     public void setFirstName( String enterdFirstName ){
         this.firstName = enterdFirstName;
     }
     /**
-     * A method which gets the problem description
-     * @return returns the problem 
+     * A method which gets the first name
+     * @return returns the first name 
      */
     public String getFirstName(){
         return this.firstName;
     }
-    
+    /**
+     * A method which sets the last name
+     * @param enterdLastName the last name entered by the user
+     */
     public void setLastName( String enterdLastName ){
         this.lastName = enterdLastName;
     }
     /**
-     * A method which gets the problem description
-     * @return returns the problem 
+     * A method which gets the last name
+     * @return returns the last name 
      */
     public String getLastName(){
         return this.lastName;
     }
-    
+    /**
+     * A method which sets the password
+     * @param enterdPassword1 the password entered by the user
+     */
     public void setPassword1( String enterdPassword1 ){
         this.password1 = enterdPassword1;
     }
     /**
-     * A method which gets the problem description
-     * @return returns the problem 
+     * A method which gets the pass word
+     * @return returns the pass word 
      */
     public String getPassword1(){
         return this.password1;
     }
-    
+    /**
+     * A method which sets the re-enter password
+     * @param enterdPassword2 the re-enter password entered by the user
+     */
     public void setPassword2( String enterdPassword2 ){
         this.password2 = enterdPassword2;
     }
     /**
-     * A method which gets the problem description
-     * @return returns the problem 
+     * A method which gets the re-enter password
+     * @return returns the re-enter password
      */
     public String getPassword2(){
         return this.password2;
@@ -190,6 +202,12 @@ public class CheckerClass {
         password2="";
         array = new String[8];
     }
+    
+    /**
+     * A method for hashing the users password
+     * @param password takes in the users password
+     * @return hashed password
+     */
     public String get_SHA_256_SecurePassword(String password)
     {
         try {
@@ -208,15 +226,6 @@ public class CheckerClass {
             e.printStackTrace();
         }
         return this.generatedPassword;
-    }
-    
-     
-     private static String getSalt() throws NoSuchAlgorithmException
-    {
-        SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
-        byte[] salt = new byte[16];
-        sr.nextBytes(salt);
-        return salt.toString();
     }
     /**
      * A method which insert the data from the form into the database
@@ -288,7 +297,7 @@ public class CheckerClass {
              //Add empty string to array
              array[1] =  "";
         }
-        
+        //if first name field is empty
         if( getFirstName().equals( "" ) ){
             ///Add error ouput to the array
             array[2] = "*First name required";
@@ -303,7 +312,7 @@ public class CheckerClass {
              //Add empty string to array
              array[2] =  "";
         }
-        
+        //if last name field is empty
         if( getLastName().equals( "" ) ){
             ///Add error ouput to the array
             array[3] = "*Last name required";
@@ -318,7 +327,7 @@ public class CheckerClass {
              //Add empty string to array
              array[3] =  "";
         }
-        
+        //if pasword field is empty
         if( getPassword1().equals( "" ) ){
             ///Add error ouput to the array
             array[4] = "*Password required";
@@ -333,7 +342,7 @@ public class CheckerClass {
              //Add empty string to array
              array[4] =  "";
         }
-        
+        //if re-enter password field is empty
         if( getPassword2().equals( "" ) ){
             ///Add error ouput to the array
             array[5] = "*You must re-eneter password";
@@ -348,7 +357,7 @@ public class CheckerClass {
              //Add empty string to array
              array[5] =  "";
         }
-        
+        //if passwords do not match
         if( !getPassword1().equals( getPassword2() ) ){
             ///Add error ouput to the array
             array[6] = "*Passwords do not match";
