@@ -6,7 +6,7 @@ package database;
 
 /**
  *
- * @author Shiny
+ * @author Shiny, @author  Michael Mullarkey(112457292)
  */
 import java.sql.*;
 import java.io.*;

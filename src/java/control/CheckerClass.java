@@ -6,7 +6,6 @@ package control;
 import database.DbClass;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 /**
  * A class used as a bean, it also sets up the database and validates input
  * @author  Michael Mullarkey(112457292)
@@ -249,8 +248,6 @@ public class CheckerClass {
         if(database.queryCorrect==true) 
         { 
              array[7]="*User ID already in use";
-             
-             
         } 
         else 
         {
