@@ -40,18 +40,23 @@
         
         <%
          UI.GUI gui = new UI.GUI();
+         //if the user is not logged in
          if( session.getAttribute( "lastName" ) == null ) {
                 response.sendRedirect( "login.jsp" );
          }
          else
          {
+            //if the submit button has been pressed
             if(request.getParameter( "submit" ) != null){
+                //if the form is not valid
                  if( !meeting.validatePersonal() ){  
                       out.println(gui.generatePersonalGUI(meeting));
                  }
                  else
                  {
+                     //insert meeting into the people_in_meeting table
                      meeting.insertPersonalPIMQuery((String)session.getAttribute("id") );
+                     //insert personal meeting into the meeting table
                      meeting.insertPersonalQuery();
                      response.sendRedirect("scheduler.jsp");
                   }

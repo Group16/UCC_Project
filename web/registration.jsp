@@ -16,7 +16,6 @@
                     <jsp:useBean id="checker" class="control.CheckerClass" scope="session" />
                     <jsp:setProperty name="checker" property="*"/>
                     <%
-                        EmailSender.Email email = new EmailSender.Email();
                         //Calling the User Interface.
                         UI.GUI ui = new UI.GUI();
                         String pwd = request.getParameter("password1");
@@ -38,6 +37,7 @@
                                 String lastName = request.getParameter("lastName");
                                 String id = request.getParameter("ID");
                                 String student = "student";
+                                //Set session attributes
                                 session.setAttribute("firstName", firstName);
                                 session.setAttribute("lastName", lastName);
                                 session.setAttribute("p_type", student);
@@ -51,11 +51,6 @@
                             out.print(ui.generateRegGUI());
                         }
                     %>
-
-                </div>
-            </div>
-        </div>	 
-    </div>
 
 </body>
 </html>

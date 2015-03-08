@@ -40,7 +40,7 @@
         <%
          UI.GUI gui = new UI.GUI();
          database.DbClass db = new database.DbClass();
-         
+         //if the user is not logged in 
          if( session.getAttribute( "firstName" ) == null ) {
                 response.sendRedirect( "login.jsp" );
          }
@@ -52,20 +52,22 @@
                  }
                  else
                  {
+                     //get all recipients
                      String group = request.getParameter("recipient"); 
                      
                      ArrayList<String> people = db.outputAllRows("SELECT p_id FROM people_meetings WHERE mod_id = '" + group + "'", 1);
                      
                      ArrayList<String> list = new ArrayList();
                      
-                     
+                     //put all the people into a list
                      for(String person : people)
                      {
                          list.add(person.trim());
                      }
                      list.add( session.getAttribute("id").toString() );
-                    
+                     //notify the user that they have a tutorial
                      meeting.insertNotGroupQuery("tutorial", list);
+                     //insert the meeting  into the meeting table
                      meeting.insertMeetQuery("tutorial", "1", list);
                      response.sendRedirect("scheduler.jsp");
                  }

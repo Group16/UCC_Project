@@ -38,14 +38,14 @@
         <%
          //String user=session.getValue("userid").toString();
          UI.GUI gui = new UI.GUI();
-         notification.Notify not = new notification.Notify();
-         
+         //if the user is not logged in
          if( session.getAttribute( "lastName" ) == null ) 
          {
                 response.sendRedirect( "login.jsp" );
          }
          else
          {
+             //if the submit button  is hit
             if(request.getParameter( "submit" ) != null){
                  if( !meeting.validate() )
                  {  
@@ -53,16 +53,21 @@
                  }
                  else
                  {
+                     //get all the people has have been invited to the meeting
                      String [] people = request.getParameter("recipient").split(","); 
                      ArrayList<String> list = new ArrayList();
                      for(String person : people)
                      {
+                         //put all those people in the list
                          list.add(person.trim());
                      }
+                     //put the current user into the list
                      list.add( session.getAttribute("id").toString() );
-                     
+                     //notify all user who have been invited to the meeting
                      meeting.insertNotGroupQuery("meeting", list);
+                     //insert the into people_in_meeting
                      meeting.insertOtherPIMQuery( "0", list);
+                     //insert meeting into the meeting table
                      meeting.insertMeetQuery("meeting", "0", list);
                      
                      response.sendRedirect("scheduler.jsp");

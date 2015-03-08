@@ -26,17 +26,21 @@
             String pwd=request.getParameter("pword"); 
             database.DbClass db = new database.DbClass();
             db.setup();
-            
+            //if the submit button is hit
             if(request.getParameter("submit")!=null){
                 db.checkQuery("select * from people where p_id='" + studentID + "' and password = '" + checker.get_SHA_256_SecurePassword(pwd) + "'");
+                //if the checkQuery method set the queryCorrect variable is true
                 if(db.queryCorrect==true) 
                 { 
                      String[] data = db.SelectRow( "select * from people where p_id='" + studentID + "' and password = '" + checker.get_SHA_256_SecurePassword(pwd) + "'");
-            
+                     
+                     //get data from SelectRow query
                      String firstName = data[2];
                      String lastName = data[3];
                      String id = data[0];
                      String p_type = data[1];
+                     
+                     //Set session attributes
                      session.setAttribute("firstName",firstName);
                      session.setAttribute("lastName",lastName);
                      session.setAttribute("id", id);

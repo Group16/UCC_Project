@@ -13,6 +13,7 @@
     </head>
     <body>
         <%
+                //kill all sessions
                 session.invalidate();
                 response.sendRedirect( "index.jsp" );
         %>

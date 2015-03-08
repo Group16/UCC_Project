@@ -74,6 +74,7 @@
                     <img id="avatar" src="MarkUp/images/avatar.gif" />
                     <br/>
                     <%
+                        //if the user is not logged in
                         if (session.getAttribute("lastName") == null) {
                             response.sendRedirect("index.jsp");
                         } else {
@@ -89,6 +90,7 @@
                     <a href="meeting.jsp" ><button type="button" class="btn btn-primary btn-wide">Arrange a Meeting</button></a>
                     <a href="personal.jsp" ><button type="button" class="btn btn-primary btn-wide">Set Personal Event</button></a>
                     <%
+                            //if the user is a lecturer
                             if (session.getAttribute("p_type").equals("lecturer")) {
                                 out.print("<hr/>");
                                 out.print("<a href='addlecture.jsp' ><button type='button' class='btn btn-primary btn-wide'>Arrange a Lecture</button></a>");

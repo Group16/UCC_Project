@@ -155,7 +155,8 @@
                             String pwd = request.getParameter("pword");
                             database.DbClass db = new database.DbClass();
                             db.setup();
-
+                            
+                            //if the subnit button is pressed
                             if (request.getParameter("submit") != null) {
                                 db.checkQuery("select * from people where p_id='" + studentID + "' and password = '" + checker.get_SHA_256_SecurePassword(pwd) + "'");
                                 if (db.queryCorrect == true) {
@@ -164,6 +165,8 @@
                                     String lastName = data[3];
                                     String id = data[0];
                                     String p_type = data[1];
+                                    
+                                    //set attributes
                                     session.setAttribute("firstName", firstName);
                                     session.setAttribute("lastName", lastName);
                                     session.setAttribute("id", id);
@@ -198,7 +201,6 @@
 
                     <div class="modal-body">                       
                         <%
-                            //Calling the User Interface
                             //If the user has clicked the submit button
                             if (request.getParameter("submit") != null) {
                                 //If the form is valid
@@ -207,16 +209,20 @@
                                     out.print(ui.generateRegGUI(checker));
                                     //if the form is valid
                                 } else {
+                                    //set up database
                                     db.setup();
                                     String[] courseModules = request.getParameterValues("module");
                                     out.print("You have been registered");
-                                    //Insert the form into the database
                                     checker.get_SHA_256_SecurePassword(pwd);
                                     checker.insertQuery();
+                                    
+                                    //Get inputs
                                     String firstName = request.getParameter("firstName");
                                     String lastName = request.getParameter("lastName");
                                     String id = request.getParameter("ID");
                                     String p_type = "student";
+                                    
+                                    //set attributes
                                     session.setAttribute("firstName", firstName);
                                     session.setAttribute("lastName", lastName);
                                     session.setAttribute("id", id);

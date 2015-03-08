@@ -18,6 +18,7 @@
         
         
         <%
+        //if the user is not logged in
         if( session.getAttribute( "lastName" ) == null ) {
                 response.sendRedirect( "login.jsp" );
         }
@@ -29,10 +30,11 @@
             lastName=session.getAttribute("lastName").toString();
             out.println("You are logged in. Welcome " + firstName + " " + lastName);
             
+            //if the meeting button is pressed
             if(request.getParameter("meetingSubmit")!= null){
                 response.sendRedirect( "meeting.jsp" );
             }
-            
+            //if the notification button is pressed
             if(request.getParameter("notificationSubmit")!= null){
                 response.sendRedirect( "notification.jsp" );
             }
@@ -47,6 +49,7 @@
             <input type="submit" name="notificationSubmit" value="Notifcations"/>
             
         <%
+           //if the user is a lecturer
            if(session.getAttribute("p_type").equals("lecturer")){
            %><input type="submit" name="tutorialSubmit" value="Arrange a Tutorial"/><%
 
