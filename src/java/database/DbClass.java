@@ -16,7 +16,7 @@ public class DbClass
 {
     private Statement statementObject;
     private Connection connectionObject;
-
+    //Connections to database
     private static final String HOST  = "cs1.ucc.ie";
     private static final String DATABASE  = "2016_mm37";
     private static final String USERNAME = "mm37";
@@ -24,7 +24,10 @@ public class DbClass
     
     private boolean setup = false;
     public boolean queryCorrect = false;
-    
+    /**
+     * Set up connection to the database
+     * @return 
+     */
     public String setup()
     {
         String URL = "jdbc:mysql://" + HOST + "/" + DATABASE;
@@ -54,7 +57,11 @@ public class DbClass
         return "";
     } // DatabaseConnectorNew constructor
 
-    
+    /**
+     * A method which checks if a query is true or not
+     * @param query the query to be checked
+     * @return a boolean if the query is true or not
+     */
     public String checkQuery(String query)
     { 
         try 
@@ -74,7 +81,11 @@ public class DbClass
 
         return "";
     }
-    
+    /**
+     * Get the length of a outputs from a query
+     * @param query the query to be checked
+     * @return int number
+     */
     public int getLength(String query)
     {
         int rowcount = 0;
@@ -96,6 +107,12 @@ public class DbClass
         return rowcount;
     }
     
+    /**
+     * Get all the rows from a query
+     * @param query the query we want the data from
+     * @param num the number of the result set we want
+     * @return a list of the data from all the rows
+     */
     public  ArrayList<String> outputAllRows(String query, int num)
     {
         ArrayList<String> list = new ArrayList<>();
@@ -113,12 +130,9 @@ public class DbClass
         catch (SQLException exceptionObject) {}
      
         return list;
- }
+    }
     
-    
-    
-    
-    public boolean issetup()
+     public boolean issetup()
     {
         return setup;
     }
